@@ -67,8 +67,8 @@ __meta__ = {
 [node name="File" type="MenuButton" parent="CanvasLayer/tileBar/colour"]
 anchor_right = 0.039
 anchor_bottom = 1.0
-margin_right = -37.92
-margin_bottom = -10.0
+margin_right = 0.079998
+margin_bottom = -1.90735e-06
 custom_fonts/font = ExtResource( 1 )
 text = "File"
 switch_on_hover = true
@@ -77,12 +77,44 @@ __meta__ = {
 }
 
 [node name="Edit" type="MenuButton" parent="CanvasLayer/tileBar/colour"]
-margin_left = 50.0
-margin_right = 86.0
-margin_bottom = 20.0
+anchor_left = 0.039
+anchor_right = 0.081
+anchor_bottom = 1.0
+margin_left = 0.079998
+margin_right = 0.32
+margin_bottom = -1.90735e-06
 custom_fonts/font = ExtResource( 1 )
 text = "Edit"
 switch_on_hover = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsPanel" type="Control" parent="CanvasLayer"]
+anchor_left = 0.742
+anchor_top = 0.042
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.239929
+margin_top = -0.240002
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/SettingsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.203922, 0.203922, 0.203922, 1 )
+
+[node name="Tree" type="Control" parent="CanvasLayer"]
+anchor_top = 0.042
+anchor_right = 0.742
+anchor_bottom = 1.0
+margin_top = -0.240002
+margin_right = 0.239929
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="mouse_entered" from="CanvasLayer/tileBar" to="CanvasLayer/tileBar" method="_on_tileBar_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/tileBar" to="CanvasLayer/tileBar" method="_on_tileBar_mouse_exited"]
 [connection signal="button_up" from="CanvasLayer/tileBar/colour/X" to="CanvasLayer/tileBar" method="_on_X_button_up"]
