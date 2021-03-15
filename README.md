@@ -1,4 +1,4 @@
 # Godot Game Planner
-## Made by Mercadud
+##### Made by Mercadud
 
-#### This Project is still under the alpha phase!!
+## This Project is still under the alpha phase!!
