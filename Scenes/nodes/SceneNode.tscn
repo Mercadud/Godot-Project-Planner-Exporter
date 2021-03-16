@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/ProstoOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Script/Tree/nodes/SceneNode.gd" type="Script" id=2]
+[ext_resource path="res://Themes/dark.tres" type="Theme" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 13
@@ -9,18 +10,23 @@ use_mipmaps = true
 extra_spacing_bottom = 2
 font_data = ExtResource( 1 )
 
-[node name="SceneNode" type="GraphNode"]
+[node name="Scene" type="GraphNode" groups=[
+"Scene",
+]]
 margin_right = 250.0
-margin_bottom = 71.0
+margin_bottom = 114.0
+rect_pivot_offset = Vector2( 307.983, 44.4083 )
+theme = ExtResource( 3 )
 custom_fonts/title_font = SubResource( 1 )
-resizable = true
+title = "Scene Node"
+show_close = true
 slot/0/left_enabled = false
 slot/0/left_type = 0
-slot/0/left_color = Color( 0, 0, 0, 1 )
+slot/0/left_color = Color( 1, 1, 1, 1 )
 slot/0/right_enabled = false
 slot/0/right_type = 0
 slot/0/right_color = Color( 1, 1, 1, 1 )
-slot/1/left_enabled = false
+slot/1/left_enabled = true
 slot/1/left_type = 0
 slot/1/left_color = Color( 1, 1, 1, 1 )
 slot/1/right_enabled = false
@@ -49,48 +55,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 16.0
-margin_top = 24.0
-margin_right = 234.0
-margin_bottom = 38.0
-text = "Scene Node"
-
 [node name="HSeparator" type="HSeparator" parent="."]
 visible = false
 margin_left = 16.0
-margin_top = 39.0
+margin_top = 24.0
 margin_right = 234.0
-margin_bottom = 43.0
+margin_bottom = 28.0
 
 [node name="SceneName" type="LineEdit" parent="."]
 margin_left = 16.0
-margin_top = 44.0
+margin_top = 29.0
 margin_right = 234.0
-margin_bottom = 68.0
+margin_bottom = 53.0
 max_length = 26
 placeholder_text = "SceneName"
 
 [node name="HSeparator2" type="HSeparator" parent="."]
 visible = false
 margin_left = 16.0
-margin_top = 69.0
+margin_top = 54.0
 margin_right = 234.0
-margin_bottom = 73.0
+margin_bottom = 58.0
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 16.0
-margin_top = 74.0
+margin_top = 59.0
 margin_right = 234.0
-margin_bottom = 118.0
+margin_bottom = 103.0
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="+" type="Button" parent="HBoxContainer"]
 margin_right = 218.0
 margin_bottom = 20.0
 text = "+"
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="-" type="Button" parent="HBoxContainer"]
 margin_top = 24.0
 margin_right = 218.0
 margin_bottom = 44.0
 text = "-"
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+margin_left = 16.0
+margin_top = 104.0
+margin_right = 234.0
+margin_bottom = 108.0
+[connection signal="close_request" from="." to="." method="_on_SceneNode_close_request"]
+[connection signal="button_up" from="HBoxContainer/+" to="." method="_on_plus_button_up"]
+[connection signal="button_up" from="HBoxContainer/-" to="." method="_on__button_up"]

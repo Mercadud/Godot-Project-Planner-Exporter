@@ -11,6 +11,7 @@ func _process(delta):
 			OS.window_position += get_global_mouse_position() - dragPoint
 
 
+
 func _on_tileBar_mouse_entered():
 	following = true
 
@@ -23,3 +24,4 @@ func _on_X_button_up():
 
 func _on__button_up():
 	OS.window_minimized = true
+
