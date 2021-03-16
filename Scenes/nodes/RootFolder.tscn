@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Themes/Nodes/RootFolder/SelectedFrame.tres" type="StyleBox" id=1]
+[ext_resource path="res://Themes/Nodes/RootFolder/frame.tres" type="StyleBox" id=2]
+
+[node name="RootFolder" type="GraphNode"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 207.0
+margin_bottom = 73.0
+custom_styles/frame = ExtResource( 2 )
+custom_styles/selectedframe = ExtResource( 1 )
+custom_colors/title_color = Color( 1, 1, 1, 1 )
+title = "Root Folder"
+show_close = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FolderName" type="LineEdit" parent="."]
+margin_left = 10.0
+margin_top = 33.0
+margin_right = 191.0
+margin_bottom = 57.0
+placeholder_text = "Folder Name"

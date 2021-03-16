@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Script/titleBar/titleBar.gd" type="Script" id=2]
+[ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/nodes/RootFolder.tscn" type="PackedScene" id=3]
 
 [node name="Main Page" type="Control"]
 anchor_right = 1.0
@@ -11,94 +12,110 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enable = true
-
-[node name="background" type="ColorRect" parent="CanvasLayer"]
+[node name="Mount" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer"]
-anchor_right = 1.0
-margin_bottom = 30.0
+[node name="MainWindow" type="VSplitContainer" parent="Mount"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+dragger_visibility = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="tileBar" type="HSplitContainer" parent="CanvasLayer/VSplitContainer"]
-margin_right = 1024.0
-margin_bottom = 32.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="tileBar" type="HSplitContainer" parent="Mount/MainWindow"]
+margin_right = 1010.0
+margin_bottom = 27.0
+dragger_visibility = 2
 
-[node name="colour" type="ColorRect" parent="CanvasLayer/VSplitContainer/tileBar"]
-margin_bottom = 32.0
-mouse_filter = 1
-color = Color( 0.137255, 0.137255, 0.137255, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="menus" type="GridContainer" parent="CanvasLayer/VSplitContainer/tileBar"]
-margin_left = 12.0
-margin_right = 1024.0
-margin_bottom = 32.0
+[node name="menus" type="GridContainer" parent="Mount/MainWindow/tileBar"]
+margin_right = 1010.0
+margin_bottom = 27.0
 columns = 2
 
-[node name="File" type="ToolButton" parent="CanvasLayer/VSplitContainer/tileBar/menus"]
-margin_right = 50.0
-margin_bottom = 32.0
+[node name="File" type="ToolButton" parent="Mount/MainWindow/tileBar/menus"]
+margin_right = 39.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 1 )
 text = "File"
 
-[node name="Edit" type="ToolButton" parent="CanvasLayer/VSplitContainer/tileBar/menus"]
-margin_left = 54.0
-margin_right = 108.0
-margin_bottom = 32.0
+[node name="Edit" type="ToolButton" parent="Mount/MainWindow/tileBar/menus"]
+margin_left = 43.0
+margin_right = 86.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 1 )
 text = "Edit"
 
-[node name="Actions" type="GridContainer" parent="CanvasLayer/VSplitContainer/tileBar"]
-margin_left = 940.0
-margin_right = 1024.0
-margin_bottom = 30.0
-columns = 3
+[node name="Editor" type="HSplitContainer" parent="Mount/MainWindow"]
+margin_top = 27.0
+margin_right = 1010.0
+margin_bottom = 586.0
+split_offset = 800
+script = ExtResource( 2 )
 
-[node name="-" type="Button" parent="CanvasLayer/VSplitContainer/tileBar/Actions"]
-margin_right = 21.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 1 )
-text = "_"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Graph" type="PanelContainer" parent="Mount/MainWindow/Editor"]
+margin_right = 814.0
+margin_bottom = 559.0
 
-[node name="^" type="Button" parent="CanvasLayer/VSplitContainer/tileBar/Actions"]
-margin_left = 25.0
-margin_right = 47.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 1 )
-text = "^"
-flat = true
+[node name="GraphEdit" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 807.0
+margin_bottom = 552.0
+right_disconnects = true
 
-[node name="X" type="Button" parent="CanvasLayer/VSplitContainer/tileBar/Actions"]
-margin_left = 51.0
-margin_right = 78.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 1 )
-text = "X"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-[connection signal="mouse_entered" from="CanvasLayer/VSplitContainer/tileBar" to="CanvasLayer/VSplitContainer/tileBar" method="_on_tileBar_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/VSplitContainer/tileBar" to="CanvasLayer/VSplitContainer/tileBar" method="_on_tileBar_mouse_exited"]
-[connection signal="button_up" from="CanvasLayer/VSplitContainer/tileBar/Actions/-" to="CanvasLayer/VSplitContainer/tileBar" method="_on__button_up"]
-[connection signal="button_up" from="CanvasLayer/VSplitContainer/tileBar/Actions/X" to="CanvasLayer/VSplitContainer/tileBar" method="_on_X_button_up"]
+[node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" instance=ExtResource( 3 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 201.0
+margin_bottom = 67.0
+mouse_filter = 1
+show_close = false
+
+[node name="Info" type="TabContainer" parent="Mount/MainWindow/Editor"]
+margin_left = 826.0
+margin_right = 1010.0
+margin_bottom = 559.0
+
+[node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 24.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Folders" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+margin_right = 176.0
+margin_bottom = 14.0
+
+[node name="Folders" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Folders"]
+margin_right = 176.0
+margin_bottom = 14.0
+text = "Folders"
+
+[node name="Nodes" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+margin_top = 18.0
+margin_right = 176.0
+margin_bottom = 32.0
+
+[node name="Nodes" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Nodes"]
+margin_right = 176.0
+margin_bottom = 14.0
+text = "Nodes"
+
+[node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 24.0
+margin_right = -4.0
+margin_bottom = -4.0
+[connection signal="resized" from="Mount/MainWindow/Editor" to="Mount/MainWindow/Editor" method="_on_Editor_resized"]
