@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/titleBar/titleBar.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/nodes/SceneNode.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Script/Tree/Tree.gd" type="Script" id=4]
-[ext_resource path="res://Themes/dark.tres" type="Theme" id=5]
 
 [node name="Main Page" type="Control"]
 anchor_right = 1.0
@@ -25,43 +22,57 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="tileBar" type="Control" parent="CanvasLayer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer"]
 anchor_right = 1.0
-anchor_bottom = 0.042
-margin_bottom = -0.24
-script = ExtResource( 2 )
+margin_bottom = 30.0
 __meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="colour" type="ColorRect" parent="CanvasLayer/tileBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="tileBar" type="HSplitContainer" parent="CanvasLayer/VSplitContainer"]
+margin_right = 1024.0
+margin_bottom = 32.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="colour" type="ColorRect" parent="CanvasLayer/VSplitContainer/tileBar"]
+margin_bottom = 32.0
 mouse_filter = 1
 color = Color( 0.137255, 0.137255, 0.137255, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="X" type="Button" parent="CanvasLayer/tileBar/colour"]
-anchor_left = 0.977
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -0.560059
-custom_fonts/font = ExtResource( 1 )
-text = "X"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="menus" type="GridContainer" parent="CanvasLayer/VSplitContainer/tileBar"]
+margin_left = 12.0
+margin_right = 1024.0
+margin_bottom = 32.0
+columns = 2
 
-[node name="-" type="Button" parent="CanvasLayer/tileBar/colour"]
-anchor_left = 0.953
-anchor_right = 0.977
-anchor_bottom = 1.0
-margin_left = 0.159912
-margin_right = -0.560059
+[node name="File" type="ToolButton" parent="CanvasLayer/VSplitContainer/tileBar/menus"]
+margin_right = 50.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "File"
+
+[node name="Edit" type="ToolButton" parent="CanvasLayer/VSplitContainer/tileBar/menus"]
+margin_left = 54.0
+margin_right = 108.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "Edit"
+
+[node name="Actions" type="GridContainer" parent="CanvasLayer/VSplitContainer/tileBar"]
+margin_left = 940.0
+margin_right = 1024.0
+margin_bottom = 30.0
+columns = 3
+
+[node name="-" type="Button" parent="CanvasLayer/VSplitContainer/tileBar/Actions"]
+margin_right = 21.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 1 )
 text = "_"
 flat = true
@@ -69,98 +80,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="File" type="MenuButton" parent="CanvasLayer/tileBar/colour"]
-anchor_right = 0.039
-anchor_bottom = 1.0
-margin_right = 0.079998
-margin_bottom = -1.90735e-06
+[node name="^" type="Button" parent="CanvasLayer/VSplitContainer/tileBar/Actions"]
+margin_left = 25.0
+margin_right = 47.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 1 )
-text = "File"
-switch_on_hover = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "^"
+flat = true
 
-[node name="Edit" type="MenuButton" parent="CanvasLayer/tileBar/colour"]
-anchor_left = 0.039
-anchor_right = 0.081
-anchor_bottom = 1.0
-margin_left = 0.079998
-margin_right = 0.32
-margin_bottom = -1.90735e-06
+[node name="X" type="Button" parent="CanvasLayer/VSplitContainer/tileBar/Actions"]
+margin_left = 51.0
+margin_right = 78.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 1 )
-text = "Edit"
-switch_on_hover = true
+text = "X"
+flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="SettingsPanel" type="Control" parent="CanvasLayer"]
-anchor_left = 0.742
-anchor_top = 0.042
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.239929
-margin_top = -0.240002
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/SettingsPanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.203922, 0.203922, 0.203922, 1 )
-
-[node name="Tree" type="Control" parent="CanvasLayer"]
-anchor_top = 0.042
-anchor_right = 0.742
-anchor_bottom = 1.0
-margin_top = -0.240002
-margin_right = 0.239929
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="right Click" type="MenuButton" parent="CanvasLayer/Tree"]
-visible = false
-margin_left = 367.164
-margin_top = 226.725
-margin_right = 379.164
-margin_bottom = 246.725
-disabled = true
-toggle_mode = false
-shortcut_in_tooltip = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GraphEdit" type="GraphEdit" parent="CanvasLayer/Tree"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource( 5 )
-right_disconnects = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="SceneNode" parent="CanvasLayer/Tree/GraphEdit" instance=ExtResource( 3 )]
-margin_bottom = 124.0
-rect_pivot_offset = Vector2( 210.233, 176.982 )
-
-[node name="SceneNode2" parent="CanvasLayer/Tree/GraphEdit" instance=ExtResource( 3 )]
-margin_bottom = 124.0
-mouse_filter = 1
-
-[node name="Scene" parent="CanvasLayer/Tree/GraphEdit" instance=ExtResource( 3 )]
-mouse_filter = 1
-[connection signal="mouse_entered" from="CanvasLayer/tileBar" to="CanvasLayer/tileBar" method="_on_tileBar_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/tileBar" to="CanvasLayer/tileBar" method="_on_tileBar_mouse_exited"]
-[connection signal="button_up" from="CanvasLayer/tileBar/colour/X" to="CanvasLayer/tileBar" method="_on_X_button_up"]
-[connection signal="button_up" from="CanvasLayer/tileBar/colour/-" to="CanvasLayer/tileBar" method="_on__button_up"]
-[connection signal="connection_request" from="CanvasLayer/Tree/GraphEdit" to="CanvasLayer/Tree" method="_on_GraphEdit_connection_request"]
-[connection signal="disconnection_request" from="CanvasLayer/Tree/GraphEdit" to="CanvasLayer/Tree" method="_on_GraphEdit_disconnection_request"]
-[connection signal="gui_input" from="CanvasLayer/Tree/GraphEdit" to="CanvasLayer/Tree" method="_on_GraphEdit_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/VSplitContainer/tileBar" to="CanvasLayer/VSplitContainer/tileBar" method="_on_tileBar_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/VSplitContainer/tileBar" to="CanvasLayer/VSplitContainer/tileBar" method="_on_tileBar_mouse_exited"]
+[connection signal="button_up" from="CanvasLayer/VSplitContainer/tileBar/Actions/-" to="CanvasLayer/VSplitContainer/tileBar" method="_on__button_up"]
+[connection signal="button_up" from="CanvasLayer/VSplitContainer/tileBar/Actions/X" to="CanvasLayer/VSplitContainer/tileBar" method="_on_X_button_up"]
