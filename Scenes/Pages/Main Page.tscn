@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/titleBar/titleBar.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/nodes/SceneNode.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Script/Tree/Tree.gd" type="Script" id=4]
 
 [node name="Main Page" type="Control"]
 anchor_right = 1.0
@@ -112,9 +114,23 @@ anchor_right = 0.742
 anchor_bottom = 1.0
 margin_top = -0.240002
 margin_right = 0.239929
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GraphEdit" type="GraphEdit" parent="CanvasLayer/Tree"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+right_disconnects = true
+use_snap = false
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SceneNode" parent="CanvasLayer/Tree/GraphEdit" instance=ExtResource( 3 )]
+mouse_filter = 1
 [connection signal="mouse_entered" from="CanvasLayer/tileBar" to="CanvasLayer/tileBar" method="_on_tileBar_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/tileBar" to="CanvasLayer/tileBar" method="_on_tileBar_mouse_exited"]
 [connection signal="button_up" from="CanvasLayer/tileBar/colour/X" to="CanvasLayer/tileBar" method="_on_X_button_up"]
