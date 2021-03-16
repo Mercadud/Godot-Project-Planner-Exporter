@@ -1,8 +1,70 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/nodes/RootFolder.tscn" type="PackedScene" id=3]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+corner_detail = 20
+anti_aliasing_size = 5
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 3.0
+content_margin_right = 3.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+border_width_top = 1
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 3.0
+content_margin_right = 3.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_top = 3.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+corner_detail = 20
+anti_aliasing_size = 5
 
 [node name="Main Page" type="Control"]
 anchor_right = 1.0
@@ -15,27 +77,26 @@ __meta__ = {
 [node name="Mount" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_styles/panel = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MainWindow" type="VSplitContainer" parent="Mount"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 593.0
+margin_right = 1024.0
+margin_bottom = 600.0
 dragger_visibility = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="tileBar" type="HSplitContainer" parent="Mount/MainWindow"]
-margin_right = 1010.0
+margin_right = 1024.0
 margin_bottom = 27.0
 dragger_visibility = 2
 
 [node name="menus" type="GridContainer" parent="Mount/MainWindow/tileBar"]
-margin_right = 1010.0
+margin_right = 1024.0
 margin_bottom = 27.0
 columns = 2
 
@@ -54,68 +115,86 @@ text = "Edit"
 
 [node name="Editor" type="HSplitContainer" parent="Mount/MainWindow"]
 margin_top = 27.0
-margin_right = 1010.0
-margin_bottom = 586.0
+margin_right = 1024.0
+margin_bottom = 600.0
 split_offset = 800
+dragger_visibility = 1
 script = ExtResource( 2 )
 
 [node name="Graph" type="PanelContainer" parent="Mount/MainWindow/Editor"]
-margin_right = 814.0
-margin_bottom = 559.0
+margin_right = 810.0
+margin_bottom = 573.0
+custom_styles/panel = SubResource( 1 )
 
 [node name="GraphEdit" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 807.0
-margin_bottom = 552.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 805.0
+margin_bottom = 568.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/bg = SubResource( 2 )
+custom_colors/grid_major = Color( 0.654902, 0.654902, 0.654902, 1 )
+custom_colors/grid_minor = Color( 0.258824, 0.258824, 0.258824, 1 )
 right_disconnects = true
+scroll_offset = Vector2( -200, -200 )
 
 [node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" instance=ExtResource( 3 )]
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 201.0
-margin_bottom = 67.0
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 401.0
+margin_bottom = 267.0
 mouse_filter = 1
 show_close = false
 
-[node name="Info" type="TabContainer" parent="Mount/MainWindow/Editor"]
-margin_left = 826.0
-margin_right = 1010.0
-margin_bottom = 559.0
+[node name="Select" type="TabContainer" parent="Mount/MainWindow/Editor"]
+margin_left = 822.0
+margin_right = 1024.0
+margin_bottom = 573.0
+custom_styles/tab_fg = SubResource( 3 )
+custom_styles/tab_bg = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
 
-[node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+[node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 24.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 1.0
+margin_top = 25.0
+margin_right = -1.0
+margin_bottom = -1.0
 
-[node name="Folders" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
-margin_right = 176.0
-margin_bottom = 14.0
+[node name="Folders" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
+margin_right = 200.0
+margin_bottom = 27.0
+dragger_visibility = 2
 
-[node name="Folders" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Folders"]
-margin_right = 176.0
-margin_bottom = 14.0
+[node name="Folders" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Folders"]
+margin_right = 200.0
+margin_bottom = 27.0
+custom_styles/normal = SubResource( 7 )
 text = "Folders"
+align = 1
+valign = 1
 
-[node name="Nodes" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
-margin_top = 18.0
-margin_right = 176.0
-margin_bottom = 32.0
+[node name="Nodes" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
+margin_top = 31.0
+margin_right = 200.0
+margin_bottom = 58.0
 
-[node name="Nodes" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Nodes"]
-margin_right = 176.0
-margin_bottom = 14.0
+[node name="Nodes" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Nodes"]
+margin_right = 200.0
+margin_bottom = 27.0
+custom_styles/normal = SubResource( 7 )
 text = "Nodes"
+align = 1
+valign = 1
 
-[node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+[node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 24.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 1.0
+margin_top = 25.0
+margin_right = -1.0
+margin_bottom = -1.0
 [connection signal="resized" from="Mount/MainWindow/Editor" to="Mount/MainWindow/Editor" method="_on_Editor_resized"]
