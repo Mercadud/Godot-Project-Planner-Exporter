@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/nodes/RootFolder.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Script/Tree/nodes/folderList.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Nodes/Folder.png" type="Texture" id=5]
+[ext_resource path="res://Script/Tree/editor/GraphEdit.gd" type="Script" id=6]
+[ext_resource path="res://Script/main.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -67,9 +70,21 @@ bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 corner_detail = 20
 anti_aliasing_size = 5
 
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Main Page" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -139,6 +154,7 @@ custom_colors/grid_major = Color( 0.654902, 0.654902, 0.654902, 1 )
 custom_colors/grid_minor = Color( 0.258824, 0.258824, 0.258824, 1 )
 right_disconnects = true
 scroll_offset = Vector2( -200, -200 )
+script = ExtResource( 6 )
 
 [node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" instance=ExtResource( 3 )]
 margin_left = 200.0
@@ -166,7 +182,7 @@ margin_bottom = -1.0
 
 [node name="Folders" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_right = 200.0
-margin_bottom = 27.0
+margin_bottom = 60.0
 dragger_visibility = 2
 
 [node name="Folders" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Folders"]
@@ -180,13 +196,17 @@ valign = 1
 [node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Folders"]
 margin_top = 27.0
 margin_right = 200.0
-margin_bottom = 27.0
+margin_bottom = 60.0
+custom_styles/bg = SubResource( 8 )
+items = [ "Folder Node", ExtResource( 5 ), false ]
+auto_height = true
+same_column_width = true
 script = ExtResource( 4 )
 
 [node name="Nodes" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
-margin_top = 31.0
+margin_top = 64.0
 margin_right = 200.0
-margin_bottom = 58.0
+margin_bottom = 91.0
 
 [node name="Nodes" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Nodes"]
 margin_right = 200.0
@@ -204,4 +224,9 @@ margin_left = 1.0
 margin_top = 25.0
 margin_right = -1.0
 margin_bottom = -1.0
+[connection signal="gui_input" from="." to="." method="_on_Main_Page_gui_input"]
 [connection signal="resized" from="Mount/MainWindow/Editor" to="Mount/MainWindow/Editor" method="_on_Editor_resized"]
+[connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_connection_request"]
+[connection signal="mouse_entered" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_mouse_entered"]
+[connection signal="mouse_exited" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_mouse_exited"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Folders/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Folder_item_activated"]

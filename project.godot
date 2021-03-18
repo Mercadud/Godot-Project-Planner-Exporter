@@ -15,9 +15,17 @@ _global_script_class_icons={
 
 [application]
 
-config/name="game planner"
+config/name="Godot Project Planner"
 run/main_scene="res://Scenes/Pages/Main Page.tscn"
 config/icon="res://icon.png"
+
+[input]
+
+ctrl={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [rendering]
 
