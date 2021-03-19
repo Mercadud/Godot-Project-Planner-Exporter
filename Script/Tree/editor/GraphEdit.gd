@@ -8,7 +8,6 @@ var spawnLoc = Vector2(20,20)
 
 var nodeCount = 1
 
-
 func _ready():
 	pass
 
@@ -49,27 +48,24 @@ func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 	print(from)
 	print(to)
 	if "Folder" in from or "RootFolder" in from:
-		if "Script" in to:
-			if checkScriptConnected(to):
+		if !"Node" in to:
+			if !checkConnected(to):
 				connect_node(from, from_slot, to, to_slot)
-		elif !"Node" in to:
-			connect_node(from, from_slot, to, to_slot)
-		else:
-			print(str(from) + " and " + str(to) + " do not connect")
+				return
 	if "Scene" in from or "Node" in from:
-		if "Node" in to or "Scene" in to:
-			connect_node(from, from_slot, to, to_slot)
+		if "Node" in to:
+			if !checkConnected(to):
+				connect_node(from, from_slot, to, to_slot)
+				return
 	
 
-func checkScriptConnected(scriptNode):
-	print(str(get_node(scriptNode)))
-	if get_node(scriptNode).connected == false:
-		get_node(scriptNode).connectedToNode()
-		print("connected")
-		return true
-	else:
-		print("can't connect")
+func checkConnected(node):
+	print(str(get_node(node)))
+	if get_node(node).connected == false:
+		get_node(node).connectedToNode()
 		return false
+	else:
+		return true
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	if "Script" in to:
