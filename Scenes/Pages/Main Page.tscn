@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://Assets/Nodes/Folder.png" type="Texture" id=5]
 [ext_resource path="res://Script/Tree/editor/GraphEdit.gd" type="Script" id=6]
 [ext_resource path="res://Script/main.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Nodes/Scene.png" type="Texture" id=8]
+[ext_resource path="res://Themes/main/itemLists.tres" type="StyleBox" id=9]
+[ext_resource path="res://Assets/Nodes/Script.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Nodes/Node.png" type="Texture" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -69,17 +73,6 @@ content_margin_bottom = 10.0
 bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 corner_detail = 20
 anti_aliasing_size = 5
-
-[sub_resource type="StyleBoxFlat" id=8]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0.203922, 0.203922, 0.203922, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [node name="Main Page" type="Control"]
 anchor_right = 1.0
@@ -182,7 +175,7 @@ margin_bottom = -1.0
 
 [node name="Folders" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_right = 200.0
-margin_bottom = 60.0
+margin_bottom = 61.0
 dragger_visibility = 2
 
 [node name="Folders" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Folders"]
@@ -196,17 +189,17 @@ valign = 1
 [node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Folders"]
 margin_top = 27.0
 margin_right = 200.0
-margin_bottom = 60.0
-custom_styles/bg = SubResource( 8 )
+margin_bottom = 61.0
+custom_styles/bg = ExtResource( 9 )
 items = [ "Folder Node", ExtResource( 5 ), false ]
 auto_height = true
 same_column_width = true
 script = ExtResource( 4 )
 
 [node name="Nodes" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
-margin_top = 64.0
+margin_top = 65.0
 margin_right = 200.0
-margin_bottom = 91.0
+margin_bottom = 162.0
 
 [node name="Nodes" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Nodes"]
 margin_right = 200.0
@@ -216,6 +209,34 @@ text = "Nodes"
 align = 1
 valign = 1
 
+[node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Nodes"]
+margin_top = 39.0
+margin_right = 200.0
+margin_bottom = 97.0
+custom_styles/bg = ExtResource( 9 )
+items = [ "Scene Node", ExtResource( 8 ), false, "Node", ExtResource( 11 ), false ]
+auto_height = true
+
+[node name="Misc" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
+margin_top = 166.0
+margin_right = 200.0
+margin_bottom = 226.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
+margin_right = 200.0
+margin_bottom = 14.0
+text = "Misc"
+align = 1
+valign = 1
+
+[node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
+margin_top = 26.0
+margin_right = 200.0
+margin_bottom = 60.0
+custom_styles/bg = ExtResource( 9 )
+items = [ "Script Node", ExtResource( 10 ), false ]
+auto_height = true
+
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]
 visible = false
 anchor_right = 1.0
@@ -224,9 +245,19 @@ margin_left = 1.0
 margin_top = 25.0
 margin_right = -1.0
 margin_bottom = -1.0
+
+[node name="Warnings" type="Node" parent="Mount/MainWindow"]
+
+[node name="WindowDialog" type="WindowDialog" parent="Mount/MainWindow/Warnings"]
+margin_right = 48.0
+margin_bottom = 40.0
+window_title = "Cannot connect these 2 nodes"
 [connection signal="gui_input" from="." to="." method="_on_Main_Page_gui_input"]
 [connection signal="resized" from="Mount/MainWindow/Editor" to="Mount/MainWindow/Editor" method="_on_Editor_resized"]
 [connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_connection_request"]
+[connection signal="disconnection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_disconnection_request"]
 [connection signal="mouse_entered" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_mouse_entered"]
 [connection signal="mouse_exited" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_mouse_exited"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Folders/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Folder_item_activated"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Nodes/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Nodes_item_activated"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Misc/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Misc_item_activated"]

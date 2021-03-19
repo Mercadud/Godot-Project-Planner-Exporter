@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Themes/Nodes/Script/SelectedFrame.tres" type="StyleBox" id=1]
 [ext_resource path="res://Themes/Nodes/Script/Frame.tres" type="StyleBox" id=2]
+[ext_resource path="res://Script/Tree/nodes/Script.gd" type="Script" id=3]
 
 [node name="Script" type="GraphNode"]
 margin_left = 6.0
@@ -17,6 +18,7 @@ slot/0/left_color = Color( 1, 0.439216, 0.521569, 1 )
 slot/0/right_enabled = false
 slot/0/right_type = 0
 slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
