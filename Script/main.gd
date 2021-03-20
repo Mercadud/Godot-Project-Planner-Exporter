@@ -6,7 +6,7 @@ var ctrlPressed = false
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ctrl"):
 		graph.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		ctrlPressed = true

@@ -12,6 +12,7 @@ margin_bottom = 73.0
 custom_styles/frame = ExtResource( 2 )
 custom_styles/selectedframe = ExtResource( 1 )
 title = "Node"
+show_close = true
 slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color( 0.388235, 0.760784, 0.34902, 1 )
@@ -29,3 +30,5 @@ margin_top = 33.0
 margin_right = 191.0
 margin_bottom = 57.0
 placeholder_text = "Node Name"
+[connection signal="close_request" from="." to="." method="_on_Node_close_request"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]

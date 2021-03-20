@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/nodes/RootFolder.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Script/Tree/nodes/folderList.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Nodes/Folder.png" type="Texture" id=5]
 [ext_resource path="res://Script/Tree/editor/GraphEdit.gd" type="Script" id=6]
 [ext_resource path="res://Script/main.gd" type="Script" id=7]
@@ -155,7 +154,6 @@ margin_top = 200.0
 margin_right = 401.0
 margin_bottom = 267.0
 mouse_filter = 1
-show_close = false
 
 [node name="Select" type="TabContainer" parent="Mount/MainWindow/Editor"]
 margin_left = 822.0
@@ -164,6 +162,8 @@ margin_bottom = 573.0
 custom_styles/tab_fg = SubResource( 4 )
 custom_styles/tab_bg = SubResource( 5 )
 custom_styles/panel = SubResource( 6 )
+tab_align = 0
+use_hidden_tabs_for_min_size = true
 
 [node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]
 anchor_right = 1.0
@@ -194,12 +194,11 @@ custom_styles/bg = ExtResource( 9 )
 items = [ "Folder Node", ExtResource( 5 ), false ]
 auto_height = true
 same_column_width = true
-script = ExtResource( 4 )
 
 [node name="Nodes" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_top = 65.0
 margin_right = 200.0
-margin_bottom = 162.0
+margin_bottom = 150.0
 dragger_visibility = 2
 
 [node name="Nodes" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Nodes"]
@@ -213,15 +212,15 @@ valign = 1
 [node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Nodes"]
 margin_top = 27.0
 margin_right = 200.0
-margin_bottom = 97.0
+margin_bottom = 85.0
 custom_styles/bg = ExtResource( 9 )
 items = [ "Scene Node", ExtResource( 8 ), false, "Node", ExtResource( 11 ), false ]
 auto_height = true
 
 [node name="Misc" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
-margin_top = 166.0
+margin_top = 154.0
 margin_right = 200.0
-margin_bottom = 239.0
+margin_bottom = 215.0
 dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
@@ -235,7 +234,7 @@ valign = 1
 [node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
 margin_top = 27.0
 margin_right = 200.0
-margin_bottom = 73.0
+margin_bottom = 61.0
 custom_styles/bg = ExtResource( 9 )
 items = [ "Script Node", ExtResource( 10 ), false ]
 auto_height = true
@@ -248,6 +247,32 @@ margin_left = 1.0
 margin_top = 25.0
 margin_right = -1.0
 margin_bottom = -1.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info"]
+margin_right = 200.0
+margin_bottom = 14.0
+text = "Folder"
+align = 1
+valign = 1
+
+[node name="Folder" type="HBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 42.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Folder"]
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 98.0
+margin_bottom = 19.0
+text = "Folder Name: "
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Folder"]
+margin_left = 102.0
+margin_right = 192.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 90, 0 )
 
 [node name="Warnings" type="Node" parent="Mount/MainWindow"]
 

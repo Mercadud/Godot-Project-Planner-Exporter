@@ -36,3 +36,5 @@ margin_right = 191.0
 margin_bottom = 57.0
 max_length = 23
 placeholder_text = "Folder Name"
+[connection signal="close_request" from="." to="." method="_on_Folder_close_request"]
+[connection signal="text_changed" from="FolderName" to="." method="_on_FolderName_text_changed"]
