@@ -273,13 +273,6 @@ margin_left = 102.0
 margin_right = 192.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 90, 0 )
-
-[node name="Warnings" type="Node" parent="Mount/MainWindow"]
-
-[node name="WindowDialog" type="WindowDialog" parent="Mount/MainWindow/Warnings"]
-margin_right = 48.0
-margin_bottom = 40.0
-window_title = "Cannot connect these 2 nodes"
 [connection signal="gui_input" from="." to="." method="_on_Main_Page_gui_input"]
 [connection signal="resized" from="Mount/MainWindow/Editor" to="Mount/MainWindow/Editor" method="_on_Editor_resized"]
 [connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_connection_request"]

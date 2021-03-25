@@ -19,6 +19,10 @@ config/name="Godot Project Planner"
 run/main_scene="res://Scenes/Pages/Main Page.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Saver="*res://Script/Saver.gd"
+
 [input]
 
 ctrl={

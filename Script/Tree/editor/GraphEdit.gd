@@ -4,12 +4,14 @@ extends GraphEdit
 var mouseLocation
 var recordMouseLocation = false
 
+onready var data = $"/root/Saver"
+
 var spawnLoc = Vector2(20,20)
 
 var nodeCount = 1
 
 func _ready():
-	pass
+	updateConnectionList()
 
 func _physics_process(_delta):
 	if recordMouseLocation:
@@ -45,27 +47,23 @@ func _on_Misc_item_activated(_index):
 
 
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
-	print(from)
-	print(to)
-	if "Folder" in from or "RootFolder" in from:
-		if !"Node" in to:
-			if !checkConnected(to):
-				if connect_node(from, from_slot, to, to_slot) == OK:
-					return
-	if "Scene" in from or "Node" in from:
-		if "Node" in to:
-			if !checkConnected(to):
-				if connect_node(from, from_slot, to, to_slot) == OK:
-					return
+	if checkConnected(to):
+		connect_node(from, from_slot, to, to_slot)
+		updateConnectionList()
 	
 
-func checkConnected(node):
-	print(str(get_node(node)))
-	if get_node(node).connected == false:
-		get_node(node).connectedToNode()
-		return false
-	else:
-		return true
+func checkConnected(to):
+	var isTrue = true
+	for i in data.connectionList.size():
+		if data.connectionList[i].values()[2] == to:
+			isTrue = false
+	return isTrue
+
+func updateConnectionList():
+	data.connectionList = get_connection_list()
+
+func loadConnections(data):
+	pass
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	if "Script" in to:
