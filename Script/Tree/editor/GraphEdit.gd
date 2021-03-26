@@ -71,10 +71,11 @@ func loadConnections():
 			elif "Script" in data.connectionList[i].values()[2]:
 				spawnNode("Script", false)
 		for i in data.connectionList.size():
-			connect_node(data.connectionList[i].values()[0],
+			if connect_node(data.connectionList[i].values()[0],
 			 data.connectionList[i].values()[1],
 			 data.connectionList[i].values()[2],
-			 data.connectionList[i].values()[3])
+			 data.connectionList[i].values()[3]) == OK:
+				print(data.connectionList[i])
 		data.loadedNewProject = false
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
