@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Themes/main/itemLists.tres" type="StyleBox" id=9]
 [ext_resource path="res://Assets/Nodes/Script.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Nodes/Node.png" type="Texture" id=11]
+[ext_resource path="res://Script/menus.gd" type="Script" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -100,29 +101,34 @@ __meta__ = {
 
 [node name="tileBar" type="HSplitContainer" parent="Mount/MainWindow"]
 margin_right = 1024.0
-margin_bottom = 27.0
+margin_bottom = 25.0
 dragger_visibility = 2
 
 [node name="menus" type="GridContainer" parent="Mount/MainWindow/tileBar"]
 margin_right = 1024.0
-margin_bottom = 27.0
+margin_bottom = 25.0
 columns = 2
+script = ExtResource( 14 )
 
-[node name="File" type="ToolButton" parent="Mount/MainWindow/tileBar/menus"]
+[node name="File" type="MenuButton" parent="Mount/MainWindow/tileBar/menus"]
 margin_right = 39.0
-margin_bottom = 27.0
+margin_bottom = 25.0
 custom_fonts/font = ExtResource( 1 )
 text = "File"
+items = [ "New", null, 0, false, false, 0, 0, null, "", true, "Open", null, 0, false, false, 1, 0, null, "", false, "Save", null, 0, false, false, 2, 0, null, "", false, "Import", null, 0, false, false, 3, 0, null, "", true, "Quit", null, 0, false, false, 4, 0, null, "", false ]
+switch_on_hover = true
 
-[node name="Edit" type="ToolButton" parent="Mount/MainWindow/tileBar/menus"]
+[node name="Edit" type="MenuButton" parent="Mount/MainWindow/tileBar/menus"]
 margin_left = 43.0
 margin_right = 86.0
-margin_bottom = 27.0
+margin_bottom = 25.0
 custom_fonts/font = ExtResource( 1 )
 text = "Edit"
+items = [ "Undo", null, 0, false, false, 0, 0, null, "", true, "Redo", null, 0, false, false, 1, 0, null, "", true ]
+switch_on_hover = true
 
 [node name="Editor" type="HSplitContainer" parent="Mount/MainWindow"]
-margin_top = 27.0
+margin_top = 25.0
 margin_right = 1024.0
 margin_bottom = 600.0
 split_offset = 800
@@ -131,14 +137,14 @@ script = ExtResource( 2 )
 
 [node name="Graph" type="PanelContainer" parent="Mount/MainWindow/Editor"]
 margin_right = 810.0
-margin_bottom = 573.0
+margin_bottom = 575.0
 custom_styles/panel = SubResource( 2 )
 
 [node name="GraphEdit" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 805.0
-margin_bottom = 568.0
+margin_bottom = 570.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_styles/bg = SubResource( 3 )
@@ -158,7 +164,7 @@ mouse_filter = 1
 [node name="Select" type="TabContainer" parent="Mount/MainWindow/Editor"]
 margin_left = 822.0
 margin_right = 1024.0
-margin_bottom = 573.0
+margin_bottom = 575.0
 custom_styles/tab_fg = SubResource( 4 )
 custom_styles/tab_bg = SubResource( 5 )
 custom_styles/panel = SubResource( 6 )
@@ -273,6 +279,16 @@ margin_left = 102.0
 margin_right = 192.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 90, 0 )
+
+[node name="FileDialog" type="FileDialog" parent="Mount/MainWindow"]
+margin_top = 29.0
+margin_right = 600.0
+margin_bottom = 429.0
+resizable = true
+access = 2
+filters = PoolStringArray( "*.GPPE" )
+current_dir = "/home/merc/Godot/Godot Project Planner"
+current_path = "/home/merc/Godot/Godot Project Planner/"
 [connection signal="gui_input" from="." to="." method="_on_Main_Page_gui_input"]
 [connection signal="resized" from="Mount/MainWindow/Editor" to="Mount/MainWindow/Editor" method="_on_Editor_resized"]
 [connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_connection_request"]
@@ -282,3 +298,5 @@ rect_min_size = Vector2( 90, 0 )
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Folders/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Folder_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Nodes/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Nodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Misc/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Misc_item_activated"]
+[connection signal="dir_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_dir_selected"]
+[connection signal="file_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_file_selected"]

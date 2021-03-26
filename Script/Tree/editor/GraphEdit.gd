@@ -15,6 +15,7 @@ func _ready():
 func _physics_process(_delta):
 	if recordMouseLocation:
 		mouseLocation = get_local_mouse_position()
+	loadConnections()
 
 func spawnNode(nodeName, _dragged):
 	var node = load("res://Scenes/nodes/" + nodeName + ".tscn")
@@ -42,6 +43,7 @@ func _on_Misc_item_activated(_index):
 	spawnNode("Script", false)
 
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
+	updateConnectionList()
 	if checkConnected(to):
 		if connect_node(from, from_slot, to, to_slot) == OK:
 			print("connected")
@@ -57,10 +59,26 @@ func checkConnected(to):
 func updateConnectionList():
 	data.connectionList = get_connection_list()
 
-func loadConnections(thing):
-	pass
+func loadConnections():
+	if (data.loadedNewProject == true):
+		for i in data.connectionList.size():
+			if "Folder" in data.connectionList[i].values()[2]:
+				spawnNode("Folder", false)
+			elif "Scene" in data.connectionList[i].values()[2]:
+				spawnNode("Scene", false)
+			elif "Node" in data.connectionList[i].values()[2]:
+				spawnNode("Node", false)
+			elif "Script" in data.connectionList[i].values()[2]:
+				spawnNode("Script", false)
+		for i in data.connectionList.size():
+			connect_node(data.connectionList[i].values()[0],
+			 data.connectionList[i].values()[1],
+			 data.connectionList[i].values()[2],
+			 data.connectionList[i].values()[3])
+		data.loadedNewProject = false
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	if "Script" in to:
 		get_node(to).disconnectedFromNode()
 	disconnect_node(from, from_slot, to, to_slot)
+

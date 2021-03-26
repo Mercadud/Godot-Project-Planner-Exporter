@@ -1,18 +1,27 @@
 extends Node
 
 var connectionList
+var exportDirLocation
+var SaveFileLocation
+var loadedNewProject = false
 
 func _ready():
 	pass
 
-func save(filePath : String):
+func save():
 	var file = File.new()
-	file.open(filePath, File.WRITE)
+	file.open(SaveFileLocation, File.WRITE)
 	file.store_var(connectionList)
 	file.close()
 
-func load(filePath : String):
+func loadProject():
 	var file = File.new()
-	file.open(filePath, File.READ)
+	file.open(SaveFileLocation, File.READ)
 	connectionList = file.get_var()
 	file.close()
+	loadedNewProject = true
+
+func import():
+	var dir = Directory.new()
+	dir.open(exportDirLocation)
+	print("not sure what happens after that")
