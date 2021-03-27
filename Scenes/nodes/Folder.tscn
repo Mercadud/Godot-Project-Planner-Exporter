@@ -4,7 +4,9 @@
 [ext_resource path="res://Themes/Nodes/Folder/SelectedFrame.tres" type="StyleBox" id=2]
 [ext_resource path="res://Script/Tree/nodes/Folder.gd" type="Script" id=3]
 
-[node name="Folder" type="GraphNode"]
+[node name="Folder" type="GraphNode" groups=[
+"nodes",
+]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

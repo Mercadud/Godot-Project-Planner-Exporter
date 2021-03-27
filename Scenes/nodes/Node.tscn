@@ -4,7 +4,9 @@
 [ext_resource path="res://Themes/Nodes/node/Frame.tres" type="StyleBox" id=2]
 [ext_resource path="res://Script/Tree/nodes/Node.gd" type="Script" id=3]
 
-[node name="Node" type="GraphNode"]
+[node name="Node" type="GraphNode" groups=[
+"nodes",
+]]
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 207.0

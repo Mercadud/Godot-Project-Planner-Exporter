@@ -17,7 +17,7 @@ func _on_File_item_pressed(id):
 	elif id == 2:
 		SavePressed()
 	elif id == 3:
-		ImportPressed()
+		ExportPressed()
 	elif id == 4:
 		QuitPressed()
 
@@ -28,7 +28,9 @@ func _on_Edit_item_pressed(id):
 		redoPressed()
 
 func NewPressed():
-	pass
+	var nodes = get_tree().get_nodes_in_group("nodes")
+	for i in nodes:
+		i.queue_free()
 
 func OpenPressed():
 	fileLocation.mode = FileDialog.MODE_OPEN_FILE
@@ -38,7 +40,7 @@ func SavePressed():
 	fileLocation.mode = FileDialog.MODE_SAVE_FILE
 	fileLocation.popup_centered()
 
-func ImportPressed():
+func ExportPressed():
 	pass
 
 func QuitPressed():
@@ -52,6 +54,7 @@ func _on_FileDialog_file_selected(path):
 	if fileLocation.mode == FileDialog.MODE_SAVE_FILE:
 		data.save()
 	elif fileLocation.mode == FileDialog.MODE_OPEN_FILE:
+		NewPressed()
 		data.loadProject()
 
 func undoPressed():
