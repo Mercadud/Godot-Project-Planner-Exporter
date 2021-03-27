@@ -1,4 +1,4 @@
-# Godot Game Planner/Exporter
+# Godot Project Planner/Exporter
 ##### Made by Mercadud
 
 ##### Create File Systems to start your Godot Projects!
