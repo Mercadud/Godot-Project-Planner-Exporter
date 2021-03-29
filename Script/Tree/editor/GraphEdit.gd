@@ -22,6 +22,8 @@ func spawnNode(nodeName, _dragged):
 	var inst = node.instance()
 	inst.offset += spawnLoc + (nodeCount * Vector2(20,20))
 	add_child(inst)
+	print(get_children())
+	inst.info.nodeName = inst
 	nodeCount += 1
 
 func _on_GraphEdit_mouse_entered():
@@ -46,7 +48,7 @@ func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 	updateConnectionList()
 	if checkConnected(to):
 		if connect_node(from, from_slot, to, to_slot) == OK:
-			print("connected")
+			print("connected " + str(from) + " and " + str(to))
 		updateConnectionList()
 
 func checkConnected(to):

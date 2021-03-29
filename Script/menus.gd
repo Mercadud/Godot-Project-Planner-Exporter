@@ -30,6 +30,7 @@ func _on_Edit_item_pressed(id):
 func NewPressed():
 	var nodes = get_tree().get_nodes_in_group("nodes")
 	for i in nodes:
+		print(i)
 		i.queue_free()
 
 func OpenPressed():

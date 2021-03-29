@@ -4,6 +4,7 @@ var connectionList
 var exportDirLocation
 var SaveFileLocation
 var loadedNewProject = false
+var nodeList = []
 
 func _ready():
 	pass
@@ -25,3 +26,11 @@ func import():
 	var dir = Directory.new()
 	dir.open(exportDirLocation)
 	print("not sure what happens after that")
+
+func getRandomNum():
+	for i in nodeList.size():
+		var num = randi()
+		if nodeList[i].values()[0] == num:
+			continue
+		else:
+			return num
