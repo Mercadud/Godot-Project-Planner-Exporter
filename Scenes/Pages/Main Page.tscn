@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/nodes/RootFolder.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Script/Tree/editor/Info.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Nodes/Folder.png" type="Texture" id=5]
 [ext_resource path="res://Script/Tree/editor/GraphEdit.gd" type="Script" id=6]
 [ext_resource path="res://Script/main.gd" type="Script" id=7]
@@ -10,6 +11,8 @@
 [ext_resource path="res://Themes/main/itemLists.tres" type="StyleBox" id=9]
 [ext_resource path="res://Assets/Nodes/Script.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Nodes/Node.png" type="Texture" id=11]
+[ext_resource path="res://Script/Tree/editor/Folder.gd" type="Script" id=12]
+[ext_resource path="res://Script/Tree/editor/Scene.gd" type="Script" id=13]
 [ext_resource path="res://Script/menus.gd" type="Script" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -253,32 +256,100 @@ margin_left = 1.0
 margin_top = 25.0
 margin_right = -1.0
 margin_bottom = -1.0
+script = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info"]
+[node name="Title" type="Label" parent="Mount/MainWindow/Editor/Select/Info"]
 margin_right = 200.0
 margin_bottom = 14.0
 text = "Folder"
 align = 1
 valign = 1
 
-[node name="Folder" type="HBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+[node name="HSeparator" type="HSeparator" parent="Mount/MainWindow/Editor/Select/Info"]
 margin_top = 18.0
 margin_right = 200.0
-margin_bottom = 42.0
-alignment = 1
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Folder"]
-margin_left = 8.0
-margin_top = 5.0
-margin_right = 98.0
-margin_bottom = 19.0
-text = "Folder Name: "
+[node name="Folder" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
+margin_top = 26.0
+margin_right = 200.0
+margin_bottom = 50.0
+script = ExtResource( 12 )
 
-[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Folder"]
-margin_left = 102.0
-margin_right = 192.0
+[node name="FolderName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Folder"]
+margin_right = 200.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 90, 0 )
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Folder/FolderName"]
+margin_top = 5.0
+margin_right = 86.0
+margin_bottom = 19.0
+text = "Folder Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Folder/FolderName"]
+margin_left = 86.0
+margin_right = 200.0
+margin_bottom = 24.0
+placeholder_text = "Folder Name"
+
+[node name="Scene" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
+margin_top = 26.0
+margin_right = 200.0
+margin_bottom = 26.0
+script = ExtResource( 13 )
+
+[node name="SceneName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Scene"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneName"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Scene Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneName"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="SceneType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Scene"]
+margin_right = 40.0
+margin_bottom = 40.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneType"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Scene Type:"
+
+[node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneType"]
+margin_right = 101.0
+margin_bottom = 20.0
+text = "Control"
+items = [ "Control", null, false, 0, null, "Spatial", null, false, 1, null, "Node2d", null, false, 2, null, "KinematicBody", null, false, 3, null ]
+selected = 0
+
+[node name="Script" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
+margin_top = 26.0
+margin_right = 200.0
+margin_bottom = 26.0
+
+[node name="Node" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
+margin_top = 30.0
+margin_right = 200.0
+margin_bottom = 30.0
+
+[node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+margin_top = 30.0
+margin_right = 200.0
+margin_bottom = 30.0
 
 [node name="FileDialog" type="FileDialog" parent="Mount/MainWindow"]
 margin_top = 29.0
@@ -295,8 +366,12 @@ current_path = "/home/merc/Godot/Godot Project Planner/"
 [connection signal="disconnection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_disconnection_request"]
 [connection signal="mouse_entered" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_mouse_entered"]
 [connection signal="mouse_exited" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_mouse_exited"]
+[connection signal="node_selected" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Select/Info" method="_on_GraphEdit_node_selected"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Folders/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Folder_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Nodes/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Nodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Misc/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Misc_item_activated"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Folder/FolderName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Folder" method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_LineEdit_text_changed"]
+[connection signal="item_selected" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneType/OptionButton" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_OptionButton_item_selected"]
 [connection signal="dir_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_dir_selected"]
 [connection signal="file_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_file_selected"]

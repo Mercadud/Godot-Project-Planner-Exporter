@@ -8,6 +8,8 @@ var info = {
 }
 
 onready var data = $"/root/Saver"
+onready var textInfo = $"../../../Select/Info/Folder"
+
 
 func _ready():
 	info.nodeCode = data.getRandomNum()
@@ -15,7 +17,11 @@ func _ready():
 
 func _on_FolderName_text_changed(new_text):
 	info.folderName = new_text
+	textInfo.updateInfo(info)
 	updateInfo()
+
+func FolderNameUpdate(t):
+	$FolderName.text = t
 
 func _on_Folder_close_request():
 	for i in data.nodeList.size():

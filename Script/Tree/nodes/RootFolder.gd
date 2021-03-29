@@ -8,16 +8,22 @@ var info = {
 }
 
 onready var data = $"/root/Saver"
+onready var textInfo = $"../../../Select/Info/Folder"
 
 func _ready():
 	info.nodeCode = 0
 
 func _on_FolderName_text_changed(new_text):
 	info.folderName = new_text
+	textInfo.updateInfo(info)
 	updateInfo()
+
+func FolderNameUpdate(t):
+	$FolderName.text = t
 
 func _on_RootFolder_dragged(_from, to):
 	info.location = to
+	updateInfo()
 
 func updateInfo():
 	var exist = false
