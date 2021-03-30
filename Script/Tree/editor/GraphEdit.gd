@@ -60,6 +60,8 @@ func checkConnected(to):
 
 func updateConnectionList():
 	data.connectionList = get_connection_list()
+	for i in data.connectionList.size():
+		get_node(data.connectionList[i].values()[2]).info.parentNode = data.connectionList[i].values()[0]
 
 func loadConnections():
 	if (data.loadedNewProject == true):
@@ -84,4 +86,5 @@ func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	if "Script" in to:
 		get_node(to).disconnectedFromNode()
 	disconnect_node(from, from_slot, to, to_slot)
+	updateConnectionList()
 

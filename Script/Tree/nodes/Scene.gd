@@ -3,10 +3,12 @@ extends GraphNode
 var info = {
 	nodeCode = 0,
 	nodeName = self.name,
+	parentNode = null,
+	isCreated = false,
 	location = Vector2(),
 	sceneName = "",
 	sceneType = "",
-	attachedScript = ""
+	attachedScript = null
 }
 
 onready var data = $"/root/Saver"
@@ -40,7 +42,7 @@ func updateInfo():
 	if (!exist):
 		data.nodeList.push_back(info)
 	if exist:
-		data.nodeList[location].values()[2] = info.location
-		data.nodeList[location].values()[3] = info.sceneName
-		data.nodeList[location].values()[4] = info.sceneType
-		data.nodeList[location].values()[5] = info.attachedScript
+		data.nodeList[location].values()[4] = info.location
+		data.nodeList[location].values()[5] = info.sceneName
+		data.nodeList[location].values()[6] = info.sceneType
+		data.nodeList[location].values()[7] = info.attachedScript

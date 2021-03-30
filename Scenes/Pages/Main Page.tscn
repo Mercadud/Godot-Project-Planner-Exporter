@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Script/Tree/editor/Folder.gd" type="Script" id=12]
 [ext_resource path="res://Script/Tree/editor/Scene.gd" type="Script" id=13]
 [ext_resource path="res://Script/menus.gd" type="Script" id=14]
+[ext_resource path="res://Script/Tree/editor/Script.gd" type="Script" id=15]
+[ext_resource path="res://Script/Tree/editor/Node.gd" type="Script" id=16]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -339,12 +341,14 @@ visible = false
 margin_top = 26.0
 margin_right = 200.0
 margin_bottom = 26.0
+script = ExtResource( 15 )
 
 [node name="Node" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 visible = false
 margin_top = 30.0
 margin_right = 200.0
 margin_bottom = 30.0
+script = ExtResource( 16 )
 
 [node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 margin_top = 30.0

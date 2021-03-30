@@ -3,6 +3,8 @@ extends GraphNode
 var info = {
 	nodeCode = 0,
 	nodeName = self.name,
+	parentNode = null,
+	isCreated = false,
 	location = Vector2(),
 	scriptName = "",
 	funtions = []
@@ -39,6 +41,6 @@ func updateInfo():
 	if (!exist):
 		data.nodeList.push_back(info)
 	if exist:
-		data.nodeList[location].values()[2] = info.location
-		data.nodeList[location].values()[3] = info.scriptName
-		data.nodeList[location].values()[4] = info.functions
+		data.nodeList[location].values()[4] = info.location
+		data.nodeList[location].values()[5] = info.scriptName
+		data.nodeList[location].values()[6] = info.functions
