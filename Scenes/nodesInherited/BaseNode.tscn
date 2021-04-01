@@ -1,0 +1,21 @@
+[gd_scene format=2]
+
+[node name="BaseNode" type="GraphNode"]
+margin_right = 201.0
+margin_bottom = 67.0
+show_close = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 185.0
+margin_bottom = 48.0

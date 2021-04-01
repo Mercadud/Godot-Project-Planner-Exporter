@@ -1,9 +1,5 @@
 extends GraphEdit
 
-
-var mouseLocation
-var recordMouseLocation = false
-
 var spawnLoc = Vector2(20,20)
 var nodeCount = 1
 
@@ -13,36 +9,30 @@ func _ready():
 	updateConnectionList()
 
 func _physics_process(_delta):
-	if recordMouseLocation:
-		mouseLocation = get_local_mouse_position()
 	loadConnections()
 
-func spawnNode(nodeName, _dragged):
-	var node = load("res://Scenes/nodes/" + nodeName + ".tscn")
+func spawnNode(nodeName):
+	var node = load("res://Scenes/nodesInherited/" + nodeName + ".tscn")
 	var inst = node.instance()
 	inst.offset += spawnLoc + (nodeCount * Vector2(20,20))
 	add_child(inst)
 	print(get_children())
-	inst.info.nodeName = inst
 	nodeCount += 1
 
-func _on_GraphEdit_mouse_entered():
-	recordMouseLocation = true
-
-func _on_GraphEdit_mouse_exited():
-	recordMouseLocation = false
+func _on_GraphEdit_delete_nodes_request():
+	nodeCount -= 1
 
 func _on_Folder_item_activated(_index):
-	spawnNode("Folder", false)
+	spawnNode("Folder")
 
 func _on_Nodes_item_activated(index):
 	if index == 0:
-		spawnNode("Scene", false)
+		spawnNode("Scene")
 	if index == 1:
-		spawnNode("Node", false)
+		spawnNode("Node")
 
 func _on_Misc_item_activated(_index):
-	spawnNode("Script", false)
+	spawnNode("Script")
 
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 	updateConnectionList()
@@ -66,25 +56,22 @@ func updateConnectionList():
 func loadConnections():
 	if (data.loadedNewProject == true):
 		for i in data.connectionList.size():
-			if "Folder" in data.connectionList[i].values()[2]:
-				spawnNode("Folder", false)
-			elif "Scene" in data.connectionList[i].values()[2]:
-				spawnNode("Scene", false)
-			elif "Node" in data.connectionList[i].values()[2]:
-				spawnNode("Node", false)
-			elif "Script" in data.connectionList[i].values()[2]:
-				spawnNode("Script", false)
+			if "Folder" in data.connectionList[i]["nodeName"]:
+				spawnNode("Folder")
+			elif "Scene" in data.connectionList[i]["nodeName"]:
+				spawnNode("Scene")
+			elif "Node" in data.connectionList[i]["nodeName"]:
+				spawnNode("Node")
+			elif "Script" in data.connectionList[i]["nodeName"]:
+				spawnNode("Script")
 		for i in data.connectionList.size():
-			if connect_node(data.connectionList[i].values()[0],
-			 data.connectionList[i].values()[1],
-			 data.connectionList[i].values()[2],
-			 data.connectionList[i].values()[3]) == OK:
+			if connect_node(data.connectionList[i]["from"],
+			 data.connectionList[i]["from_slot"],
+			 data.connectionList[i]["to"],
+			 data.connectionList[i]["to_slot"]) == OK:
 				print(data.connectionList[i])
 		data.loadedNewProject = false
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
-	if "Script" in to:
-		get_node(to).disconnectedFromNode()
 	disconnect_node(from, from_slot, to, to_slot)
 	updateConnectionList()
-

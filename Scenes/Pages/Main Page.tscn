@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/nodes/RootFolder.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/nodesInherited/RootFolder.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Script/Tree/editor/Info.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Nodes/Folder.png" type="Texture" id=5]
 [ext_resource path="res://Script/Tree/editor/GraphEdit.gd" type="Script" id=6]
@@ -337,11 +337,71 @@ items = [ "Control", null, false, 0, null, "Spatial", null, false, 1, null, "Nod
 selected = 0
 
 [node name="Script" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-visible = false
 margin_top = 26.0
 margin_right = 200.0
-margin_bottom = 26.0
+margin_bottom = 110.0
 script = ExtResource( 15 )
+
+[node name="ScriptName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Script"]
+margin_right = 200.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Script/ScriptName"]
+margin_top = 5.0
+margin_right = 78.0
+margin_bottom = 19.0
+text = "Script Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Script/ScriptName"]
+margin_left = 90.0
+margin_right = 200.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Mount/MainWindow/Editor/Select/Info/Script"]
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 32.0
+
+[node name="functions" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script"]
+margin_top = 36.0
+margin_right = 200.0
+margin_bottom = 84.0
+
+[node name="buttons" type="HBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script/functions"]
+margin_right = 200.0
+margin_bottom = 20.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons"]
+margin_left = 46.0
+margin_top = 3.0
+margin_right = 108.0
+margin_bottom = 17.0
+text = "Functions"
+align = 1
+
+[node name="addFunction" type="Button" parent="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons"]
+margin_left = 112.0
+margin_right = 132.0
+margin_bottom = 20.0
+text = "+"
+
+[node name="removeFunction" type="Button" parent="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons"]
+margin_left = 136.0
+margin_right = 153.0
+margin_bottom = 20.0
+text = "-"
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Script/functions"]
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 48.0
 
 [node name="Node" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 visible = false
@@ -351,9 +411,9 @@ margin_bottom = 30.0
 script = ExtResource( 16 )
 
 [node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-margin_top = 30.0
+margin_top = 114.0
 margin_right = 200.0
-margin_bottom = 30.0
+margin_bottom = 114.0
 
 [node name="FileDialog" type="FileDialog" parent="Mount/MainWindow"]
 margin_top = 29.0
@@ -367,9 +427,8 @@ current_path = "/home/merc/Godot/Godot Project Planner/"
 [connection signal="gui_input" from="." to="." method="_on_Main_Page_gui_input"]
 [connection signal="resized" from="Mount/MainWindow/Editor" to="Mount/MainWindow/Editor" method="_on_Editor_resized"]
 [connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_connection_request"]
+[connection signal="delete_nodes_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_delete_nodes_request"]
 [connection signal="disconnection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_disconnection_request"]
-[connection signal="mouse_entered" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_mouse_entered"]
-[connection signal="mouse_exited" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_mouse_exited"]
 [connection signal="node_selected" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Select/Info" method="_on_GraphEdit_node_selected"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Folders/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Folder_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Nodes/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Nodes_item_activated"]

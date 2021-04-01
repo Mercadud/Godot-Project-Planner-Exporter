@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/nodesInherited/BaseNode.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Themes/Nodes/Folder/Frame.tres" type="StyleBox" id=2]
+[ext_resource path="res://Themes/Nodes/Folder/SelectedFrame.tres" type="StyleBox" id=3]
+[ext_resource path="res://Script/Tree/inheritNodes/Folder.gd" type="Script" id=4]
+
+[node name="Folder" instance=ExtResource( 1 )]
+custom_styles/frame = ExtResource( 2 )
+custom_styles/selectedframe = ExtResource( 3 )
+title = "Folder"
+slot/0/left_enabled = true
+slot/0/left_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+slot/0/right_enabled = true
+slot/0/right_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+script = ExtResource( 4 )
+
+[node name="LineEdit" parent="." index="0"]
+margin_left = 10.0
+margin_top = 33.0
+margin_right = 191.0
+margin_bottom = 57.0
