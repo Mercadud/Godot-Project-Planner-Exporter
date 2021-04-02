@@ -4,6 +4,7 @@ onready var scriptInfo = get_node(infoPage + "/Script")
 
 func _ready():
 	info["functions"] = []
+	info["nodeName"] = self.name
 
 func updateSpecialInfo(loc):
 	data.nodeList[loc]["functions"] = info["functions"]

@@ -16,7 +16,7 @@ func spawnNode(nodeName):
 	var inst = node.instance()
 	inst.offset += spawnLoc + (nodeCount * Vector2(20,20))
 	add_child(inst)
-	print(get_children())
+	inst.updateInfo()
 	nodeCount += 1
 
 func _on_GraphEdit_delete_nodes_request():
@@ -44,33 +44,87 @@ func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 func checkConnected(to):
 	var isTrue = true
 	for i in data.connectionList.size():
-		if data.connectionList[i].values()[2] == to:
+		if data.connectionList[i]["to"] == to:
 			isTrue = false
 	return isTrue
 
 func updateConnectionList():
 	data.connectionList = get_connection_list()
 	for i in data.connectionList.size():
-		get_node(data.connectionList[i].values()[2]).info.parentNode = data.connectionList[i].values()[0]
+		get_node(data.connectionList[i]["to"]).info["parentNode"] = data.connectionList[i]["from"]
+		get_node(data.connectionList[i]["to"]).updateInfo()
 
 func loadConnections():
-	if (data.loadedNewProject == true):
-		for i in data.connectionList.size():
-			if "Folder" in data.connectionList[i]["nodeName"]:
-				spawnNode("Folder")
-			elif "Scene" in data.connectionList[i]["nodeName"]:
-				spawnNode("Scene")
-			elif "Node" in data.connectionList[i]["nodeName"]:
-				spawnNode("Node")
-			elif "Script" in data.connectionList[i]["nodeName"]:
-				spawnNode("Script")
-		for i in data.connectionList.size():
-			if connect_node(data.connectionList[i]["from"],
-			 data.connectionList[i]["from_slot"],
-			 data.connectionList[i]["to"],
-			 data.connectionList[i]["to_slot"]) == OK:
-				print(data.connectionList[i])
-		data.loadedNewProject = false
+	if data.loadedNewProject == true:
+		###create all the nodes###
+		for i in data.nodeList.size():
+			if "RootFolder" in data.nodeList[i]["nodeName"]:
+				var node = load("res://Scenes/nodesInherited/RootFolder.tscn")
+				var inst = node.instance()
+				add_child(inst)
+				inst.info["id"] = data.nodeList[i]["id"]
+				inst.info["nodeName"] = "RootFolder"
+				inst.info["isCreated"] = false
+				inst.info["location"] = data.nodeList[i]["location"]
+				inst.info["name"] = data.nodeList[i]["name"]
+				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
+				nodeCount += 1
+			elif "Folder" in data.nodeList[i]["nodeName"]:
+				var node = load("res://Scenes/nodesInherited/Folder.tscn")
+				var inst = node.instance()
+				add_child(inst)
+				inst.info["id"] = data.nodeList[i]["id"]
+				inst.info["nodeName"] = "Folder"
+				inst.info["isCreated"] = false
+				inst.info["location"] = data.nodeList[i]["location"]
+				inst.info["name"] = data.nodeList[i]["name"]
+				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
+				nodeCount += 1
+			elif "Scene" in data.nodeList[i]["nodeName"]:
+				var node = load("res://Scenes/nodesInherited/Scene.tscn")
+				var inst = node.instance()
+				add_child(inst)
+				inst.info["id"] = data.nodeList[i]["id"]
+				inst.info["nodeName"] = "Scene"
+				inst.info["isCreated"] = false
+				inst.info["location"] = data.nodeList[i]["location"]
+				inst.info["name"] = data.nodeList[i]["name"]
+				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
+				inst.info["sceneType"] = data.nodeList[i]["sceneType"]
+				inst.info["scriptAttached"] = data.nodeList[i]["scriptAttached"]
+				nodeCount += 1
+			elif "Node" in data.nodeList[i]["nodeName"]:
+				var node = load("res://Scenes/nodesInherited/Node.tscn")
+				var inst = node.instance()
+				add_child(inst)
+				inst.info["id"] = data.nodeList[i]["id"]
+				inst.info["nodeName"] = "Node"
+				inst.info["isCreated"] = false
+				inst.info["location"] = data.nodeList[i]["location"]
+				inst.info["name"] = data.nodeList[i]["name"]
+				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
+				inst.info["nodeType"] = data.nodeList[i]["nodeType"]
+				nodeCount += 1
+			elif "Script" in data.nodeList[i]["nodeName"]:
+				var node = load("res://Scenes/nodesInherited/Script.tscn")
+				var inst = node.instance()
+				add_child(inst)
+				inst.info["id"] = data.nodeList[i]["id"]
+				inst.info["nodeName"] = "Script"
+				inst.info["isCreated"] = false
+				inst.info["location"] = data.nodeList[i]["location"]
+				inst.info["name"] = data.nodeList[i]["name"]
+				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
+				inst.info["functions"] = data.nodeList[i]["functions"]
+				nodeCount += 1
+		###move all nodes to location and connect to parents
+		print(str(get_children()) + "REEEEEEEEEEEEEEEEEEEEE" + str(get_child_count()))
+		for i in get_child_count():
+			if i > 2:
+				var node = get_children()
+				node[i].offset = node[i].info["location"]
+				if node[i].info["parentNode"] != null: pass
+#					connect_node(node.info["parentNode"], 0, node.name, 0)
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)

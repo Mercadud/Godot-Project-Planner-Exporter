@@ -1,6 +1,8 @@
 [gd_scene format=2]
 
-[node name="BaseNode" type="GraphNode"]
+[node name="BaseNode" type="GraphNode" groups=[
+"update",
+]]
 margin_right = 201.0
 margin_bottom = 67.0
 show_close = true

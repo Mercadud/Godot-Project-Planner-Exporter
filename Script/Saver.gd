@@ -12,13 +12,13 @@ func _ready():
 func save():
 	var file = File.new()
 	file.open(SaveFileLocation, File.WRITE)
-	file.store_var(connectionList)
+	file.store_var(nodeList)
 	file.close()
 
 func loadProject():
 	var file = File.new()
 	file.open(SaveFileLocation, File.READ)
-	connectionList = file.get_var()
+	nodeList = file.get_var()
 	file.close()
 	loadedNewProject = true
 
@@ -28,9 +28,13 @@ func import():
 	###I have no clue what happens now...
 
 func getRandomNum():
-	for i in nodeList.size():
+	if nodeList.size() != 0:
+		for i in nodeList.size():
+			var num = randi()
+			if nodeList[i]["id"] == num:
+				continue
+			else:
+				return num
+	else:
 		var num = randi()
-		if nodeList[i].values()[0] == num:
-			continue
-		else:
-			return num
+		return num

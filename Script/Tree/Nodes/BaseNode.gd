@@ -2,7 +2,7 @@ extends GraphNode
 
 var info = {
 	"id":0,
-	"nodeName":self.name,
+	"nodeName":null,
 	"parentNode":null,
 	"isCreated":false,
 	"location":Vector2(),
@@ -23,12 +23,14 @@ func updateInfo():
 			exist = true
 			location = i
 			break
-	if (!exist):
+	if !exist:
+		info["id"] = data.getRandomNum()
 		data.nodeList.push_back(info)
 	if exist:
 		data.nodeList[location]["location"] = info["location"]
 		updateSpecialInfo(location)
-	
+	print(data.nodeList)
+
 
 func updateSpecialInfo(_loc):
 	print("badNews // updateSpecialInfo()")

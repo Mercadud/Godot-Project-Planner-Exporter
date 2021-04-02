@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/nodesInherited/RootFolder.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Script/Tree/editor/Info.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Nodes/Folder.png" type="Texture" id=5]
 [ext_resource path="res://Script/Tree/editor/GraphEdit.gd" type="Script" id=6]
@@ -158,13 +157,6 @@ custom_colors/grid_minor = Color( 0.258824, 0.258824, 0.258824, 1 )
 right_disconnects = true
 scroll_offset = Vector2( -200, -200 )
 script = ExtResource( 6 )
-
-[node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" instance=ExtResource( 3 )]
-margin_left = 200.0
-margin_top = 200.0
-margin_right = 401.0
-margin_bottom = 267.0
-mouse_filter = 1
 
 [node name="Select" type="TabContainer" parent="Mount/MainWindow/Editor"]
 margin_left = 822.0

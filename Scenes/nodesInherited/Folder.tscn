@@ -9,6 +9,7 @@
 custom_styles/frame = ExtResource( 2 )
 custom_styles/selectedframe = ExtResource( 3 )
 title = "Folder"
+selected = true
 slot/0/left_enabled = true
 slot/0/left_color = Color( 0.588235, 0.588235, 0.588235, 1 )
 slot/0/right_enabled = true
@@ -20,4 +21,6 @@ margin_left = 10.0
 margin_top = 33.0
 margin_right = 191.0
 margin_bottom = 57.0
+[connection signal="dragged" from="." to="." method="_on_Folder_dragged"]
+[connection signal="focus_entered" from="LineEdit" to="." method="_on_LineEdit_focus_entered"]
 [connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]
