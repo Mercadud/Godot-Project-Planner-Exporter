@@ -10,12 +10,16 @@ var info = {
 }
 
 onready var data = $"/root/Saver"
+var infoPage = "../../../Select/Info"
 
+func ready():
+	pass
+ 
 func updateInfo():
 	var exist = false
 	var location
 	for i in data.nodeList.size():
-		if data.nodeList[i]["id"] == info.nodeCode:
+		if data.nodeList[i]["id"] == info["id"]:
 			exist = true
 			location = i
 			break
@@ -24,6 +28,14 @@ func updateInfo():
 	if exist:
 		data.nodeList[location]["location"] = info["location"]
 		updateSpecialInfo(location)
+	
 
 func updateSpecialInfo(_loc):
 	print("badNews // updateSpecialInfo()")
+
+func updateInfoPage():
+	print("badNews // updateInfoPage()")
+
+func updateNode():
+	$LineEdit.text = info["name"]
+	updateInfo()

@@ -25,7 +25,7 @@ func loadProject():
 func import():
 	var dir = Directory.new()
 	dir.open(exportDirLocation)
-	print("not sure what happens after that")
+	###I have no clue what happens now...
 
 func getRandomNum():
 	for i in nodeList.size():

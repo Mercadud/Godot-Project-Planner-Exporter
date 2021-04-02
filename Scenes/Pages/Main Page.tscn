@@ -337,6 +337,7 @@ items = [ "Control", null, false, 0, null, "Spatial", null, false, 1, null, "Nod
 selected = 0
 
 [node name="Script" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
 margin_top = 26.0
 margin_right = 200.0
 margin_bottom = 110.0
@@ -398,10 +399,9 @@ margin_right = 153.0
 margin_bottom = 20.0
 text = "-"
 
-[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Script/functions"]
-margin_top = 24.0
-margin_right = 200.0
-margin_bottom = 48.0
+[node name="func" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script/functions"]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="Node" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 visible = false
@@ -436,5 +436,8 @@ current_path = "/home/merc/Godot/Godot Project Planner/"
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Folder/FolderName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Folder" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_LineEdit_text_changed"]
 [connection signal="item_selected" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneType/OptionButton" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_OptionButton_item_selected"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Script/ScriptName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_LineEdit_text_changed"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/addFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_addFunction_button_up"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/removeFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_removeFunction_button_up"]
 [connection signal="dir_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_dir_selected"]
 [connection signal="file_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_file_selected"]

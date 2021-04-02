@@ -5,7 +5,6 @@
 [ext_resource path="res://Themes/Nodes/Script/Frame.tres" type="StyleBox" id=3]
 [ext_resource path="res://Themes/Nodes/Script/SelectedFrame.tres" type="StyleBox" id=4]
 
-
 [node name="Script" instance=ExtResource( 1 )]
 custom_styles/frame = ExtResource( 3 )
 custom_styles/selectedframe = ExtResource( 4 )
@@ -20,3 +19,4 @@ margin_left = 10.0
 margin_top = 33.0
 margin_right = 191.0
 margin_bottom = 57.0
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]
