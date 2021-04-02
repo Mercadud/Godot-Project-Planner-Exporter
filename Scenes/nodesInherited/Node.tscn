@@ -22,3 +22,4 @@ margin_left = 10.0
 margin_top = 33.0
 margin_right = 191.0
 margin_bottom = 57.0
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]

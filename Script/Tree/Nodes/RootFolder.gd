@@ -8,10 +8,7 @@ func _ready():
 func updateSpecialInfo(_loc):
 	pass
 
-func updateInfoPage():
-	folderInfo.updateInfoPage()
-
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
-	updateInfoPage()
+	folderInfo.updateInfoPage()
 	updateInfo()

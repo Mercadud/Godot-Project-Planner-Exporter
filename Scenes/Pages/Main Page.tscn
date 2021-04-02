@@ -332,8 +332,8 @@ text = "Scene Type:"
 [node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneType"]
 margin_right = 101.0
 margin_bottom = 20.0
-text = "Control"
-items = [ "Control", null, false, 0, null, "Spatial", null, false, 1, null, "Node2d", null, false, 2, null, "KinematicBody", null, false, 3, null ]
+text = "Node"
+items = [ "Node", null, false, 0, null, "Spatial", null, false, 1, null, "KinematicBody", null, false, 2, null, "RigidBody", null, false, 3, null, "StaticBody", null, false, 4, null, "VehicleBody", null, false, 5, null, "Control", null, false, 6, null, "PanelContainer", null, false, 7, null, "Node2D", null, false, 8, null, "KinematicBody2D", null, false, 9, null, "RigidBody2D", null, false, 10, null, "StaticBody2D", null, false, 11, null ]
 selected = 0
 
 [node name="Script" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
@@ -410,6 +410,34 @@ margin_right = 200.0
 margin_bottom = 30.0
 script = ExtResource( 16 )
 
+[node name="NodeName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Node"]
+margin_top = -4.0
+margin_right = 40.0
+margin_bottom = 36.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeName"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Scene Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeName"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="NodeType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Node"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeType"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Node Type:"
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeType"]
+margin_right = 58.0
+margin_bottom = 24.0
+placeholder_text = "Spatial"
+
 [node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 margin_top = 114.0
 margin_right = 200.0
@@ -439,5 +467,7 @@ current_path = "/home/merc/Godot/Godot Project Planner/"
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Script/ScriptName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_LineEdit_text_changed"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/addFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_addFunction_button_up"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/removeFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_removeFunction_button_up"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Node/NodeName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Node" method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Node/NodeType/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Node" method="_on_nodeType_text_changed"]
 [connection signal="dir_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_dir_selected"]
 [connection signal="file_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_file_selected"]

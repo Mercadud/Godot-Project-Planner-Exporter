@@ -9,6 +9,7 @@ func _ready():
 
 func setNode(n):
 	childLoc = n
+	updateInfoPage()
 
 func updateInfoPage():
 	sceneName.text = childLoc.info["name"]
