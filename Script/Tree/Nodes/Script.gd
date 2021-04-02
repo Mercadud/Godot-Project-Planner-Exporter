@@ -1,4 +1,4 @@
-extends "res://Script/Tree/inheritNodes/BaseNode.gd"
+extends "res://Script/Tree/Nodes/BaseNode.gd"
 
 
 func _ready():
