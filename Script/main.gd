@@ -14,11 +14,11 @@ func _process(_delta):
 		graph.mouse_filter = Control.MOUSE_FILTER_STOP
 		ctrlPressed = false
 
-
 func _on_Main_Page_gui_input(event):
 	if event.is_pressed() && ctrlPressed:
 		if event.button_index == BUTTON_WHEEL_UP:
 			graph.zoom += graph.zoom * 0.2
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			graph.zoom -= graph.zoom * .2
+		
 

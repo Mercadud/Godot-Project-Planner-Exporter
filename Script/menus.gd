@@ -9,6 +9,10 @@ func _ready():
 	fileMenu.get_popup().connect("id_pressed", self, "_on_File_item_pressed")
 	editMenu.get_popup().connect("id_pressed", self, "_on_Edit_item_pressed")
 
+func _process(_delta):
+	if Input.is_action_just_pressed("save"):
+		SavePressed()
+
 func _on_File_item_pressed(id):
 	if id == 0:
 		NewPressed()
