@@ -277,7 +277,6 @@ __meta__ = {
 }
 
 [node name="Folder" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-visible = false
 margin_top = 26.0
 margin_right = 200.0
 margin_bottom = 50.0
@@ -301,6 +300,7 @@ margin_bottom = 24.0
 placeholder_text = "Folder Name"
 
 [node name="Scene" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
 margin_top = 26.0
 margin_right = 200.0
 margin_bottom = 74.0
@@ -323,7 +323,6 @@ margin_right = 200.0
 margin_bottom = 24.0
 
 [node name="SceneType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Scene"]
-visible = false
 margin_top = 28.0
 margin_right = 200.0
 margin_bottom = 48.0
