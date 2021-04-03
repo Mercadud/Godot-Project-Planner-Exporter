@@ -10,6 +10,9 @@ func _ready():
 	pass
 
 func save():
+	for nodes in get_tree().get_nodes_in_group("node"):
+		nodes.updateInfo()
+	print(nodeList)
 	var file = File.new()
 	file.open(SaveFileLocation, File.WRITE)
 	file.store_var(nodeList)

@@ -12,15 +12,14 @@ func updateSpecialInfo(loc):
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
 	nodeInfo.updateInfoPage()
-	updateInfo()
 
 func updateNode():
 	$LineEdit.text = info["name"]
 	update()
 
-func _on_LineEdit_focus_entered():
-	selected = true
-
 func _on_Node_dragged(_from, to):
 	info["location"] = to
-	updateInfo()
+
+
+func _on_Node_close_request():
+	queue_free()

@@ -15,4 +15,9 @@ func updateInfoPage():
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
 	updateInfoPage()
-	updateInfo()
+
+func _on_Script_dragged(_from, to):
+	info["location"] = to
+
+func _on_Script_close_request():
+	queue_free()

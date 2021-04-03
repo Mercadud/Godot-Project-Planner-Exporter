@@ -6,6 +6,7 @@ var nodeCount = 1
 onready var data = $"/root/Saver"
 
 func _ready():
+	spawnNode("RootFolder")
 	updateConnectionList()
 
 func _physics_process(_delta):
@@ -56,6 +57,9 @@ func updateConnectionList():
 
 func loadConnections():
 	if data.loadedNewProject == true:
+		###delete all current nodes###
+		for i in get_tree().get_nodes_in_group("node"):
+			i.queue_free()
 		###create all the nodes###
 		for i in data.nodeList.size():
 			if "RootFolder" in data.nodeList[i]["nodeName"]:
@@ -63,7 +67,7 @@ func loadConnections():
 				var inst = node.instance()
 				add_child(inst)
 				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = "RootFolder"
+				inst.info["nodeName"] = inst.name
 				inst.info["isCreated"] = false
 				inst.info["location"] = data.nodeList[i]["location"]
 				inst.info["name"] = data.nodeList[i]["name"]
@@ -74,7 +78,7 @@ func loadConnections():
 				var inst = node.instance()
 				add_child(inst)
 				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = "Folder"
+				inst.info["nodeName"] = inst.name
 				inst.info["isCreated"] = false
 				inst.info["location"] = data.nodeList[i]["location"]
 				inst.info["name"] = data.nodeList[i]["name"]
@@ -85,7 +89,7 @@ func loadConnections():
 				var inst = node.instance()
 				add_child(inst)
 				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = "Scene"
+				inst.info["nodeName"] = inst.name
 				inst.info["isCreated"] = false
 				inst.info["location"] = data.nodeList[i]["location"]
 				inst.info["name"] = data.nodeList[i]["name"]
@@ -98,7 +102,7 @@ func loadConnections():
 				var inst = node.instance()
 				add_child(inst)
 				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = "Node"
+				inst.info["nodeName"] = inst.name
 				inst.info["isCreated"] = false
 				inst.info["location"] = data.nodeList[i]["location"]
 				inst.info["name"] = data.nodeList[i]["name"]
@@ -110,7 +114,7 @@ func loadConnections():
 				var inst = node.instance()
 				add_child(inst)
 				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = "Script"
+				inst.info["nodeName"] = inst.name
 				inst.info["isCreated"] = false
 				inst.info["location"] = data.nodeList[i]["location"]
 				inst.info["name"] = data.nodeList[i]["name"]
@@ -118,14 +122,17 @@ func loadConnections():
 				inst.info["functions"] = data.nodeList[i]["functions"]
 				nodeCount += 1
 		###move all nodes to location and connect to parents
-		print(str(get_children()) + "REEEEEEEEEEEEEEEEEEEEE" + str(get_child_count()))
 		for i in get_child_count():
-			if i > 2:
+			if get_children()[i] is GraphNode:
 				var node = get_children()
+				node[i].updateNode()
 				node[i].offset = node[i].info["location"]
-				if node[i].info["parentNode"] != null: pass
-#					connect_node(node.info["parentNode"], 0, node.name, 0)
+				if node[i].info["parentNode"] != null:
+					if connect_node(node[i].info["parentNode"], 0, node[i].name, 0) == OK:
+						print("connected " + str(node[i].info["parentNode"] + " and " + str(node[i].name)))
+		data.loadedNewProject = false
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
 	updateConnectionList()
+	

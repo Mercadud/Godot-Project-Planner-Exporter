@@ -22,6 +22,6 @@ margin_left = 10.0
 margin_top = 33.0
 margin_right = 191.0
 margin_bottom = 57.0
+[connection signal="close_request" from="." to="." method="_on_Node_close_request"]
 [connection signal="dragged" from="." to="." method="_on_Node_dragged"]
-[connection signal="focus_entered" from="LineEdit" to="." method="_on_LineEdit_focus_entered"]
 [connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]

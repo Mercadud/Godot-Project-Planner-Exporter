@@ -11,11 +11,11 @@ func updateSpecialInfo(_loc):
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
 	folderInfo.updateInfoPage()
-	updateInfo()
 
-func _on_LineEdit_focus_entered():
-	selected = true
 
 func _on_Folder_dragged(_from, to):
 	info["location"] = to
-	updateInfo()
+
+
+func _on_Folder_close_request():
+	queue_free()

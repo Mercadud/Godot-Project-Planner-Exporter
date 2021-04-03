@@ -11,11 +11,6 @@ func updateSpecialInfo(_loc):
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
 	folderInfo.updateInfoPage()
-	updateInfo()
-
-func _on_LineEdit_focus_entered():
-	selected = true
 
 func _on_RootFolder_dragged(_from, to):
 	info["location"] = to
-	updateInfo()
