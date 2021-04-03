@@ -32,9 +32,9 @@ func _on_Edit_item_pressed(id):
 		redoPressed()
 
 func NewPressed():
-	var nodes = get_tree().get_nodes_in_group("nodes")
-	for i in nodes:
-		print(i)
+	for i in get_tree().get_nodes_in_group("node"):
+		if "RootFolder" in i.info["nodeName"]:
+			continue
 		i.queue_free()
 
 func OpenPressed():
