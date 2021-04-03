@@ -109,7 +109,7 @@ margin_bottom = 25.0
 dragger_visibility = 2
 
 [node name="menus" type="GridContainer" parent="Mount/MainWindow/tileBar"]
-margin_right = 1024.0
+margin_right = 86.0
 margin_bottom = 25.0
 columns = 2
 script = ExtResource( 14 )
@@ -130,6 +130,14 @@ custom_fonts/font = ExtResource( 1 )
 text = "Edit"
 items = [ "Undo", null, 0, false, false, 0, 0, null, "", true, "Redo", null, 0, false, false, 1, 0, null, "", true ]
 switch_on_hover = true
+
+[node name="Label" type="Label" parent="Mount/MainWindow/tileBar"]
+margin_left = 86.0
+margin_top = 5.0
+margin_right = 1024.0
+margin_bottom = 19.0
+text = "Made by Mercaman"
+align = 1
 
 [node name="Editor" type="HSplitContainer" parent="Mount/MainWindow"]
 margin_top = 25.0
@@ -292,37 +300,43 @@ margin_bottom = 24.0
 placeholder_text = "Folder Name"
 
 [node name="Scene" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-visible = false
 margin_top = 26.0
 margin_right = 200.0
-margin_bottom = 26.0
+margin_bottom = 74.0
 script = ExtResource( 13 )
 
 [node name="SceneName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Scene"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 200.0
+margin_bottom = 24.0
+dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneName"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 5.0
+margin_right = 84.0
+margin_bottom = 19.0
 text = "Scene Name:"
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneName"]
-margin_right = 58.0
+margin_left = 84.0
+margin_right = 200.0
 margin_bottom = 24.0
 
 [node name="SceneType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Scene"]
-margin_right = 40.0
-margin_bottom = 40.0
-dragger_visibility = 1
+visible = false
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 48.0
+dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneType"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 3.0
+margin_right = 76.0
+margin_bottom = 17.0
 text = "Scene Type:"
 
 [node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneType"]
-margin_right = 101.0
+margin_left = 76.0
+margin_right = 200.0
 margin_bottom = 20.0
 text = "Node"
 items = [ "Node", null, false, 0, null, "Spatial", null, false, 1, null, "KinematicBody", null, false, 2, null, "RigidBody", null, false, 3, null, "StaticBody", null, false, 4, null, "VehicleBody", null, false, 5, null, "Control", null, false, 6, null, "PanelContainer", null, false, 7, null, "Node2D", null, false, 8, null, "KinematicBody2D", null, false, 9, null, "RigidBody2D", null, false, 10, null, "StaticBody2D", null, false, 11, null ]
@@ -338,6 +352,7 @@ script = ExtResource( 15 )
 [node name="ScriptName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Script"]
 margin_right = 200.0
 margin_bottom = 24.0
+dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Script/ScriptName"]
 margin_top = 5.0
@@ -406,6 +421,7 @@ script = ExtResource( 16 )
 margin_top = -4.0
 margin_right = 40.0
 margin_bottom = 36.0
+dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeName"]
 margin_right = 40.0
@@ -419,6 +435,7 @@ margin_bottom = 24.0
 [node name="NodeType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Node"]
 margin_right = 40.0
 margin_bottom = 40.0
+dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeType"]
 margin_right = 40.0
@@ -431,9 +448,9 @@ margin_bottom = 24.0
 placeholder_text = "Spatial"
 
 [node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-margin_top = 114.0
+margin_top = 78.0
 margin_right = 200.0
-margin_bottom = 114.0
+margin_bottom = 78.0
 
 [node name="FileDialog" type="FileDialog" parent="Mount/MainWindow"]
 margin_top = 29.0
