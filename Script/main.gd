@@ -20,5 +20,3 @@ func _on_Main_Page_gui_input(event):
 			graph.zoom += graph.zoom * 0.2
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			graph.zoom -= graph.zoom * .2
-		
-

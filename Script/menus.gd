@@ -46,13 +46,16 @@ func SavePressed():
 	fileLocation.popup_centered()
 
 func ExportPressed():
-	pass
+	fileLocation.mode = FileDialog.MODE_OPEN_DIR
+	fileLocation.popup_centered()
 
 func QuitPressed():
 	get_tree().quit(-1)
 
 func _on_FileDialog_dir_selected(dir):
 	data.exportDirLocation = dir
+	if fileLocation.mode == FileDialog.MODE_OPEN_DIR:
+		data.exportProject()
 
 func _on_FileDialog_file_selected(path):
 	data.SaveFileLocation = path

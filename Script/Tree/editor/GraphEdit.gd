@@ -6,6 +6,7 @@ var nodeCount = 1
 onready var data = $"/root/Saver"
 
 func _ready():
+	
 	spawnNode("RootFolder")
 	updateConnectionList()
 
@@ -50,15 +51,16 @@ func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 
 func checkConnected(to):
 	var isTrue = true
-	for i in data.connectionList.size():
-		if data.connectionList[i]["to"] == to:
+	var connectionList = get_connection_list()
+	for i in connectionList.size():
+		if connectionList[i]["to"] == to:
 			isTrue = false
 	return isTrue
 
 func updateConnectionList():
 	var connectionList = get_connection_list()
 	for i in connectionList.size():
-		get_node(connectionList[i]["to"]).info["parentNode"] = connectionList[i]["from"]
+		get_node(connectionList[i]["to"]).info["parentNode"] = get_node(connectionList[i]["from"]).info["id"]
 
 func loadConnections():
 	if data.loadedNewProject == true:
@@ -127,14 +129,16 @@ func loadConnections():
 				inst.info["functions"] = data.nodeList[i]["functions"]
 				nodeCount += 1
 		###move all nodes to location and connect to parents
-		for i in get_child_count():
-			if get_children()[i] is GraphNode:
-				var node = get_children()
-				node[i].updateNode()
-				node[i].offset = node[i].info["location"]
-				if node[i].info["parentNode"] != null:
-					if connect_node(node[i].info["parentNode"], 0, node[i].name, 0) == OK:
-						print("connected " + str(node[i].info["parentNode"] + " and " + str(node[i].name)))
+		for node in get_tree().get_nodes_in_group("node"):
+			node.updateNode()
+			node.offset = node.info["location"]
+			if node.info["parentNode"] != null:
+				var parentName
+				for parent in get_tree().get_nodes_in_group("node"):
+					if node.info["parentNode"] == parent.info["id"]:
+						parentName = parent.info["nodeName"]
+						if connect_node(parentName, 0, node.name, 0) == OK:
+							print("connected " + str(parentName + " and " + str(node.name)))
 		data.loadedNewProject = false
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
