@@ -5,6 +5,7 @@ onready var nodeInfo = get_node(infoPage + "/Node")
 func _ready():
 	info["nodeType"] = ""
 	info["nodeName"] = self.name
+	info["id"] = data.getRandomNum()
 
 func updateSpecialInfo(loc):
 	data.nodeList[loc]["nodeType"] = info["nodeType"]
@@ -19,7 +20,6 @@ func updateNode():
 
 func _on_Node_dragged(_from, to):
 	info["location"] = to
-
 
 func _on_Node_close_request():
 	queue_free()

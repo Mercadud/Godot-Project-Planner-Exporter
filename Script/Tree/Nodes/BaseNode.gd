@@ -1,7 +1,7 @@
 extends GraphNode
 
 var info = {
-	"id":0,
+	"id":null,
 	"nodeName":null,
 	"parentNode":null,
 	"isCreated":false,
@@ -24,7 +24,6 @@ func updateInfo():
 			location = i
 			break
 	if !exist:
-		info["id"] = data.getRandomNum()
 		data.nodeList.push_back(info)
 	if exist:
 		data.nodeList[location]["location"] = info["location"]

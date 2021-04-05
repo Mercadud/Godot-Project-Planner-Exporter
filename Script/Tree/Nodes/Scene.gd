@@ -6,6 +6,7 @@ func _ready():
 	info["sceneType"] = ""
 	info["scriptAttached"] = null
 	info["nodeName"] = self.name
+	info["id"] = data.getRandomNum()
 
 func updateSpecialInfo(loc):
 	data.nodeList[loc]["sceneType"] = info["sceneType"]

@@ -4,6 +4,7 @@ onready var folderInfo = get_node(infoPage + "/Folder")
 
 func _ready():
 	info["nodeName"] = self.name
+	info["id"] = data.getRandomNum()
 
 func updateSpecialInfo(_loc):
 	pass
