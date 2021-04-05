@@ -11,6 +11,12 @@ func _ready():
 
 func _physics_process(_delta):
 	loadConnections()
+	if Input.is_action_just_pressed("delete"):
+		for i in get_tree().get_nodes_in_group("node"):
+			if "RootFolder" in i.info["nodeName"]:
+				continue
+			if i.selected == true:
+				i.queue_free()
 
 func spawnNode(nodeName):
 	var node = load("res://Scenes/nodesInherited/" + nodeName + ".tscn")
@@ -50,10 +56,9 @@ func checkConnected(to):
 	return isTrue
 
 func updateConnectionList():
-	data.connectionList = get_connection_list()
-	for i in data.connectionList.size():
-		get_node(data.connectionList[i]["to"]).info["parentNode"] = data.connectionList[i]["from"]
-		get_node(data.connectionList[i]["to"]).updateInfo()
+	var connectionList = get_connection_list()
+	for i in connectionList.size():
+		get_node(connectionList[i]["to"]).info["parentNode"] = connectionList[i]["from"]
 
 func loadConnections():
 	if data.loadedNewProject == true:

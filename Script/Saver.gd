@@ -1,15 +1,12 @@
 extends Node
 
-var connectionList
 var exportDirLocation
 var SaveFileLocation
 var loadedNewProject = false
 var nodeList = []
 
-func _ready():
-	pass
-
 func save():
+	nodeList = []
 	for nodes in get_tree().get_nodes_in_group("node"):
 		nodes.updateInfo()
 	print(nodeList)
