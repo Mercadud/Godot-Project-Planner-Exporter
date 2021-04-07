@@ -6,7 +6,6 @@ var nodeCount = 1
 onready var data = $"/root/Saver"
 
 func _ready():
-	
 	spawnNode("RootFolder")
 	updateConnectionList()
 

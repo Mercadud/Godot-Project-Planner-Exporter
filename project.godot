@@ -51,5 +51,4 @@ quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
 quality/depth/hdr=false
-environment/default_environment="res://default_env.tres"
 quality/filters/anisotropic_filter_level=8
