@@ -6,7 +6,8 @@ var info = {
 	"parentNode":null,
 	"isCreated":false,
 	"location":Vector2(),
-	"name":""
+	"name":"",
+	"path":""
 }
 
 onready var data = $"/root/Saver"
