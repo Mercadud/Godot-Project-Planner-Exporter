@@ -8,7 +8,7 @@
 1. plan how you want to organize all your files in your godot Projects!
 2. Save them to finish them later!
 3. Add functions to their script nodes!
-4. Export your file system as a, ready to use, Godot Project!
+4. Export your file system as a, ready to use, Godot Project! (excluding nodes, exporting those will be introduced when Godot 4 comes out!)
 5. Easy for the eye dark theme!
 
 ### FUTURE PLANS
