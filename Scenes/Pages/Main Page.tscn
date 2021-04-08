@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
+[ext_resource path="res://Script/Tree/editor/Import.gd" type="Script" id=3]
 [ext_resource path="res://Script/Tree/editor/Info.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Nodes/Folder.png" type="Texture" id=5]
 [ext_resource path="res://Script/Tree/editor/GraphEdit.gd" type="Script" id=6]
@@ -119,7 +120,7 @@ margin_right = 39.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 1 )
 text = "File"
-items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Open", null, 0, false, false, 1, 0, null, "", false, "Save", null, 0, false, false, 2, 0, null, "", false, "Export", null, 0, false, false, 3, 0, null, "", false, "Quit", null, 0, false, false, 4, 0, null, "", false ]
+items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Load", null, 0, false, false, 1, 0, null, "", false, "Save", null, 0, false, false, 2, 0, null, "", false, "Export", null, 0, false, false, 3, 0, null, "", false, "Quit", null, 0, false, false, 4, 0, null, "", false ]
 switch_on_hover = true
 
 [node name="Edit" type="MenuButton" parent="Mount/MainWindow/tileBar/menus"]
@@ -164,7 +165,7 @@ custom_styles/bg = SubResource( 3 )
 custom_colors/grid_major = Color( 0.654902, 0.654902, 0.654902, 1 )
 custom_colors/grid_minor = Color( 0.258824, 0.258824, 0.258824, 1 )
 right_disconnects = true
-scroll_offset = Vector2( 0, -200 )
+scroll_offset = Vector2( -127, -200 )
 script = ExtResource( 6 )
 
 [node name="Select" type="TabContainer" parent="Mount/MainWindow/Editor"]
@@ -232,7 +233,7 @@ auto_height = true
 [node name="Misc" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_top = 154.0
 margin_right = 200.0
-margin_bottom = 215.0
+margin_bottom = 233.0
 dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
@@ -246,9 +247,9 @@ valign = 1
 [node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
 margin_top = 27.0
 margin_right = 200.0
-margin_bottom = 61.0
+margin_bottom = 79.0
 custom_styles/bg = ExtResource( 9 )
-items = [ "Script Node", ExtResource( 10 ), false ]
+items = [ "Script Node", ExtResource( 10 ), false, "Import Node", null, false ]
 auto_height = true
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]
@@ -277,6 +278,7 @@ __meta__ = {
 }
 
 [node name="Folder" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
 margin_top = 26.0
 margin_right = 200.0
 margin_bottom = 50.0
@@ -412,45 +414,73 @@ margin_bottom = 40.0
 
 [node name="Node" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 visible = false
-margin_top = 30.0
+margin_top = 26.0
 margin_right = 200.0
-margin_bottom = 30.0
+margin_bottom = 78.0
 script = ExtResource( 16 )
 
 [node name="NodeName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Node"]
-margin_top = -4.0
-margin_right = 40.0
-margin_bottom = 36.0
+margin_right = 200.0
+margin_bottom = 24.0
 dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeName"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 5.0
+margin_right = 84.0
+margin_bottom = 19.0
 text = "Scene Name:"
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeName"]
-margin_right = 58.0
+margin_left = 84.0
+margin_right = 200.0
 margin_bottom = 24.0
 
 [node name="NodeType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Node"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 52.0
 dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeType"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 5.0
+margin_right = 72.0
+margin_bottom = 19.0
 text = "Node Type:"
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeType"]
-margin_right = 58.0
+margin_left = 72.0
+margin_right = 200.0
 margin_bottom = 24.0
 placeholder_text = "Spatial"
 
-[node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-margin_top = 78.0
+[node name="Import" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
+margin_top = 26.0
 margin_right = 200.0
-margin_bottom = 78.0
+margin_bottom = 50.0
+script = ExtResource( 3 )
+
+[node name="ImportLocation" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Import"]
+margin_right = 200.0
+margin_bottom = 24.0
+dragger_visibility = 2
+
+[node name="Button" type="Button" parent="Mount/MainWindow/Editor/Select/Info/Import/ImportLocation"]
+margin_right = 99.0
+margin_bottom = 24.0
+text = "Select Import"
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Import/ImportLocation"]
+margin_left = 99.0
+margin_right = 200.0
+margin_bottom = 24.0
+text = "Not Selected"
+editable = false
+
+[node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+margin_top = 26.0
+margin_right = 200.0
+margin_bottom = 26.0
 
 [node name="FileDialog" type="FileDialog" parent="Mount/MainWindow"]
 margin_top = 29.0
@@ -459,6 +489,17 @@ margin_bottom = 429.0
 resizable = true
 access = 2
 filters = PoolStringArray( "*.GPPE" )
+current_dir = "/home/merc/Godot/Godot Project Planner"
+current_path = "/home/merc/Godot/Godot Project Planner/"
+
+[node name="ImportFile" type="FileDialog" parent="Mount/MainWindow"]
+margin_right = 315.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 600, 400 )
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
 current_dir = "/home/merc/Godot/Godot Project Planner"
 current_path = "/home/merc/Godot/Godot Project Planner/"
 [connection signal="gui_input" from="." to="." method="_on_Main_Page_gui_input"]
@@ -478,5 +519,7 @@ current_path = "/home/merc/Godot/Godot Project Planner/"
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/removeFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_removeFunction_button_up"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Node/NodeName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Node" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Node/NodeType/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Node" method="_on_nodeType_text_changed"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Import/ImportLocation/Button" to="Mount/MainWindow/Editor/Select/Info/Import" method="_on_Button_button_up"]
 [connection signal="dir_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_dir_selected"]
 [connection signal="file_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_file_selected"]
+[connection signal="file_selected" from="Mount/MainWindow/ImportFile" to="Mount/MainWindow/Editor/Select/Info/Import" method="_on_ImportFile_file_selected"]

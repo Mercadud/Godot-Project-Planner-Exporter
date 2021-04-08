@@ -7,6 +7,7 @@ onready var sceneSelected = $Scene
 onready var scriptSelected = $Script
 onready var nodeSelected = $Node
 onready var noneSelected = $None
+onready var importSelected = $Import
 
 func _ready():
 	pass
@@ -22,6 +23,8 @@ func _on_GraphEdit_node_selected(n):
 		onScript()
 	elif "Node" in n.name:
 		onNode()
+	elif "Import" in n.name:
+		onImport()
 
 func onFolder():
 	folderSelected.visible = true
@@ -30,6 +33,7 @@ func onFolder():
 	scriptSelected.visible = false
 	nodeSelected.visible = false
 	noneSelected.visible = false
+	importSelected.visible = false
 
 
 func onScene():
@@ -39,6 +43,7 @@ func onScene():
 	scriptSelected.visible = false
 	nodeSelected.visible = false
 	noneSelected.visible = false
+	importSelected.visible = false
 
 func onScript():
 	folderSelected.visible = false
@@ -47,6 +52,7 @@ func onScript():
 	scriptSelected.setNode(node)
 	nodeSelected.visible = false
 	noneSelected.visible = false
+	importSelected.visible = false
 
 func onNode():
 	folderSelected.visible = false
@@ -55,6 +61,7 @@ func onNode():
 	nodeSelected.visible = true
 	nodeSelected.setNode(node)
 	noneSelected.visible = false
+	importSelected.visible = false
 
 func onNone():
 	folderSelected.visible = false
@@ -62,3 +69,13 @@ func onNone():
 	scriptSelected.visible = false
 	nodeSelected.visible = false
 	noneSelected.visible = false
+	importSelected.visible = false
+
+func onImport():
+	folderSelected.visible = false
+	sceneSelected.visible = false
+	scriptSelected.visible = false
+	nodeSelected.visible = false
+	noneSelected.visible = false
+	importSelected.visible = true
+	importSelected.setNode(node)

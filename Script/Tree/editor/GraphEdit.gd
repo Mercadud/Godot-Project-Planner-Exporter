@@ -38,8 +38,11 @@ func _on_Nodes_item_activated(index):
 	if index == 1:
 		spawnNode("Node")
 
-func _on_Misc_item_activated(_index):
-	spawnNode("Script")
+func _on_Misc_item_activated(index):
+	if index == 0:
+		spawnNode("Script")
+	if index == 1:
+		spawnNode("Import")
 
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 	updateConnectionList()
