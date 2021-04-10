@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Script/menus.gd" type="Script" id=14]
 [ext_resource path="res://Script/Tree/editor/Script.gd" type="Script" id=15]
 [ext_resource path="res://Script/Tree/editor/Node.gd" type="Script" id=16]
+[ext_resource path="res://Assets/Nodes/Import.png" type="Texture" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -233,7 +234,7 @@ auto_height = true
 [node name="Misc" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_top = 154.0
 margin_right = 200.0
-margin_bottom = 233.0
+margin_bottom = 239.0
 dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
@@ -247,9 +248,9 @@ valign = 1
 [node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
 margin_top = 27.0
 margin_right = 200.0
-margin_bottom = 79.0
+margin_bottom = 85.0
 custom_styles/bg = ExtResource( 9 )
-items = [ "Script Node", ExtResource( 10 ), false, "Import Node", null, false ]
+items = [ "Script Node", ExtResource( 10 ), false, "Import Node", ExtResource( 17 ), false ]
 auto_height = true
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]

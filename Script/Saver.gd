@@ -91,12 +91,13 @@ func exportProject():
 								nodeList[node]["isCreated"] = true
 							###Import###
 							elif "Import" in nodeList[node]["nodeName"]:
+								nodeList[node]["path"] = nodeList[parent]["path"] + "/"
 								if nodeList[node]["importLocation"] != "":
 									var dir = Directory.new()
 									dir.open(nodeList[node]["importLocation"])
-									var Filename = dir.get_next()
-									print("fileName: " + Filename)
-								nodeList[node]["path"] = nodeList[parent]["path"]
+									var fileName = nodeList[node]["importLocation"].split("/")
+									print(nodeList[node]["path"] + fileName[fileName.size() - 1])
+									dir.copy(nodeList[node]["importLocation"],  nodeList[node]["path"] + "/" + fileName[fileName.size() - 1])
 								nodeList[node]["isCreated"] = true
 	for i in get_tree().get_nodes_in_group("node"):
 		i.info["isCreated"] = false

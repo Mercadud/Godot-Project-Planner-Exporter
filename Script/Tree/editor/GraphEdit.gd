@@ -130,6 +130,19 @@ func loadConnections():
 				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
 				inst.info["functions"] = data.nodeList[i]["functions"]
 				nodeCount += 1
+			elif "Import" in data.nodeList[i]["nodeName"]:
+				var node = load("res://Scenes/nodesInherited/Import.tscn")
+				var inst = node.instance()
+				add_child(inst)
+				inst.info["id"] = data.nodeList[i]["id"]
+				inst.info["nodeName"] = inst.name
+				inst.info["isCreated"] = false
+				inst.info["location"] = data.nodeList[i]["location"]
+				inst.info["name"] = data.nodeList[i]["name"]
+				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
+				inst.info["importLocation"] = data.nodeList[i]["importLocation"]
+				nodeCount += 1
+				
 		###move all nodes to location and connect to parents
 		for node in get_tree().get_nodes_in_group("node"):
 			node.updateNode()
