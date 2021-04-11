@@ -3,6 +3,7 @@ extends GridContainer
 onready var fileMenu = $File
 onready var editMenu = $Edit
 onready var fileLocation = $"../../FileDialog"
+onready var windowMessage = $"../../WindowDialog"
 onready var data = $"/root/Saver"
 
 func _ready():
@@ -55,15 +56,30 @@ func QuitPressed():
 func _on_FileDialog_dir_selected(dir):
 	data.exportDirLocation = dir
 	if fileLocation.mode == FileDialog.MODE_OPEN_DIR:
-		data.exportProject()
+		if data.exportProject():
+			windowMessage.dialog_text = "Export successful"
+			windowMessage.popup_centered()
+		else:
+			windowMessage.dialog_text = "Export unsucessful, check if you named all the files correctly"
+			windowMessage.popup_centered()
 
 func _on_FileDialog_file_selected(path):
 	data.SaveFileLocation = path
 	if fileLocation.mode == FileDialog.MODE_SAVE_FILE:
-		data.save()
+		if data.save():
+			windowMessage.dialog_text = "Save successful"
+			windowMessage.popup_centered()
+		else:
+			windowMessage.dialog_text = "Save Failed!\n If this persists, contact the developer"
+			windowMessage.popup_centered()
 	elif fileLocation.mode == FileDialog.MODE_OPEN_FILE:
 		NewPressed()
-		data.loadProject()
+		if data.loadProject():
+			windowMessage.dialog_text = "load successful"
+			windowMessage.popup_centered()
+		else:
+			windowMessage.dialog_text = "Load Failed!\n If this persists, contact the developer"
+			windowMessage.popup_centered()
 
 func undoPressed():
 	pass

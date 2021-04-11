@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -81,6 +81,24 @@ content_margin_bottom = 10.0
 bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 corner_detail = 20
 anti_aliasing_size = 5
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+border_width_top = 20
+border_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+expand_margin_top = 20.0
+anti_aliasing_size = 5
+
+[sub_resource type="Theme" id=9]
+WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 20
+WindowDialog/fonts/title_font = null
+WindowDialog/icons/close = null
+WindowDialog/icons/close_highlight = null
+WindowDialog/styles/panel = SubResource( 8 )
 
 [node name="Main Page" type="Control"]
 anchor_right = 1.0
@@ -515,6 +533,12 @@ mode = 0
 access = 2
 current_dir = "/home/merc/Godot/Godot Project Planner"
 current_path = "/home/merc/Godot/Godot Project Planner/"
+
+[node name="WindowDialog" type="AcceptDialog" parent="Mount/MainWindow"]
+margin_right = 48.0
+margin_bottom = 40.0
+theme = SubResource( 9 )
+window_title = "Message Alert!"
 [connection signal="gui_input" from="." to="." method="_on_Main_Page_gui_input"]
 [connection signal="resized" from="Mount/MainWindow/Editor" to="Mount/MainWindow/Editor" method="_on_Editor_resized"]
 [connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_connection_request"]

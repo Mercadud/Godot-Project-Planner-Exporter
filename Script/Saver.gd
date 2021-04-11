@@ -13,6 +13,8 @@ func save():
 	file.open(SaveFileLocation, File.WRITE)
 	file.store_var(nodeList)
 	file.close()
+	###this should never fail###
+	return true
 
 func loadProject():
 	var file = File.new()
@@ -20,6 +22,8 @@ func loadProject():
 	nodeList = file.get_var()
 	file.close()
 	loadedNewProject = true
+	###this should never fail###
+	return true
 
 func import():
 	var dir = Directory.new()
@@ -27,6 +31,10 @@ func import():
 	###I have no clue what happens now...
 
 func exportProject():
+	###check if all the nodes have a name###
+	for node in get_tree().get_nodes_in_group("node"):
+		if node.info["name"] == "":
+			return false
 	var allExported = false
 	nodeList = []
 	for nodes in get_tree().get_nodes_in_group("node"):
@@ -102,6 +110,7 @@ func exportProject():
 	for i in get_tree().get_nodes_in_group("node"):
 		i.info["isCreated"] = false
 		i.updateInfo()
+	return true
 
 
 func getRandomNum():
