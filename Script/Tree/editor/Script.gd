@@ -34,7 +34,7 @@ func _on_addFunction_button_up():
 	
 
 func _on_removeFunction_button_up():
-	if functions.get_child_count() > 0:
+	if childLoc.info["functions"].size() > 0:
 		childLoc.info["functions"].remove(childLoc.info["functions"].size() - 1)
 		updateInfoPage()
 

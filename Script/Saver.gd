@@ -31,7 +31,6 @@ func import():
 	###I have no clue what happens now...
 
 func exportProject():
-	###check if all the nodes have a name###
 	for node in get_tree().get_nodes_in_group("node"):
 		if node.info["name"] == "":
 			return false
@@ -100,18 +99,16 @@ func exportProject():
 							###Import###
 							elif "Import" in nodeList[node]["nodeName"]:
 								nodeList[node]["path"] = nodeList[parent]["path"] + "/"
-								if nodeList[node]["importLocation"] != "":
-									var dir = Directory.new()
-									dir.open(nodeList[node]["importLocation"])
-									var fileName = nodeList[node]["importLocation"].split("/")
-									print(nodeList[node]["path"] + fileName[fileName.size() - 1])
-									dir.copy(nodeList[node]["importLocation"],  nodeList[node]["path"] + "/" + fileName[fileName.size() - 1])
+								var dir = Directory.new()
+								dir.open(nodeList[node]["importLocation"])
+								var fileName = nodeList[node]["importLocation"].split("/")
+								print(nodeList[node]["path"] + fileName[fileName.size() - 1])
+								dir.copy(nodeList[node]["importLocation"],  nodeList[node]["path"] + "/" + fileName[fileName.size() - 1])
 								nodeList[node]["isCreated"] = true
 	for i in get_tree().get_nodes_in_group("node"):
 		i.info["isCreated"] = false
 		i.updateInfo()
 	return true
-
 
 func getRandomNum():
 	if nodeList.size() != 0:

@@ -241,7 +241,7 @@ margin_top = 27.0
 margin_right = 200.0
 margin_bottom = 61.0
 custom_styles/bg = ExtResource( 9 )
-items = [ "Folder Node", ExtResource( 5 ), false ]
+items = [ "Folder", ExtResource( 5 ), false ]
 auto_height = true
 same_column_width = true
 script = ExtResource( 18 )
@@ -265,7 +265,7 @@ margin_top = 27.0
 margin_right = 200.0
 margin_bottom = 85.0
 custom_styles/bg = ExtResource( 9 )
-items = [ "Scene Node", ExtResource( 8 ), false, "Node", ExtResource( 11 ), false ]
+items = [ "Scene", ExtResource( 8 ), false, "Node", ExtResource( 11 ), false ]
 auto_height = true
 script = ExtResource( 18 )
 
@@ -288,7 +288,7 @@ margin_top = 27.0
 margin_right = 200.0
 margin_bottom = 85.0
 custom_styles/bg = ExtResource( 9 )
-items = [ "Script Node", ExtResource( 10 ), false, "Import Node", ExtResource( 17 ), false ]
+items = [ "Script", ExtResource( 10 ), false, "Import", ExtResource( 17 ), false ]
 auto_height = true
 script = ExtResource( 18 )
 
@@ -419,12 +419,11 @@ margin_right = 200.0
 margin_bottom = 32.0
 
 [node name="functions" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script"]
-margin_top = 36.0
-margin_right = 200.0
-margin_bottom = 84.0
+margin_right = 107.0
+margin_bottom = 24.0
 
 [node name="buttons" type="HBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script/functions"]
-margin_right = 200.0
+margin_right = 107.0
 margin_bottom = 20.0
 alignment = 1
 
@@ -449,8 +448,6 @@ margin_bottom = 20.0
 text = "-"
 
 [node name="func" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script/functions"]
-margin_right = 40.0
-margin_bottom = 40.0
 
 [node name="Node" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 visible = false

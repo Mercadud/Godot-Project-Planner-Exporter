@@ -34,7 +34,7 @@ func _on_Edit_item_pressed(id):
 	elif id == 1:
 		redoPressed()
 
-func _on_Help_item_pressed(id):
+func _on_Help_item_pressed(_id):
 	contactPressed()
 
 func NewPressed():
