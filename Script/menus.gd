@@ -2,6 +2,7 @@ extends GridContainer
 
 onready var fileMenu = $File
 onready var editMenu = $Edit
+onready var helpMenu = $Help
 onready var fileLocation = $"../../FileDialog"
 onready var windowMessage = $"../../WindowDialog"
 onready var data = $"/root/Saver"
@@ -9,6 +10,7 @@ onready var data = $"/root/Saver"
 func _ready():
 	fileMenu.get_popup().connect("id_pressed", self, "_on_File_item_pressed")
 	editMenu.get_popup().connect("id_pressed", self, "_on_Edit_item_pressed")
+	helpMenu.get_popup().connect("id_pressed", self, "_on_Help_item_pressed")
 
 func _process(_delta):
 	if Input.is_action_just_pressed("save"):
@@ -31,6 +33,9 @@ func _on_Edit_item_pressed(id):
 		undoPressed()
 	elif id == 1:
 		redoPressed()
+
+func _on_Help_item_pressed(id):
+	contactPressed()
 
 func NewPressed():
 	for i in get_tree().get_nodes_in_group("node"):
@@ -86,3 +91,6 @@ func undoPressed():
 
 func redoPressed():
 	pass
+
+func contactPressed():
+	OS.shell_open("https://github.com/Mercadud/Godot-Project-Planner-Exporter/issues/new/choose")

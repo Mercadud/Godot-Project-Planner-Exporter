@@ -131,9 +131,9 @@ margin_bottom = 25.0
 dragger_visibility = 2
 
 [node name="menus" type="GridContainer" parent="Mount/MainWindow/tileBar"]
-margin_right = 86.0
+margin_right = 137.0
 margin_bottom = 25.0
-columns = 2
+columns = 3
 script = ExtResource( 14 )
 
 [node name="File" type="MenuButton" parent="Mount/MainWindow/tileBar/menus"]
@@ -153,8 +153,17 @@ text = "Edit"
 items = [ "Undo", null, 0, false, false, 0, 0, null, "", true, "Redo", null, 0, false, false, 1, 0, null, "", true ]
 switch_on_hover = true
 
+[node name="Help" type="MenuButton" parent="Mount/MainWindow/tileBar/menus"]
+margin_left = 90.0
+margin_right = 137.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "Help"
+items = [ "Report issue", null, 0, false, false, 0, 0, null, "", false ]
+switch_on_hover = true
+
 [node name="Label" type="Label" parent="Mount/MainWindow/tileBar"]
-margin_left = 86.0
+margin_left = 137.0
 margin_top = 5.0
 margin_right = 1024.0
 margin_bottom = 19.0
