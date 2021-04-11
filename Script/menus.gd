@@ -93,4 +93,5 @@ func redoPressed():
 	pass
 
 func contactPressed():
-	OS.shell_open("https://github.com/Mercadud/Godot-Project-Planner-Exporter/issues/new/choose")
+	if OS.shell_open("https://github.com/Mercadud/Godot-Project-Planner-Exporter/issues/new/choose") == OK:
+		print("opened Issue")

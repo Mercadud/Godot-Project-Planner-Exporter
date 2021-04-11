@@ -4,6 +4,7 @@ func _ready():
 	info["importLocation"] = ""
 	info["id"] = data.getRandomNum()
 	info["nodeName"] = self.name
+	info["name"] = "import"
 
 func updateSpecialInfo(loc):
 	data.nodeList[loc]["importLocation"] = info["importLocation"]
