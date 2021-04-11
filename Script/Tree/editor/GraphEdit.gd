@@ -25,17 +25,17 @@ func spawnNode(nodeName):
 	inst.updateInfo()
 	nodeCount += 1
 
-func can_drop_data(_position, _data):
+func can_drop_data(_position, _type):
 	return true
 
-func drop_data(_position, data):
-	var node = load("res://Scenes/nodesInherited/" + data + ".tscn")
+func drop_data(_position, type):
+	var node = load("res://Scenes/nodesInherited/" + type + ".tscn")
 	if node != null:
 		var inst = node.instance()
 		add_child(inst)
 		inst.offset = get_child(0).get_local_mouse_position()
 		nodeCount += 1
-	
+
 func _on_GraphEdit_delete_nodes_request():
 	nodeCount -= 1
 

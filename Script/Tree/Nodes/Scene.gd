@@ -3,7 +3,7 @@ extends "res://Script/Tree/Nodes/BaseNode.gd"
 onready var sceneInfo = get_node(infoPage + "/Scene")
 
 func _ready():
-	info["sceneType"] = ""
+	info["sceneType"] = "Spatial"
 	info["scriptAttached"] = null
 	info["nodeName"] = self.name
 	info["id"] = data.getRandomNum()
