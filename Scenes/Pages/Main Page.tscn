@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Script/Tree/editor/Script.gd" type="Script" id=15]
 [ext_resource path="res://Script/Tree/editor/Node.gd" type="Script" id=16]
 [ext_resource path="res://Assets/Nodes/Import.png" type="Texture" id=17]
+[ext_resource path="res://Script/Tree/editor/itemLists/itemList.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/nodesInherited/RootFolder.tscn" type="PackedScene" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -169,6 +171,13 @@ right_disconnects = true
 scroll_offset = Vector2( -127, -200 )
 script = ExtResource( 6 )
 
+[node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" instance=ExtResource( 19 )]
+margin_left = 127.0
+margin_top = 200.0
+margin_right = 328.0
+margin_bottom = 267.0
+mouse_filter = 1
+
 [node name="Select" type="TabContainer" parent="Mount/MainWindow/Editor"]
 margin_left = 822.0
 margin_right = 1024.0
@@ -208,6 +217,7 @@ custom_styles/bg = ExtResource( 9 )
 items = [ "Folder Node", ExtResource( 5 ), false ]
 auto_height = true
 same_column_width = true
+script = ExtResource( 18 )
 
 [node name="Nodes" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_top = 65.0
@@ -230,6 +240,7 @@ margin_bottom = 85.0
 custom_styles/bg = ExtResource( 9 )
 items = [ "Scene Node", ExtResource( 8 ), false, "Node", ExtResource( 11 ), false ]
 auto_height = true
+script = ExtResource( 18 )
 
 [node name="Misc" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_top = 154.0
@@ -252,6 +263,7 @@ margin_bottom = 85.0
 custom_styles/bg = ExtResource( 9 )
 items = [ "Script Node", ExtResource( 10 ), false, "Import Node", ExtResource( 17 ), false ]
 auto_height = true
+script = ExtResource( 18 )
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]
 visible = false

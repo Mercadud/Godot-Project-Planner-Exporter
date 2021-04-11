@@ -6,7 +6,6 @@ var nodeCount = 1
 onready var data = $"/root/Saver"
 
 func _ready():
-	spawnNode("RootFolder")
 	updateConnectionList()
 
 func _physics_process(_delta):
@@ -26,6 +25,27 @@ func spawnNode(nodeName):
 	inst.updateInfo()
 	nodeCount += 1
 
+func can_drop_data(_position, _data):
+	return true
+
+func drop_data(_position, data):
+	var node
+	if "Folder" in data:
+		node = load("res://Scenes/nodesInherited/Folder.tscn")
+	elif "Import" in data:
+		node = load("res://Scenes/nodesInherited/Import.tscn")
+	elif "Scene" in data:
+		node = load("res://Scenes/nodesInherited/Scene.tscn")
+	elif "Script" in data:
+		node = load("res://Scenes/nodesInherited/Script.tscn")
+	elif "Node" in data:
+		node = load("res://Scenes/nodesInherited/Node.tscn")
+	if node != null:
+		var inst = node.instance()
+		add_child(inst)
+		inst.offset = get_child(0).get_local_mouse_position()
+		nodeCount += 1
+	
 func _on_GraphEdit_delete_nodes_request():
 	nodeCount -= 1
 
