@@ -39,4 +39,3 @@ func updateInfoPage():
 
 func updateNode():
 	$LineEdit.text = info["name"]
-	updateInfo()

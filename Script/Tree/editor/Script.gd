@@ -25,19 +25,18 @@ func updateInfoPage():
 		functions.add_child(function)
 		function.placeholder_text = "ready()"
 		function.connect("text_changed", self, "updateFunc")
-		functions.get_child(functions.get_child_count()-1).text = funcArr[i]
+		if funcArr[i] != null:
+			functions.get_child(functions.get_child_count()-1).text = funcArr[i]
 
 func _on_addFunction_button_up():
-	var function = LineEdit.new()
-	functions.add_child(function)
-	funcArr.push_back(function.text)
-	function.placeholder_text = "ready()"
-	function.connect("text_changed", self, "updateFunc")
+	childLoc.info["functions"].resize(childLoc.info["functions"].size() + 1)
+	updateInfoPage()
+	
 
 func _on_removeFunction_button_up():
 	if functions.get_child_count() > 0:
-		functions.get_child(functions.get_child_count() -1 ).queue_free()
-		funcArr.remove(get_child_count() - 1)
+		childLoc.info["functions"].remove(childLoc.info["functions"].size() - 1)
+		updateInfoPage()
 
 
 func _on_LineEdit_text_changed(new_text):
