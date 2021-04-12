@@ -33,7 +33,17 @@ func import():
 func exportProject():
 	for node in get_tree().get_nodes_in_group("node"):
 		if node.info["name"] == "":
+			print("name" + str(node.info["nodeName"]))
 			return false
+		if "import" in  node.info["nodeName"]:
+			if node.info["importLocation"] == "":
+				print("import")
+				return false
+		if "Script" in node.info["nodeName"]:
+			for i in node.info["functions"].size():
+				if node.info["functions"][i] == "":
+					print("script")
+					return false
 	var allExported = false
 	nodeList = []
 	for nodes in get_tree().get_nodes_in_group("node"):
