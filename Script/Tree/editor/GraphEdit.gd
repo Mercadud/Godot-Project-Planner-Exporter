@@ -119,6 +119,13 @@ func loadConnections():
 				inst.info["functions"] = data.nodeList[i]["functions"]
 				inst.info["singleton"] = data.nodeList[i]["singleton"]
 				nodeCount += 1
+			elif "WorldEnvironment" in data.nodeList[i]["nodeName"]:
+				node = load("res://Scenes/nodesInherited/WorldEnvironment.tscn")
+				inst = node.instance()
+				add_child(inst)
+				inst.info["default"] = data.nodeList[i]["default"]
+				inst.info["WEType"] = data.nodeList[i]["WEType"]
+				nodeCount += 1
 			elif "Import" in data.nodeList[i]["nodeName"]:
 				node = load("res://Scenes/nodesInherited/Import.tscn")
 				inst = node.instance()

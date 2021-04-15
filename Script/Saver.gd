@@ -22,6 +22,7 @@ func loadProject():
 	nodeList = file.get_var()
 	file.close()
 	loadedNewProject = true
+	print(nodeList)
 	###this should never fail###
 	return true
 
@@ -71,12 +72,7 @@ func exportProject():
 						nodeList[node]["path"] = exportDirLocation + "/" + nodeList[node]["name"]
 						rootFolderLocation = node
 						resLoc = nodeList[node]["path"].length()
-#						var file = File.new()
-#						file.open(nodeList[node]["path"] + "/project.godot", File.WRITE)
-#						file.store_string("config_version=4\n\n_global_script_classes=[  ]\n_global_script_class_icons={\n\n}\n\n[application]\nconfig/name=\""
-#						+ nodeList[node]["name"] + "\"")
 						nodeList[node]["isCreated"] = true
-						
 					elif nodeList[parent]["id"] == nodeParent:
 						if nodeList[parent]["isCreated"] == true && nodeList[node]["isCreated"] == false:
 							##Folder###
@@ -120,6 +116,14 @@ func exportProject():
 								print(nodeList[node]["path"] + fileName[fileName.size() - 1])
 								dir.copy(nodeList[node]["importLocation"],  nodeList[node]["path"] + "/" + fileName[fileName.size() - 1])
 								nodeList[node]["isCreated"] = true
+							###WorldEnvironment###
+							elif "WorldEnvironment" in nodeList[node]["nodeName"]:
+								nodeList[node]["path"] = nodeList[parent]["path"] + "/" + nodeList[node]["name"] + ".tres"
+								var file = File.new()
+								file.open(nodeList[node]["path"], File.WRITE)
+								file.store_string("[gd_resource type=\"Environment\" load_steps=2 format=2]\n\n")
+								nodeList[node]["isCreated"] = true
+						
 	
 	###create the project.godot file###
 	var file = File.new()
