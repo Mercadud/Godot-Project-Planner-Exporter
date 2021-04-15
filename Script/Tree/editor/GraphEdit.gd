@@ -2,6 +2,7 @@ extends GraphEdit
 
 var spawnLoc = Vector2(20,20)
 var nodeCount = 1
+var connectionList
 
 onready var data = $"/root/Saver"
 
@@ -76,13 +77,15 @@ func checkConnected(to):
 	return isTrue
 
 func updateConnectionList():
-	var connectionList = get_connection_list()
+	connectionList = get_connection_list()
 	for i in connectionList.size():
 		get_node(connectionList[i]["to"]).info["parentNode"] = get_node(connectionList[i]["from"]).info["id"]
 
 func loadConnections():
 	if data.loadedNewProject == true:
 		###delete all current nodes###
+		for i in connectionList.size():
+			_on_GraphEdit_disconnection_request(connectionList[i]["from"], connectionList[i]["from_slot"], connectionList[i]["to"], connectionList[i]["to_slot"])
 		for i in get_tree().get_nodes_in_group("node"):
 			i.queue_free()
 		###create all the nodes###

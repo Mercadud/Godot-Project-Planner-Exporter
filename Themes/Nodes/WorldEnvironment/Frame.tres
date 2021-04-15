@@ -8,4 +8,3 @@ content_margin_bottom = 10.0
 bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 border_width_top = 24
 border_color = Color( 0, 0.596078, 0.419608, 1 )
-corner_radius_bottom_left = 5
