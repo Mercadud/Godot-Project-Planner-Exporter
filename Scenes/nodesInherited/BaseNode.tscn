@@ -6,6 +6,7 @@
 ]]
 margin_right = 201.0
 margin_bottom = 67.0
+custom_colors/resizer_color = Color( 1, 1, 1, 1 )
 show_close = true
 slot/0/left_enabled = false
 slot/0/left_type = 0

@@ -81,78 +81,51 @@ func loadConnections():
 			i.queue_free()
 		###create all the nodes###
 		for i in data.nodeList.size():
+			var node
+			var inst
 			if "RootFolder" in data.nodeList[i]["nodeName"]:
-				var node = load("res://Scenes/nodesInherited/RootFolder.tscn")
-				var inst = node.instance()
+				node = load("res://Scenes/nodesInherited/RootFolder.tscn")
+				inst = node.instance()
 				add_child(inst)
-				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = inst.name
-				inst.info["isCreated"] = false
-				inst.info["location"] = data.nodeList[i]["location"]
-				inst.info["name"] = data.nodeList[i]["name"]
-				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
 				nodeCount += 1
 			elif "Folder" in data.nodeList[i]["nodeName"]:
-				var node = load("res://Scenes/nodesInherited/Folder.tscn")
-				var inst = node.instance()
+				node = load("res://Scenes/nodesInherited/Folder.tscn")
+				inst = node.instance()
 				add_child(inst)
-				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = inst.name
-				inst.info["isCreated"] = false
-				inst.info["location"] = data.nodeList[i]["location"]
-				inst.info["name"] = data.nodeList[i]["name"]
-				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
 				nodeCount += 1
 			elif "Scene" in data.nodeList[i]["nodeName"]:
-				var node = load("res://Scenes/nodesInherited/Scene.tscn")
-				var inst = node.instance()
+				node = load("res://Scenes/nodesInherited/Scene.tscn")
+				inst = node.instance()
 				add_child(inst)
-				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = inst.name
-				inst.info["isCreated"] = false
-				inst.info["location"] = data.nodeList[i]["location"]
-				inst.info["name"] = data.nodeList[i]["name"]
-				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
 				inst.info["sceneType"] = data.nodeList[i]["sceneType"]
 				inst.info["scriptAttached"] = data.nodeList[i]["scriptAttached"]
 				nodeCount += 1
 			elif "Node" in data.nodeList[i]["nodeName"]:
-				var node = load("res://Scenes/nodesInherited/Node.tscn")
-				var inst = node.instance()
+				node = load("res://Scenes/nodesInherited/Node.tscn")
+				inst = node.instance()
 				add_child(inst)
-				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = inst.name
-				inst.info["isCreated"] = false
-				inst.info["location"] = data.nodeList[i]["location"]
-				inst.info["name"] = data.nodeList[i]["name"]
-				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
 				inst.info["nodeType"] = data.nodeList[i]["nodeType"]
 				nodeCount += 1
 			elif "Script" in data.nodeList[i]["nodeName"]:
-				var node = load("res://Scenes/nodesInherited/Script.tscn")
-				var inst = node.instance()
+				node = load("res://Scenes/nodesInherited/Script.tscn")
+				inst = node.instance()
 				add_child(inst)
-				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = inst.name
-				inst.info["isCreated"] = false
-				inst.info["location"] = data.nodeList[i]["location"]
-				inst.info["name"] = data.nodeList[i]["name"]
-				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
 				inst.info["functions"] = data.nodeList[i]["functions"]
+				inst.info["singleton"] = data.nodeList[i]["singleton"]
 				nodeCount += 1
 			elif "Import" in data.nodeList[i]["nodeName"]:
-				var node = load("res://Scenes/nodesInherited/Import.tscn")
-				var inst = node.instance()
+				node = load("res://Scenes/nodesInherited/Import.tscn")
+				inst = node.instance()
 				add_child(inst)
-				inst.info["id"] = data.nodeList[i]["id"]
-				inst.info["nodeName"] = inst.name
-				inst.info["isCreated"] = false
-				inst.info["location"] = data.nodeList[i]["location"]
-				inst.info["name"] = data.nodeList[i]["name"]
-				inst.info["parentNode"] = data.nodeList[i]["parentNode"]
 				inst.info["importLocation"] = data.nodeList[i]["importLocation"]
 				nodeCount += 1
-				
+			###assigning common variables###
+			inst.info["id"] = data.nodeList[i]["id"]
+			inst.info["nodeName"] = inst.name
+			inst.info["isCreated"] = false
+			inst.info["location"] = data.nodeList[i]["location"]
+			inst.info["name"] = data.nodeList[i]["name"]
+			inst.info["parentNode"] = data.nodeList[i]["parentNode"]
 		###move all nodes to location and connect to parents
 		for node in get_tree().get_nodes_in_group("node"):
 			node.updateNode()

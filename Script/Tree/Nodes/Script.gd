@@ -3,6 +3,7 @@ extends "res://Script/Tree/Nodes/BaseNode.gd"
 onready var scriptInfo = get_node(infoPage + "/Script")
 
 func _ready():
+	info["singleton"] = false
 	info["functions"] = []
 	info["nodeName"] = self.name
 	info["id"] = data.getRandomNum()

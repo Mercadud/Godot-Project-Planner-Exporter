@@ -413,6 +413,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Singleton" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Script"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="CheckBox" type="CheckButton" parent="Mount/MainWindow/Editor/Select/Info/Script/Singleton"]
+margin_right = 24.0
+margin_bottom = 24.0
+text = "Singleton"
+flat = true
+
 [node name="HSeparator" type="HSeparator" parent="Mount/MainWindow/Editor/Select/Info/Script"]
 margin_top = 28.0
 margin_right = 200.0
@@ -558,6 +568,7 @@ window_title = "Message Alert!"
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_LineEdit_text_changed"]
 [connection signal="item_selected" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneType/OptionButton" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_OptionButton_item_selected"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Script/ScriptName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_LineEdit_text_changed"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/Singleton/CheckBox" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_CheckBox_button_up"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/addFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_addFunction_button_up"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/removeFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_removeFunction_button_up"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Node/NodeName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Node" method="_on_LineEdit_text_changed"]

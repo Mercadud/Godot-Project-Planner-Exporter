@@ -19,6 +19,6 @@ func _on_LineEdit_text_changed(new_text):
 func _on_Scene_dragged(_from, to):
 	info["location"] = to
 
-
 func _on_Scene_close_request():
 	queue_free()
+	

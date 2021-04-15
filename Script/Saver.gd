@@ -31,6 +31,9 @@ func import():
 	###I have no clue what happens now...
 
 func exportProject():
+	var rootFolderLocation
+	var resLoc
+	
 	for node in get_tree().get_nodes_in_group("node"):
 		if node.info["name"] == "":
 			print("name" + str(node.info["nodeName"]))
@@ -66,10 +69,12 @@ func exportProject():
 						dir.open(nodeList[node]["path"])
 						dir.make_dir(nodeList[node]["name"])
 						nodeList[node]["path"] = exportDirLocation + "/" + nodeList[node]["name"]
-						var file = File.new()
-						file.open(nodeList[node]["path"] + "/project.godot", File.WRITE)
-						file.store_string("config_version=4\n\n_global_script_classes=[  ]\n_global_script_class_icons={\n\n}\n\n[application]\nconfig/name=\""
-						+ nodeList[node]["name"] + "\"")
+						rootFolderLocation = node
+						resLoc = nodeList[node]["path"].length()
+#						var file = File.new()
+#						file.open(nodeList[node]["path"] + "/project.godot", File.WRITE)
+#						file.store_string("config_version=4\n\n_global_script_classes=[  ]\n_global_script_class_icons={\n\n}\n\n[application]\nconfig/name=\""
+#						+ nodeList[node]["name"] + "\"")
 						nodeList[node]["isCreated"] = true
 						
 					elif nodeList[parent]["id"] == nodeParent:
@@ -115,9 +120,27 @@ func exportProject():
 								print(nodeList[node]["path"] + fileName[fileName.size() - 1])
 								dir.copy(nodeList[node]["importLocation"],  nodeList[node]["path"] + "/" + fileName[fileName.size() - 1])
 								nodeList[node]["isCreated"] = true
+	
+	###create the project.godot file###
+	var file = File.new()
+	file.open(nodeList[rootFolderLocation]["path"] + "/project.godot", File.WRITE)
+	file.store_string("config_version=4\n\n_global_script_classes=[  ]\n_global_script_class_icons={\n\n}\n\n[application]\nconfig/name=\""
+	+ nodeList[rootFolderLocation]["name"] + "\"\n\n")
+	var ScriptSingleton = false
+	for i in nodeList.size():
+		if "Script" in nodeList[i]["nodeName"]:
+			if nodeList[i]["singleton"] == true:
+				ScriptSingleton = true
+	if ScriptSingleton:
+		file.store_string("[autoload]\n\n")
+		for i in nodeList.size():
+			if "Script" in nodeList[i]["nodeName"]:
+				if nodeList[i]["singleton"]:
+					file.store_string(nodeList[i]["name"] + "=\"*res:/" + nodeList[i]["path"].substr(resLoc, nodeList[i]["path"].length()) + "\"\n")
+	###reset everything###
 	for i in get_tree().get_nodes_in_group("node"):
 		i.info["isCreated"] = false
-		i.updateInfo()
+	nodeList = []
 	return true
 
 func getRandomNum():
