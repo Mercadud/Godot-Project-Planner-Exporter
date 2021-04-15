@@ -8,6 +8,9 @@
 [node name="WorldEnvironment" instance=ExtResource( 1 )]
 custom_styles/frame = ExtResource( 4 )
 custom_styles/selectedframe = ExtResource( 3 )
+title = "World Environment"
+slot/0/left_enabled = true
+slot/0/left_color = Color( 0, 0.596078, 0.419608, 1 )
 script = ExtResource( 2 )
 
 [node name="LineEdit" parent="." index="0"]
@@ -16,3 +19,6 @@ margin_top = 33.0
 margin_right = 191.0
 margin_bottom = 57.0
 placeholder_text = "World Environment Name"
+[connection signal="close_request" from="." to="." method="_on_WorldEnvironment_close_request"]
+[connection signal="dragged" from="." to="." method="_on_WorldEnvironment_dragged"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]

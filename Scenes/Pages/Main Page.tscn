@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Assets/Nodes/Import.png" type="Texture" id=17]
 [ext_resource path="res://Script/Tree/editor/itemLists/itemList.gd" type="Script" id=18]
 [ext_resource path="res://Scenes/nodesInherited/RootFolder.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Script/Tree/editor/WorldEnvironment.gd" type="Script" id=20]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -272,7 +273,7 @@ script = ExtResource( 18 )
 [node name="Misc" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_top = 154.0
 margin_right = 200.0
-margin_bottom = 239.0
+margin_bottom = 257.0
 dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
@@ -286,9 +287,9 @@ valign = 1
 [node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
 margin_top = 27.0
 margin_right = 200.0
-margin_bottom = 85.0
+margin_bottom = 103.0
 custom_styles/bg = ExtResource( 9 )
-items = [ "Script", ExtResource( 10 ), false, "Import", ExtResource( 17 ), false ]
+items = [ "Script", ExtResource( 10 ), false, "Import", ExtResource( 17 ), false, "World Environment", null, false ]
 auto_height = true
 script = ExtResource( 18 )
 
@@ -524,6 +525,41 @@ margin_bottom = 24.0
 text = "Not Selected"
 editable = false
 
+[node name="WorldEnvironment" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 20 )
+
+[node name="NodeName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/NodeName"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "WE name: "
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/NodeName"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="WEType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/WEType"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Environment Type: "
+
+[node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/WEType"]
+margin_right = 29.0
+margin_bottom = 20.0
+text = "Default"
+items = [ "Default", null, false, 0, null, "Realistc", null, false, 1, null, "Toon", null, false, 2, null ]
+selected = 0
+
 [node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 margin_top = 26.0
 margin_right = 200.0
@@ -574,6 +610,8 @@ window_title = "Message Alert!"
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Node/NodeName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Node" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Node/NodeType/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Node" method="_on_nodeType_text_changed"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Import/ImportLocation/Button" to="Mount/MainWindow/Editor/Select/Info/Import" method="_on_Button_button_up"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/NodeName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/WorldEnvironment" method="_on_LineEdit_text_changed"]
+[connection signal="item_selected" from="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/WEType/OptionButton" to="Mount/MainWindow/Editor/Select/Info/WorldEnvironment" method="_on_OptionButton_item_selected"]
 [connection signal="dir_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_dir_selected"]
 [connection signal="file_selected" from="Mount/MainWindow/FileDialog" to="Mount/MainWindow/tileBar/menus" method="_on_FileDialog_file_selected"]
 [connection signal="file_selected" from="Mount/MainWindow/ImportFile" to="Mount/MainWindow/Editor/Select/Info/Import" method="_on_ImportFile_file_selected"]

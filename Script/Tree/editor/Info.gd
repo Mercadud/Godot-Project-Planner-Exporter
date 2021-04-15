@@ -1,6 +1,5 @@
 extends VBoxContainer
 
-var node
 
 onready var folderSelected = $Folder
 onready var sceneSelected = $Scene
@@ -8,25 +7,24 @@ onready var scriptSelected = $Script
 onready var nodeSelected = $Node
 onready var noneSelected = $None
 onready var importSelected = $Import
-
-func _ready():
-	pass
+onready var WESelected = $WorldEnvironment
 
 func _on_GraphEdit_node_selected(n):
-	node = n
-	$Title.text = node.name
+	$Title.text = n.name
 	if "Folder" in n.name:
-		onFolder()
+		onFolder(n)
 	elif "Scene" in n.name:
-		onScene()
+		onScene(n)
 	elif "Script" in n.name:
-		onScript()
+		onScript(n)
 	elif "Node" in n.name:
-		onNode()
+		onNode(n)
 	elif "Import" in n.name:
-		onImport()
+		onImport(n)
+	elif "WorldEnvironment" in n.name:
+		onWE(n)
 
-func onFolder():
+func onFolder(node):
 	folderSelected.visible = true
 	folderSelected.setNode(node)
 	sceneSelected.visible = false
@@ -34,9 +32,10 @@ func onFolder():
 	nodeSelected.visible = false
 	noneSelected.visible = false
 	importSelected.visible = false
+	WESelected.visible = false
 
 
-func onScene():
+func onScene(node):
 	folderSelected.visible = false
 	sceneSelected.visible = true
 	sceneSelected.setNode(node)
@@ -44,8 +43,9 @@ func onScene():
 	nodeSelected.visible = false
 	noneSelected.visible = false
 	importSelected.visible = false
+	WESelected.visible = false
 
-func onScript():
+func onScript(node):
 	folderSelected.visible = false
 	sceneSelected.visible = false
 	scriptSelected.visible = true
@@ -53,8 +53,9 @@ func onScript():
 	nodeSelected.visible = false
 	noneSelected.visible = false
 	importSelected.visible = false
+	WESelected.visible = false
 
-func onNode():
+func onNode(node):
 	folderSelected.visible = false
 	sceneSelected.visible = false
 	scriptSelected.visible = false
@@ -62,16 +63,9 @@ func onNode():
 	nodeSelected.setNode(node)
 	noneSelected.visible = false
 	importSelected.visible = false
+	WESelected.visible = false
 
-func onNone():
-	folderSelected.visible = false
-	sceneSelected.visible = false
-	scriptSelected.visible = false
-	nodeSelected.visible = false
-	noneSelected.visible = false
-	importSelected.visible = false
-
-func onImport():
+func onImport(node):
 	folderSelected.visible = false
 	sceneSelected.visible = false
 	scriptSelected.visible = false
@@ -79,3 +73,14 @@ func onImport():
 	noneSelected.visible = false
 	importSelected.visible = true
 	importSelected.setNode(node)
+	WESelected.visible = false
+
+func onWE(node):
+	folderSelected.visible = false
+	sceneSelected.visible = false
+	scriptSelected.visible = false
+	nodeSelected.visible = false
+	noneSelected.visible = false
+	importSelected.visible = false
+	WESelected.visible = true
+	WESelected.setNode(node)

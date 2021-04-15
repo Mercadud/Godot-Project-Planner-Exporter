@@ -29,7 +29,11 @@ func can_drop_data(_position, _type):
 	return true
 
 func drop_data(_position, type):
-	var node = load("res://Scenes/nodesInherited/" + type + ".tscn")
+	var node
+	if type != "World Environment":
+		node = load("res://Scenes/nodesInherited/" + type + ".tscn")
+	else:
+		node = load("res://Scenes/nodesInherited/WorldEnvironment.tscn")
 	if node != null:
 		var inst = node.instance()
 		add_child(inst)
@@ -53,6 +57,8 @@ func _on_Misc_item_activated(index):
 		spawnNode("Script")
 	if index == 1:
 		spawnNode("Import")
+	if index == 2:
+		spawnNode("WorldEnvironment")
 
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 	updateConnectionList()

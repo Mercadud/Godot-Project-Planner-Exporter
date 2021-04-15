@@ -23,4 +23,4 @@ func _on_LineEdit_text_changed(new_text):
 	childLoc.updateNode()
 
 func _on_OptionButton_item_selected(index):
-	childLoc.info["sceneType"] = $SceneType/OptionButton.get_item_text(index)
+	childLoc.info["sceneType"] = sceneType.get_item_text(index)
