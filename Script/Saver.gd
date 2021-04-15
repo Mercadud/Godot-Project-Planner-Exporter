@@ -117,43 +117,8 @@ func exportProject():
 							###WorldEnvironment###
 							elif "WorldEnvironment" in nodeList[node]["nodeName"]:
 								nodeList[node]["path"] = nodeList[parent]["path"] + "/" + nodeList[node]["name"] + ".tres"
-								var file = File.new()
-								file.open(nodeList[node]["path"], File.WRITE)
-								file.store_string("[gd_resource type=\"Environment\" load_steps=2 format=2]\n\n")
-								if nodeList[node]["WEType"] == "Default":
-									file.store_string("""[sub_resource type=\"ProceduralSky\" id=1]
-
-[resource]
-background_mode = 2
-background_sky = SubResource( 1 )""")
-								elif nodeList[node]["WEType"] == "Realistic":
-									file.store_string("""[sub_resource type=\"ProceduralSky\" id=1]
-
-[resource]
-background_mode = 2
-background_sky = SubResource( 1 )
-ambient_light_energy = 0.0
-ambient_light_sky_contribution = 0.0
-tonemap_mode = 2
-tonemap_exposure = 0.7
-tonemap_white = 16.0
-auto_exposure_speed = 4.0
-ss_reflections_enabled = true
-ss_reflections_max_steps = 128
-ss_reflections_roughness = false
-ssao_enabled = true
-ssao_quality = 2
-ssao_edge_sharpness = 32.0
-dof_blur_far_distance = 50.0
-dof_blur_far_transition = 8192.0
-dof_blur_far_quality = 2
-dof_blur_near_quality = 2
-glow_levels/1 = true
-glow_levels/2 = true
-glow_levels/5 = false
-glow_intensity = 0.2
-adjustment_enabled = true""")
-									
+								var dir = Directory.new()
+								dir.copy("res://templates/WorldEnv/" + nodeList[node]["WEType"] + ".tres", nodeList[node]["path"])
 								nodeList[node]["isCreated"] = true
 	
 	###create the project.godot file###

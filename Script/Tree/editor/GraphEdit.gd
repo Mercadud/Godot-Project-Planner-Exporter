@@ -70,7 +70,7 @@ func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 
 func checkConnected(to):
 	var isTrue = true
-	var connectionList = get_connection_list()
+	connectionList = get_connection_list()
 	for i in connectionList.size():
 		if connectionList[i]["to"] == to:
 			isTrue = false
