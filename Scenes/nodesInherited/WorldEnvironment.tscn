@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/nodesInherited/BaseNode.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Script/Tree/Nodes/WorldEnvironment.gd" type="Script" id=2]
+[ext_resource path="res://Themes/Nodes/WorldEnvironment/SelectedFrame.tres" type="StyleBox" id=3]
+[ext_resource path="res://Themes/Nodes/WorldEnvironment/Frame.tres" type="StyleBox" id=4]
+
+[node name="WorldEnvironment" instance=ExtResource( 1 )]
+custom_styles/frame = ExtResource( 4 )
+custom_styles/selectedframe = ExtResource( 3 )
+script = ExtResource( 2 )
+
+[node name="LineEdit" parent="." index="0"]
+margin_left = 10.0
+margin_top = 33.0
+margin_right = 191.0
+margin_bottom = 57.0
+placeholder_text = "World Environment Name"

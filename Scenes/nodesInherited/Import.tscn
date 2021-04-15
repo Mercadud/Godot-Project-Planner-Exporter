@@ -3,19 +3,11 @@
 [ext_resource path="res://Scenes/nodesInherited/BaseNode.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Themes/Nodes/Import/Frame.tres" type="StyleBox" id=2]
 [ext_resource path="res://Script/Tree/Nodes/Import.gd" type="Script" id=3]
-
-[sub_resource type="StyleBoxFlat" id=1]
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 33.0
-content_margin_bottom = 33.0
-bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
-border_width_top = 24
-border_color = Color( 0.756863, 0, 1, 1 )
+[ext_resource path="res://Themes/Nodes/Import/SelectedFrame.tres" type="StyleBox" id=4]
 
 [node name="Import" instance=ExtResource( 1 )]
 custom_styles/frame = ExtResource( 2 )
-custom_styles/selectedframe = SubResource( 1 )
+custom_styles/selectedframe = ExtResource( 4 )
 custom_colors/title_color = Color( 1, 1, 1, 1 )
 title = "Import Node"
 slot/0/left_enabled = true
