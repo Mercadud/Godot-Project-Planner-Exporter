@@ -34,7 +34,7 @@
 ### Script
 ##### Editable Content:
 1. Name
-2.f it's a Singleton
+2. it's a Singleton
 3. add/remove functions
 
 ### Import
