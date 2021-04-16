@@ -17,24 +17,25 @@
 
 ## INFO ABOUT THE NODES AVAILABLE
 (more will be added in the future)
+
 #### Root Folder/Folder
-##### Editable content:
-1. name
+##### Editable Content:
+1. Name
 
 ### Scene
-##### Editable content:
+##### Editable Content:
 1. Name
 2. Scene type (2D and 3D nodes available)
 
 ### Node (DOESN'T EXPORT YET)
-##### Editable content:
+##### Editable Content:
 1. Name
 2. Node Type
 
 ### Script
 ##### Editable Content:
 1. Name
-2. it's a Singleton
+2. If it's a Singleton
 3. add/remove functions
 
 ### Import
