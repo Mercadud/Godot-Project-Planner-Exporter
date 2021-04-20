@@ -55,7 +55,7 @@ func threadedExport(exportStatus):
 		print("checking " + str(node.info["nodeName"]))
 		if "RootFolder" in node.info["nodeName"]:
 			node.updateInfo()
-			print(nodeList)
+			break
 	exportRootFolder()
 	
 	#Add Folders to array
@@ -115,7 +115,7 @@ func exportFolders():
 			for node in nodeList.size():
 				if "Folder" in nodeList[node]["nodeName"] && nodeList[node]["isCreated"] == false:
 					for parent in nodeList.size():
-						if nodeList[parent]["isCreated"]:
+						if nodeList[parent]["isCreated"] && nodeList[parent]["id"] == nodeList[node]["parentNode"]:
 							nodeList[node]["path"] = nodeList[parent]["path"]
 							var dir = Directory.new()
 							dir.open(nodeList[node]["path"])
@@ -135,7 +135,7 @@ func exportScripts():
 			for node in nodeList.size():
 				if "Script" in nodeList[node]["nodeName"] && nodeList[node]["isCreated"] == false:
 					for parent in nodeList.size():
-						if nodeList[parent]["isCreated"]:
+						if nodeList[parent]["isCreated"] && nodeList[parent]["id"] == nodeList[node]["parentNode"]:
 							nodeList[node]["path"] = nodeList[parent]["path"] + "/" + nodeList[node]["name"] + ".gd"
 							var file = File.new()
 							file.open(nodeList[node]["path"], File.WRITE)
@@ -156,7 +156,7 @@ func exportWorldEnvironment():
 			for node in nodeList.size():
 				if "WorldEnvironment" in nodeList[node]["nodeName"] && nodeList[node]["isCreated"] == false:
 					for parent in nodeList.size():
-						if nodeList[parent]["isCreated"]:
+						if nodeList[parent]["isCreated"] && nodeList[parent]["id"] == nodeList[node]["parentNode"]:
 							nodeList[node]["path"] = nodeList[parent]["path"] + "/" + nodeList[node]["name"] + ".tres"
 							var dir = Directory.new()
 							dir.copy("res://templates/WorldEnv/" + nodeList[node]["WEType"] + ".tres", nodeList[node]["path"])
@@ -174,7 +174,7 @@ func exportScenes():
 			for node in nodeList.size():
 				if "Scene" in nodeList[node]["nodeName"] && nodeList[node]["isCreated"] == false:
 					for parent in nodeList.size():
-						if nodeList[parent]["isCreated"]:
+						if nodeList[parent]["isCreated"] && nodeList[parent]["id"] == nodeList[node]["parentNode"]:
 							nodeList[node]["path"] = nodeList[parent]["path"] + "/" + nodeList[node]["name"] + ".tscn"
 							var file = File.new()
 							file.open(nodeList[node]["path"], File.WRITE)
