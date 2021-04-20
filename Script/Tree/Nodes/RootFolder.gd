@@ -5,6 +5,10 @@ onready var folderInfo = get_node(infoPage + "/Folder")
 func _ready():
 	info["nodeName"] = self.name
 	info["id"] = data.getRandomNum()
+	info["driverName"] = "GLES3"
+	info["projectName"] = ""
+	info["projectHeight"] = 1920
+	info["projectWidth"] = 1080
 
 func updateSpecialInfo(_loc):
 	pass
