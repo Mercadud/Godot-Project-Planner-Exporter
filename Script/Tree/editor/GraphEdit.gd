@@ -137,7 +137,7 @@ func loadConnections():
 				nodeCount += 1
 			###assigning common variables###
 			inst.info["id"] = data.nodeList[i]["id"]
-			inst.info["nodeName"] = inst.name
+#			inst.info["nodeName"] = inst.name
 			inst.info["isCreated"] = false
 			inst.info["location"] = data.nodeList[i]["location"]
 			inst.info["name"] = data.nodeList[i]["name"]

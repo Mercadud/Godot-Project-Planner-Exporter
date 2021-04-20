@@ -50,6 +50,11 @@ func exportProject():
 func threadedExport(exportStatus):
 	print(exportStatus)
 	nodeList = []
+	progressBarLength = 0
+	progress = 0
+	for i in get_tree().get_nodes_in_group("node"):
+		progressBarLength += 1
+	
 	#Add Root Folder to Array
 	for node in get_tree().get_nodes_in_group("node"):
 		print("checking " + str(node.info["nodeName"]))
@@ -122,6 +127,7 @@ func exportFolders():
 							dir.make_dir(nodeList[node]["name"])
 							nodeList[node]["path"] = nodeList[parent]["path"] + "/" + nodeList[node]["name"] + "/"
 							nodeList[node]["isCreated"] = true
+							progress += 1
 
 func exportScripts():
 	var allExported = false
@@ -143,6 +149,7 @@ func exportScripts():
 							for i in nodeList[node]["functions"].size():
 									file.store_string("\n\n" + "func " + nodeList[node]["functions"][i] + "():\n\tpass")
 							nodeList[node]["isCreated"] = true
+							progress += 1
 
 func exportWorldEnvironment():
 	var allExported = false
@@ -161,6 +168,7 @@ func exportWorldEnvironment():
 							var dir = Directory.new()
 							dir.copy("res://templates/WorldEnv/" + nodeList[node]["WEType"] + ".tres", nodeList[node]["path"])
 							nodeList[node]["isCreated"] = true
+							progress += 1
 
 func exportScenes():
 	var allExported = false
@@ -180,6 +188,7 @@ func exportScenes():
 							file.open(nodeList[node]["path"], File.WRITE)
 							file.store_string("[gd_scene format=2]\n\n[node name=\"" + nodeList[node]["name"] + "\" type=\"" + nodeList[node]["sceneType"] +"\"]")
 							nodeList[node]["isCreated"] = true
+							progress += 1
 
 func exportGodotProject():
 	var file = File.new()
@@ -197,6 +206,7 @@ func exportGodotProject():
 			if "Script" in nodeList[i]["nodeName"]:
 				if nodeList[i]["singleton"]:
 					file.store_string(nodeList[i]["name"] + "=\"*res:/" + nodeList[i]["path"].substr(resLoc, nodeList[i]["path"].length()) + "\"\n")
+	progress += 1
 
 func getRandomNum():
 	if nodeList.size() != 0:
@@ -213,8 +223,8 @@ func _exit_tree():
 
 
 ###GRAVEYARD###
-#func oldExportMethod:
-	###OLD EXPORT METHOD###
+#func oldExport:
+	###OLD EXPORT FUNCTION###
 	
 #	for node in get_tree().get_nodes_in_group("node"):
 #		if node.info["name"] == "":
