@@ -3,8 +3,6 @@ extends Control
 onready var graph = $Mount/MainWindow/Editor/Graph/GraphEdit
 var ctrlPressed = false
 
-func _ready():
-	pass
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ctrl"):
