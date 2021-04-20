@@ -48,8 +48,7 @@ delete={
 [rendering]
 
 quality/driver/driver_name="GLES2"
-quality/intended_usage/framebuffer_allocation=1
-quality/intended_usage/framebuffer_allocation.mobile=1
+threads/thread_model=2
 quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
