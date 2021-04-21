@@ -89,10 +89,6 @@ func threadedExport(exportStatus):
 	
 	#complete export
 	exportGodotProject()
-	
-	###reset everything###
-	for i in get_tree().get_nodes_in_group("node"):
-		i.info["isCreated"] = false
 
 
 func exportRootFolder():
@@ -109,6 +105,7 @@ func exportRootFolder():
 	progress += 1
 
 func exportFolders():
+	print("started Folder Export")
 	var allExported = false
 	while !allExported:
 		allExported = true
@@ -130,6 +127,7 @@ func exportFolders():
 							progress += 1
 
 func exportScripts():
+	print("started Scripts Export")
 	var allExported = false
 	while !allExported:
 		allExported = true
@@ -152,6 +150,7 @@ func exportScripts():
 							progress += 1
 
 func exportWorldEnvironment():
+	print("started World Environment Export")
 	var allExported = false
 	while !allExported:
 		allExported = true
@@ -171,6 +170,7 @@ func exportWorldEnvironment():
 							progress += 1
 
 func exportScenes():
+	print("started Scenes Export")
 	var allExported = false
 	while !allExported:
 		allExported = true
@@ -191,10 +191,13 @@ func exportScenes():
 							progress += 1
 
 func exportGodotProject():
+	print("started Project.godot Export")
 	var file = File.new()
+	#Open file and add the requirements
 	file.open(nodeList[rootFolderLocation]["path"] + "/project.godot", File.WRITE)
 	file.store_string("config_version=4\n\n_global_script_classes=[  ]\n_global_script_class_icons={\n\n}\n\n[application]\nconfig/name=\""
 	+ nodeList[rootFolderLocation]["name"] + "\"\n\n")
+	#singletons
 	var ScriptSingleton = false
 	for i in nodeList.size():
 		if "Script" in nodeList[i]["nodeName"]:
@@ -206,6 +209,16 @@ func exportGodotProject():
 			if "Script" in nodeList[i]["nodeName"]:
 				if nodeList[i]["singleton"]:
 					file.store_string(nodeList[i]["name"] + "=\"*res:/" + nodeList[i]["path"].substr(resLoc, nodeList[i]["path"].length()) + "\"\n")
+	#Window height
+	if nodeList[rootFolderLocation]["projectHeight"] != 1024 || nodeList[rootFolderLocation]["projectWidth"] != 600:
+		file.store_string("\n[display]\n\n")
+		if nodeList[rootFolderLocation]["projectHeight"] != 1024:
+			file.store_string("window/size/width=" + str(nodeList[rootFolderLocation]["projectHeight"]) + "\n")
+		if nodeList[rootFolderLocation]["projectWidth"] != 600:
+			file.store_string("window/size/height=" + str(nodeList[rootFolderLocation]["projectWidth"]) + "\n")
+	#rendering stuff (ex. driver type)
+	file.store_string("\n[rendering]\n\n")
+	file.store_string("quality/driver/driver_name=\"" + nodeList[rootFolderLocation]["driverName"] + "\"\n")
 	progress += 1
 
 func getRandomNum():

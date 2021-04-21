@@ -7,8 +7,8 @@ func _ready():
 	info["id"] = data.getRandomNum()
 	info["driverName"] = "GLES3"
 	info["projectName"] = ""
-	info["projectHeight"] = 1920
-	info["projectWidth"] = 1080
+	info["projectHeight"] = 1024
+	info["projectWidth"] = 600
 
 func updateSpecialInfo(_loc):
 	pass
