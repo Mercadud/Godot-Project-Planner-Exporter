@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-
+onready var rootFolderSelected = $RootFolder
 onready var folderSelected = $Folder
 onready var sceneSelected = $Scene
 onready var scriptSelected = $Script
@@ -11,7 +11,9 @@ onready var WESelected = $WorldEnvironment
 
 func _on_GraphEdit_node_selected(n):
 	$Title.text = n.name
-	if "Folder" in n.name:
+	if "RootFolder" in n.name:
+		onRoot(n)
+	elif "Folder" in n.name:
 		onFolder(n)
 	elif "Scene" in n.name:
 		onScene(n)
@@ -24,7 +26,22 @@ func _on_GraphEdit_node_selected(n):
 	elif "WorldEnvironment" in n.name:
 		onWE(n)
 
+
+func onRoot(node):
+	rootFolderSelected.visible = true
+	rootFolderSelected.setNode(node)
+	folderSelected.visible = false
+	sceneSelected.visible = false
+	scriptSelected.visible = false
+	nodeSelected.visible = false
+	noneSelected.visible = false
+	importSelected.visible = false
+	WESelected.visible = false
+
+
+
 func onFolder(node):
+	rootFolderSelected.visible = false
 	folderSelected.visible = true
 	folderSelected.setNode(node)
 	sceneSelected.visible = false
@@ -36,6 +53,7 @@ func onFolder(node):
 
 
 func onScene(node):
+	rootFolderSelected.visible = false
 	folderSelected.visible = false
 	sceneSelected.visible = true
 	sceneSelected.setNode(node)
@@ -46,6 +64,7 @@ func onScene(node):
 	WESelected.visible = false
 
 func onScript(node):
+	rootFolderSelected.visible = false
 	folderSelected.visible = false
 	sceneSelected.visible = false
 	scriptSelected.visible = true
@@ -56,6 +75,7 @@ func onScript(node):
 	WESelected.visible = false
 
 func onNode(node):
+	rootFolderSelected.visible = false
 	folderSelected.visible = false
 	sceneSelected.visible = false
 	scriptSelected.visible = false
@@ -66,6 +86,7 @@ func onNode(node):
 	WESelected.visible = false
 
 func onImport(node):
+	rootFolderSelected.visible = false
 	folderSelected.visible = false
 	sceneSelected.visible = false
 	scriptSelected.visible = false
@@ -76,6 +97,7 @@ func onImport(node):
 	WESelected.visible = false
 
 func onWE(node):
+	rootFolderSelected.visible = false
 	folderSelected.visible = false
 	sceneSelected.visible = false
 	scriptSelected.visible = false
