@@ -2,7 +2,6 @@
 
 [node name="BaseNode" type="GraphNode" groups=[
 "node",
-"update",
 ]]
 margin_right = 201.0
 margin_bottom = 67.0

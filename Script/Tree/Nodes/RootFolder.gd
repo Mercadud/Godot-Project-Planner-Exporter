@@ -1,6 +1,6 @@
 extends "res://Script/Tree/Nodes/BaseNode.gd"
 
-onready var folderInfo = get_node(infoPage + "/Folder")
+onready var folderInfo = get_node(infoPage + "/RootFolder")
 
 func _ready():
 	info["nodeName"] = self.name
@@ -10,8 +10,11 @@ func _ready():
 	info["projectHeight"] = 1024
 	info["projectWidth"] = 600
 
-func updateSpecialInfo(_loc):
-	pass
+func updateSpecialInfo(loc):
+	data.nodeList[loc]["driverName"] = info["driverName"]
+	data.nodeList[loc]["projectName"] = info["projectName"]
+	data.nodeList[loc]["projectHeight"] = info["projectHeight"]
+	data.nodeList[loc]["projectWidth"] = info["projectWidth"]
 
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
@@ -19,3 +22,10 @@ func _on_LineEdit_text_changed(new_text):
 
 func _on_RootFolder_dragged(_from, to):
 	info["location"] = to
+
+func checkSelf():
+	if !info["name"].is_valid_filename():
+		return info["nodeName"]
+	elif info["projectName"] == "":
+		return info["nodeName"]
+	return null

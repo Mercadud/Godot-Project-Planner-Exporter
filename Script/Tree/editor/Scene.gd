@@ -4,9 +4,7 @@ var childLoc
 
 onready var sceneName = $SceneName/LineEdit
 onready var sceneType = $SceneType/OptionButton
-
-func _ready():
-	pass
+onready var connectScript = $ConnectScript/OptionButton
 
 func setNode(n):
 	childLoc = n
@@ -24,3 +22,17 @@ func _on_LineEdit_text_changed(new_text):
 
 func _on_OptionButton_item_selected(index):
 	childLoc.info["sceneType"] = sceneType.get_item_text(index)
+
+#func _on_OptionButton_button_up():
+#	var items = connectScript.get_item_count()
+#	for i in items:
+#		if i < 1:
+#			continue
+#		print("removing " + str(i))
+#		connectScript.remove_item(i)
+#	var itemCount = 1
+#	print(connectScript)
+#	for node in get_tree().get_nodes_in_group("Script"):
+#		print("adding " + str(itemCount))
+#		connectScript.add_item(node.info["name"], itemCount)
+#		itemCount += 1

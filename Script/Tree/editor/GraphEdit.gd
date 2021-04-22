@@ -10,7 +10,6 @@ func _ready():
 	updateConnectionList()
 
 func _physics_process(_delta):
-	loadConnections()
 	if Input.is_action_just_pressed("delete"):
 		for i in get_tree().get_nodes_in_group("node"):
 			if "RootFolder" in i.info["nodeName"]:
@@ -82,78 +81,81 @@ func updateConnectionList():
 		get_node(connectionList[i]["to"]).info["parentNode"] = get_node(connectionList[i]["from"]).info["id"]
 
 func loadConnections():
-	if data.loadedNewProject == true:
-		###delete all current nodes###
-		for i in connectionList.size():
-			_on_GraphEdit_disconnection_request(connectionList[i]["from"], connectionList[i]["from_slot"], connectionList[i]["to"], connectionList[i]["to_slot"])
-		for i in get_tree().get_nodes_in_group("node"):
-			i.queue_free()
-		###create all the nodes###
-		for i in data.nodeList.size():
-			var node
-			var inst
-			if "RootFolder" in data.nodeList[i]["nodeName"]:
-				node = load("res://Scenes/nodesInherited/RootFolder.tscn")
-				inst = node.instance()
-				add_child(inst)
-				nodeCount += 1
-			elif "Folder" in data.nodeList[i]["nodeName"]:
-				node = load("res://Scenes/nodesInherited/Folder.tscn")
-				inst = node.instance()
-				add_child(inst)
-				nodeCount += 1
-			elif "Scene" in data.nodeList[i]["nodeName"]:
-				node = load("res://Scenes/nodesInherited/Scene.tscn")
-				inst = node.instance()
-				add_child(inst)
-				inst.info["sceneType"] = data.nodeList[i]["sceneType"]
-				inst.info["scriptAttached"] = data.nodeList[i]["scriptAttached"]
-				nodeCount += 1
-			elif "Node" in data.nodeList[i]["nodeName"]:
-				node = load("res://Scenes/nodesInherited/Node.tscn")
-				inst = node.instance()
-				add_child(inst)
-				inst.info["nodeType"] = data.nodeList[i]["nodeType"]
-				nodeCount += 1
-			elif "Script" in data.nodeList[i]["nodeName"]:
-				node = load("res://Scenes/nodesInherited/Script.tscn")
-				inst = node.instance()
-				add_child(inst)
-				inst.info["functions"] = data.nodeList[i]["functions"]
-				inst.info["singleton"] = data.nodeList[i]["singleton"]
-				nodeCount += 1
-			elif "WorldEnvironment" in data.nodeList[i]["nodeName"]:
-				node = load("res://Scenes/nodesInherited/WorldEnvironment.tscn")
-				inst = node.instance()
-				add_child(inst)
-				inst.info["default"] = data.nodeList[i]["default"]
-				inst.info["WEType"] = data.nodeList[i]["WEType"]
-				nodeCount += 1
-			elif "Import" in data.nodeList[i]["nodeName"]:
-				node = load("res://Scenes/nodesInherited/Import.tscn")
-				inst = node.instance()
-				add_child(inst)
-				inst.info["importLocation"] = data.nodeList[i]["importLocation"]
-				nodeCount += 1
-			###assigning common variables###
-			inst.info["id"] = data.nodeList[i]["id"]
+	###delete all current nodes###
+	updateConnectionList()
+	for i in connectionList.size():
+		_on_GraphEdit_disconnection_request(connectionList[i]["from"], connectionList[i]["from_slot"], connectionList[i]["to"], connectionList[i]["to_slot"])
+	for i in get_tree().get_nodes_in_group("node"):
+		i.queue_free()
+	###create all the nodes###
+	for i in data.nodeList.size():
+		var node
+		var inst
+		if "RootFolder" in data.nodeList[i]["nodeName"]:
+			node = load("res://Scenes/nodesInherited/RootFolder.tscn")
+			inst = node.instance()
+			add_child(inst)
+			inst.info["driverName"] = data.nodeList[i]["driverName"]
+			inst.info["projectName"] = data.nodeList[i]["projectName"]
+			inst.info["projectHeight"] = data.nodeList[i]["projectHeight"]
+			inst.info["projectWidth"] = data.nodeList[i]["projectWidth"]
+			nodeCount += 1
+		elif "Folder" in data.nodeList[i]["nodeName"]:
+			node = load("res://Scenes/nodesInherited/Folder.tscn")
+			inst = node.instance()
+			add_child(inst)
+			nodeCount += 1
+		elif "Scene" in data.nodeList[i]["nodeName"]:
+			node = load("res://Scenes/nodesInherited/Scene.tscn")
+			inst = node.instance()
+			add_child(inst)
+			inst.info["sceneType"] = data.nodeList[i]["sceneType"]
+			inst.info["scriptAttached"] = data.nodeList[i]["scriptAttached"]
+			nodeCount += 1
+		elif "Node" in data.nodeList[i]["nodeName"]:
+			node = load("res://Scenes/nodesInherited/Node.tscn")
+			inst = node.instance()
+			add_child(inst)
+			inst.info["nodeType"] = data.nodeList[i]["nodeType"]
+			nodeCount += 1
+		elif "Script" in data.nodeList[i]["nodeName"]:
+			node = load("res://Scenes/nodesInherited/Script.tscn")
+			inst = node.instance()
+			add_child(inst)
+			inst.info["functions"] = data.nodeList[i]["functions"]
+			inst.info["singleton"] = data.nodeList[i]["singleton"]
+			nodeCount += 1
+		elif "WorldEnvironment" in data.nodeList[i]["nodeName"]:
+			node = load("res://Scenes/nodesInherited/WorldEnvironment.tscn")
+			inst = node.instance()
+			add_child(inst)
+			inst.info["default"] = data.nodeList[i]["default"]
+			inst.info["WEType"] = data.nodeList[i]["WEType"]
+			nodeCount += 1
+		elif "Import" in data.nodeList[i]["nodeName"]:
+			node = load("res://Scenes/nodesInherited/Import.tscn")
+			inst = node.instance()
+			add_child(inst)
+			inst.info["importLocation"] = data.nodeList[i]["importLocation"]
+			nodeCount += 1
+		###assigning common variables###
+		inst.info["id"] = data.nodeList[i]["id"]
 #			inst.info["nodeName"] = inst.name
-			inst.info["isCreated"] = false
-			inst.info["location"] = data.nodeList[i]["location"]
-			inst.info["name"] = data.nodeList[i]["name"]
-			inst.info["parentNode"] = data.nodeList[i]["parentNode"]
-		###move all nodes to location and connect to parents
-		for node in get_tree().get_nodes_in_group("node"):
-			node.updateNode()
-			node.offset = node.info["location"]
-			if node.info["parentNode"] != null:
-				var parentName
-				for parent in get_tree().get_nodes_in_group("node"):
-					if node.info["parentNode"] == parent.info["id"]:
-						parentName = parent.info["nodeName"]
-						if connect_node(parentName, 0, node.name, 0) == OK:
-							print("connected " + str(parentName + " and " + str(node.name)))
-		data.loadedNewProject = false
+		inst.info["isCreated"] = false
+		inst.info["location"] = data.nodeList[i]["location"]
+		inst.info["name"] = data.nodeList[i]["name"]
+		inst.info["parentNode"] = data.nodeList[i]["parentNode"]
+	###move all nodes to location and connect to parents
+	for node in get_tree().get_nodes_in_group("node"):
+		node.updateNode()
+		node.offset = node.info["location"]
+		if node.info["parentNode"] != null:
+			var parentName
+			for parent in get_tree().get_nodes_in_group("node"):
+				if node.info["parentNode"] == parent.info["id"]:
+					parentName = parent.info["nodeName"]
+					if connect_node(parentName, 0, node.name, 0) == OK:
+						print("connected " + str(parentName + " and " + str(node.name)))
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)

@@ -25,3 +25,8 @@ func _on_WorldEnvironment_dragged(_from, to):
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
 	WEInfo.updateInfoPage()
+
+func checkSelf():
+	if !info["name"].is_valid_filename():
+		return info["nodeName"]
+	return null

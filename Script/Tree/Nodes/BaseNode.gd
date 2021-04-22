@@ -39,3 +39,7 @@ func updateInfoPage():
 
 func updateNode():
 	$LineEdit.text = info["name"]
+
+func checkSelf():
+	print("badNews // checkSelf()")
+	return null

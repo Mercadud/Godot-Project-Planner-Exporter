@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Scenes/nodesInherited/RootFolder.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Script/Tree/editor/WorldEnvironment.gd" type="Script" id=20]
 [ext_resource path="res://Assets/Nodes/WorldEnvironment.png" type="Texture" id=21]
+[ext_resource path="res://Script/Tree/editor/RootFolder.gd" type="Script" id=22]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -132,7 +133,9 @@ margin_right = 1024.0
 margin_bottom = 25.0
 dragger_visibility = 2
 
-[node name="menus" type="GridContainer" parent="Mount/MainWindow/tileBar"]
+[node name="menus" type="GridContainer" parent="Mount/MainWindow/tileBar" groups=[
+"menus",
+]]
 margin_right = 137.0
 margin_bottom = 25.0
 columns = 3
@@ -186,7 +189,9 @@ margin_right = 810.0
 margin_bottom = 575.0
 custom_styles/panel = SubResource( 2 )
 
-[node name="GraphEdit" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph"]
+[node name="GraphEdit" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph" groups=[
+"graph",
+]]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 805.0
@@ -197,14 +202,16 @@ custom_styles/bg = SubResource( 3 )
 custom_colors/grid_major = Color( 0.654902, 0.654902, 0.654902, 1 )
 custom_colors/grid_minor = Color( 0.258824, 0.258824, 0.258824, 1 )
 right_disconnects = true
-scroll_offset = Vector2( -127, -413 )
+scroll_offset = Vector2( -20, -40 )
 script = ExtResource( 6 )
 
-[node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" instance=ExtResource( 19 )]
-margin_left = 127.0
-margin_top = 413.0
-margin_right = 328.0
-margin_bottom = 480.0
+[node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" groups=[
+"update",
+] instance=ExtResource( 19 )]
+margin_left = 20.0
+margin_top = 40.0
+margin_right = 221.0
+margin_bottom = 107.0
 mouse_filter = 1
 
 [node name="Select" type="TabContainer" parent="Mount/MainWindow/Editor"]
@@ -343,6 +350,116 @@ margin_right = 200.0
 margin_bottom = 24.0
 placeholder_text = "Folder Name"
 
+[node name="RootFolder" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+margin_top = 26.0
+margin_right = 200.0
+margin_bottom = 166.0
+script = ExtResource( 22 )
+
+[node name="FolderName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/RootFolder"]
+margin_right = 200.0
+margin_bottom = 24.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/FolderName"]
+margin_top = 5.0
+margin_right = 90.0
+margin_bottom = 19.0
+text = "Folder Name: "
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/FolderName"]
+margin_left = 90.0
+margin_right = 200.0
+margin_bottom = 24.0
+placeholder_text = "Folder Name"
+
+[node name="ProjectName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/RootFolder"]
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 52.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/ProjectName"]
+margin_top = 5.0
+margin_right = 91.0
+margin_bottom = 19.0
+text = "Project Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/ProjectName"]
+margin_left = 91.0
+margin_right = 200.0
+margin_bottom = 24.0
+placeholder_text = "Game Name"
+
+[node name="DriverName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/RootFolder"]
+margin_top = 56.0
+margin_right = 200.0
+margin_bottom = 76.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/DriverName"]
+margin_top = 3.0
+margin_right = 93.0
+margin_bottom = 17.0
+text = "Driver Name:  "
+
+[node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/DriverName"]
+margin_left = 93.0
+margin_right = 200.0
+margin_bottom = 20.0
+text = "GLES2"
+items = [ "GLES2", null, false, 0, null, "GLES3", null, false, 1, null ]
+selected = 0
+
+[node name="HSeparator" type="HSeparator" parent="Mount/MainWindow/Editor/Select/Info/RootFolder"]
+margin_top = 80.0
+margin_right = 200.0
+margin_bottom = 84.0
+
+[node name="WindowHeight" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/RootFolder"]
+margin_top = 88.0
+margin_right = 200.0
+margin_bottom = 112.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowHeight"]
+margin_top = 5.0
+margin_right = 101.0
+margin_bottom = 19.0
+text = "Window Height:"
+
+[node name="SpinBox" type="SpinBox" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowHeight"]
+margin_left = 101.0
+margin_right = 200.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 4320.0
+value = 1024.0
+align = 1
+suffix = "px"
+
+[node name="WindowWidth" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/RootFolder"]
+margin_top = 116.0
+margin_right = 200.0
+margin_bottom = 140.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowWidth"]
+margin_top = 5.0
+margin_right = 101.0
+margin_bottom = 19.0
+text = "Window Width: "
+
+[node name="SpinBox" type="SpinBox" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowWidth"]
+margin_left = 101.0
+margin_right = 200.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 7680.0
+value = 600.0
+align = 1
+suffix = "px"
+
 [node name="Scene" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 visible = false
 margin_top = 26.0
@@ -384,6 +501,21 @@ margin_right = 200.0
 margin_bottom = 20.0
 text = "Node"
 items = [ "Node", null, false, 0, null, "Spatial", null, false, 1, null, "KinematicBody", null, false, 2, null, "RigidBody", null, false, 3, null, "StaticBody", null, false, 4, null, "VehicleBody", null, false, 5, null, "Control", null, false, 6, null, "PanelContainer", null, false, 7, null, "Node2D", null, false, 8, null, "KinematicBody2D", null, false, 9, null, "RigidBody2D", null, false, 10, null, "StaticBody2D", null, false, 11, null ]
+selected = 0
+
+[node name="ConnectScript" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Scene"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Scene/ConnectScript"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/Scene/ConnectScript"]
+margin_right = 29.0
+margin_bottom = 20.0
+text = "None"
+items = [ "None", null, false, 0, null ]
 selected = 0
 
 [node name="Script" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
@@ -562,9 +694,9 @@ items = [ "Default", null, false, 0, null, "Realistic", null, false, 1, null, "T
 selected = 0
 
 [node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-margin_top = 26.0
+margin_top = 170.0
 margin_right = 200.0
-margin_bottom = 26.0
+margin_bottom = 170.0
 
 [node name="FileDialog" type="FileDialog" parent="Mount/MainWindow"]
 margin_top = 29.0
@@ -603,8 +735,13 @@ window_title = "Message Alert!"
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Nodes/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Nodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Misc/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Misc_item_activated"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Folder/FolderName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Folder" method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/FolderName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/ProjectName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Project_Name_text_changed"]
+[connection signal="value_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowHeight/SpinBox" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Window_Height_value_changed"]
+[connection signal="value_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowWidth/SpinBox" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Window_Width_value_changed"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_LineEdit_text_changed"]
 [connection signal="item_selected" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneType/OptionButton" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_OptionButton_item_selected"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Scene/ConnectScript/OptionButton" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_OptionButton_button_up"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Script/ScriptName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_LineEdit_text_changed"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/Singleton/CheckBox" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_CheckBox_button_up"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/addFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_addFunction_button_up"]

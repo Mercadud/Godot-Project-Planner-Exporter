@@ -21,4 +21,8 @@ func _on_Scene_dragged(_from, to):
 
 func _on_Scene_close_request():
 	queue_free()
-	
+
+func checkSelf():
+	if !info["name"].is_valid_filename():
+		return info["nodeName"]
+	return null

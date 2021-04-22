@@ -40,6 +40,12 @@ func _on_Help_item_pressed(_id):
 func NewPressed():
 	for i in get_tree().get_nodes_in_group("node"):
 		if "RootFolder" in i.info["nodeName"]:
+			i.info["name"] = ""
+			i.info["id"] = data.getRandomNum()
+			i.info["driverName"] = "GLES3"
+			i.info["projectName"] = ""
+			i.info["projectHeight"] = 1024
+			i.info["projectWidth"] = 600
 			continue
 		i.queue_free()
 
@@ -62,10 +68,7 @@ func _on_FileDialog_dir_selected(dir):
 	data.exportDirLocation = dir
 	if fileLocation.mode == FileDialog.MODE_OPEN_DIR:
 		if data.exportProject():
-			windowMessage.dialog_text = "Export successful"
-			windowMessage.popup_centered()
-		else:
-			windowMessage.dialog_text = "Export unsucessful, check if you named all the files correctly"
+			windowMessage.dialog_text = "Export Successful"
 			windowMessage.popup_centered()
 
 func _on_FileDialog_file_selected(path):
@@ -83,7 +86,7 @@ func _on_FileDialog_file_selected(path):
 			windowMessage.dialog_text = "load successful"
 			windowMessage.popup_centered()
 		else:
-			windowMessage.dialog_text = "Load Failed!\n If this persists, contact the developer"
+			windowMessage.dialog_text = "Load Failed!\n If this persists, open an issue in the Github"
 			windowMessage.popup_centered()
 
 func undoPressed():
@@ -91,6 +94,12 @@ func undoPressed():
 
 func redoPressed():
 	pass
+
+
+func errExport(message : String):
+	windowMessage.dialog_text = "Export Failed! The following nodes have issues: " + message
+	windowMessage.popup_centered()
+
 
 func contactPressed():
 	if OS.shell_open("https://github.com/Mercadud/Godot-Project-Planner-Exporter/issues/new/choose") == OK:

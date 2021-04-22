@@ -2,11 +2,20 @@ extends Node
 
 var exportDirLocation
 var SaveFileLocation
-var loadedNewProject = false
 var nodeList = []
 
 var progressBarLength
-var progress
+var progress = 0
+
+signal loadSignal
+signal ImpossibleExport
+
+func _ready():
+	if connect("loadSignal", get_tree().get_nodes_in_group("graph")[0], "loadConnections") != OK:
+		print("SIGNAL ERROR: loadSignal has not connected succesfully")
+	if connect("ImpossibleExport", get_tree().get_nodes_in_group("menus")[0], "errExport") != OK:
+		print("SIGNAL ERROR: impossibleExport has not connected succesfully")
+
 
 func save():
 	nodeList = []
@@ -26,7 +35,7 @@ func loadProject():
 	file.open(SaveFileLocation, File.READ)
 	nodeList = file.get_var()
 	file.close()
-	loadedNewProject = true
+	emit_signal("loadSignal")
 	###this should never fail###
 	return true
 
@@ -46,8 +55,24 @@ func exportProject():
 	thread.start(self, "threadedExport", "Running Export")
 	thread.wait_to_finish()
 
+func threadedCheck():
+	print("starting Check")
+	var isTrue = true
+	var message = ""
+	for node in get_tree().get_nodes_in_group("node"):
+		print("checking: " + node.info["nodeName"])
+		var nodeErr = node.checkSelf()
+		if nodeErr == null:
+			continue
+		message += nodeErr + ", "
+		isTrue = false
+	if (!isTrue):
+		emit_signal("ImpossibleExport", message)
+	return isTrue
 
 func threadedExport(exportStatus):
+	if !threadedCheck():
+		return
 	print(exportStatus)
 	nodeList = []
 	progressBarLength = 0
@@ -56,35 +81,28 @@ func threadedExport(exportStatus):
 		progressBarLength += 1
 	
 	#Add Root Folder to Array
-	for node in get_tree().get_nodes_in_group("node"):
-		print("checking " + str(node.info["nodeName"]))
-		if "RootFolder" in node.info["nodeName"]:
-			node.updateInfo()
-			break
+	for node in get_tree().get_nodes_in_group("RootFolder"):
+		node.updateInfo()
 	exportRootFolder()
 	
 	#Add Folders to array
-	for node in get_tree().get_nodes_in_group("node"):
-		if "Folder" in node.info["nodeName"]:
-			node.updateInfo()
+	for node in get_tree().get_nodes_in_group("Folder"):
+		node.updateInfo()
 	exportFolders()
 	
 	#Add Scripts to array
-	for node in get_tree().get_nodes_in_group("node"):
-		if "Script" in node.info["nodeName"]:
-			node.updateInfo()
+	for node in get_tree().get_nodes_in_group("Script"):
+		node.updateInfo()
 	exportScripts()
 	
 	#Add World Environments to array
-	for node in get_tree().get_nodes_in_group("node"):
-		if "WorldEnvironment" in node.info["nodeName"]:
-			node.updateInfo()
+	for node in get_tree().get_nodes_in_group("WorldEnvironment"):
+		node.updateInfo()
 	exportWorldEnvironment()
 	
 	#Add Scenes to array
-	for node in get_tree().get_nodes_in_group("node"):
-		if "Scene" in node.info["nodeName"]:
-			node.updateInfo()
+	for node in get_tree().get_nodes_in_group("Scene"):
+		node.updateInfo()
 	exportScenes()
 	
 	#complete export
@@ -145,10 +163,10 @@ func exportScripts():
 							file.open(nodeList[node]["path"], File.WRITE)
 							file.store_string("extends Node")
 							for i in nodeList[node]["functions"].size():
-									file.store_string("\n\n" + "func " + nodeList[node]["functions"][i] + "():\n\tpass")
+									file.store_string("\n\n" + "func " + nodeList[node]["functions"][i] + ":\n\tpass")
 							nodeList[node]["isCreated"] = true
 							progress += 1
-
+ 
 func exportWorldEnvironment():
 	print("started World Environment Export")
 	var allExported = false
@@ -339,4 +357,3 @@ func _exit_tree():
 #			if "Script" in nodeList[i]["nodeName"]:
 #				if nodeList[i]["singleton"]:
 #					file.store_string(nodeList[i]["name"] + "=\"*res:/" + nodeList[i]["path"].substr(resLoc, nodeList[i]["path"].length()) + "\"\n")
-	

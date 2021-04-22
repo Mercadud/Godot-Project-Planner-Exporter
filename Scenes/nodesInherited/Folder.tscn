@@ -5,7 +5,9 @@
 [ext_resource path="res://Themes/Nodes/Folder/SelectedFrame.tres" type="StyleBox" id=3]
 [ext_resource path="res://Script/Tree/Nodes/Folder.gd" type="Script" id=4]
 
-[node name="Folder" instance=ExtResource( 1 )]
+[node name="Folder" groups=[
+"Folder",
+] instance=ExtResource( 1 )]
 custom_styles/frame = ExtResource( 2 )
 custom_styles/selectedframe = ExtResource( 3 )
 title = "Folder"
@@ -21,6 +23,7 @@ margin_top = 33.0
 margin_right = 191.0
 margin_bottom = 57.0
 placeholder_text = "Folder Name"
+
 [connection signal="close_request" from="." to="." method="_on_Folder_close_request"]
 [connection signal="dragged" from="." to="." method="_on_Folder_dragged"]
 [connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]

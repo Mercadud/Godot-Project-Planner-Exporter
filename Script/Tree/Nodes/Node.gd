@@ -23,3 +23,8 @@ func _on_Node_dragged(_from, to):
 
 func _on_Node_close_request():
 	queue_free()
+
+func checkSelf():
+	if !info["name"].is_valid_filename():
+		return info["nodeName"]
+	return null
