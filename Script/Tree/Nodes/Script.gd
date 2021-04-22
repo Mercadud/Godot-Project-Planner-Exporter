@@ -31,7 +31,7 @@ func checkSelf():
 	reg.compile("/^[A-Za-z_]+[(][A-Za-z,_ ]*[)]$/g")
 	for function in info["functions"].size():
 		var regular = reg.search(info["functions"][function])
-		print("thing: " + str(regular) + " from: " + info["functions"][function])
+		print("RegEx issue: " + str(regular) + " from: " + info["functions"][function])
 		if regular == null:
 			return info["nodeName"]
 	return null
