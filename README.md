@@ -12,40 +12,34 @@
 6. Easy for the eye dark theme!
 
 ## FUTURE PLANS
-1. edit the project.godot file (input map)
+1. Attach Scripts to Scenes
 2. undo/redo buttons
 
-## INFO ABOUT THE NODES AVAILABLE
+## Editable content per node:
 (more will be added in the future)
 
 #### Root Folder/Folder
-##### Editable Content:
 1. Name
 2. Driver Name
 3. Window size (width and height)
 
 ### Scene
-##### Editable Content:
 1. Name
 2. Scene type (2D and 3D nodes available)
 
 ### Node (DOESN'T EXPORT YET)
-##### Editable Content:
 1. Name
 2. Node Type
 
 ### Script
-##### Editable Content:
 1. Name
 2. If it's a Singleton
 3. add/remove functions
 
 ### Import
-##### Editable Content:
 1. Import Location
 
 ### World Environment
-##### Editable Content:
 1. Name
 2. Template for the type of World Environment
 
