@@ -21,6 +21,8 @@
 #### Root Folder/Folder
 ##### Editable Content:
 1. Name
+2. Driver Name
+3. Window size (width and height)
 
 ### Scene
 ##### Editable Content:
