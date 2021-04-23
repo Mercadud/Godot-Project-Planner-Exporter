@@ -172,7 +172,7 @@ margin_left = 137.0
 margin_top = 5.0
 margin_right = 1024.0
 margin_bottom = 19.0
-text = "Made by Mercadud (v0.5-beta.1)"
+text = "Made by Mercadud (v3.0-RELEASE.0)"
 align = 1
 valign = 1
 
@@ -326,31 +326,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Folder" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-visible = false
-margin_top = 26.0
-margin_right = 200.0
-margin_bottom = 50.0
-script = ExtResource( 12 )
-
-[node name="FolderName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Folder"]
-margin_right = 200.0
-margin_bottom = 24.0
-dragger_visibility = 2
-
-[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Folder/FolderName"]
-margin_top = 5.0
-margin_right = 86.0
-margin_bottom = 19.0
-text = "Folder Name:"
-
-[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Folder/FolderName"]
-margin_left = 86.0
-margin_right = 200.0
-margin_bottom = 24.0
-placeholder_text = "Folder Name"
-
 [node name="RootFolder" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
 margin_top = 26.0
 margin_right = 200.0
 margin_bottom = 166.0
@@ -460,6 +437,30 @@ value = 600.0
 align = 1
 suffix = "px"
 
+[node name="Folder" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
+visible = false
+margin_top = 26.0
+margin_right = 200.0
+margin_bottom = 50.0
+script = ExtResource( 12 )
+
+[node name="FolderName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Folder"]
+margin_right = 200.0
+margin_bottom = 24.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Folder/FolderName"]
+margin_top = 5.0
+margin_right = 86.0
+margin_bottom = 19.0
+text = "Folder Name:"
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Folder/FolderName"]
+margin_left = 86.0
+margin_right = 200.0
+margin_bottom = 24.0
+placeholder_text = "Folder Name"
+
 [node name="Scene" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 visible = false
 margin_top = 26.0
@@ -504,6 +505,7 @@ items = [ "Node", null, false, 0, null, "Spatial", null, false, 1, null, "Kinema
 selected = 0
 
 [node name="ConnectScript" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Scene"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -734,11 +736,11 @@ window_title = "Message Alert!"
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Folders/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Folder_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Nodes/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Nodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Misc/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Misc_item_activated"]
-[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Folder/FolderName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Folder" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/FolderName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/ProjectName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Project_Name_text_changed"]
 [connection signal="value_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowHeight/SpinBox" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Window_Height_value_changed"]
 [connection signal="value_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowWidth/SpinBox" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Window_Width_value_changed"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Folder/FolderName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Folder" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_LineEdit_text_changed"]
 [connection signal="item_selected" from="Mount/MainWindow/Editor/Select/Info/Scene/SceneType/OptionButton" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_OptionButton_item_selected"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Scene/ConnectScript/OptionButton" to="Mount/MainWindow/Editor/Select/Info/Scene" method="_on_OptionButton_button_up"]

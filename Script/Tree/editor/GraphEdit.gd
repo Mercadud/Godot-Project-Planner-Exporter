@@ -69,7 +69,7 @@ func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 
 func checkConnected(to):
 	var isTrue = true
-	connectionList = get_connection_list()
+	updateConnectionList()
 	for i in connectionList.size():
 		if connectionList[i]["to"] == to:
 			isTrue = false
@@ -80,6 +80,9 @@ func updateConnectionList():
 	for i in connectionList.size():
 		get_node(connectionList[i]["to"]).info["parentNode"] = get_node(connectionList[i]["from"]).info["id"]
 
+
+# I will improve this to load nodes the same way the exporter exports nodes to
+# make it look nicer and less error prone in the next release hopefully
 func loadConnections():
 	###delete all current nodes###
 	updateConnectionList()

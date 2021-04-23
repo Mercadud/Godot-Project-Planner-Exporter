@@ -24,7 +24,7 @@ func updateInfoPage():
 	for i in funcArr.size():
 		var function = LineEdit.new()
 		functions.add_child(function)
-		function.placeholder_text = "ready()"
+		function.placeholder_text = "_ready()"
 		function.connect("text_changed", self, "updateFunc")
 		if funcArr[i] != null:
 			functions.get_child(functions.get_child_count()-1).text = funcArr[i]

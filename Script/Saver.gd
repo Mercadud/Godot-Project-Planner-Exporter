@@ -60,7 +60,6 @@ func threadedCheck():
 	var isTrue = true
 	var message = ""
 	for node in get_tree().get_nodes_in_group("node"):
-		print("checking: " + node.info["nodeName"])
 		var nodeErr = node.checkSelf()
 		if nodeErr == null:
 			continue
@@ -214,7 +213,7 @@ func exportGodotProject():
 	#Open file and add the requirements
 	file.open(nodeList[rootFolderLocation]["path"] + "/project.godot", File.WRITE)
 	file.store_string("config_version=4\n\n_global_script_classes=[  ]\n_global_script_class_icons={\n\n}\n\n[application]\nconfig/name=\""
-	+ nodeList[rootFolderLocation]["name"] + "\"\n\n")
+	+ nodeList[rootFolderLocation]["projectName"] + "\"\n\n")
 	#singletons
 	var ScriptSingleton = false
 	for i in nodeList.size():
