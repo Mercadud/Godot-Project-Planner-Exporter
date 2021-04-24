@@ -106,6 +106,10 @@ func threadedExport(exportStatus):
 	
 	#complete export
 	exportGodotProject()
+	
+	for node in get_tree().get_nodes_in_group("node"):
+		node.info["isCreated"] = false
+	nodeList = []
 
 
 func exportRootFolder():
@@ -248,8 +252,6 @@ func getRandomNum():
 		var num = randi()
 		return num
 
-func _exit_tree():
-	pass
 
 
 ###GRAVEYARD###
