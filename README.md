@@ -42,5 +42,3 @@
 ### World Environment
 1. Name
 2. Template for the type of World Environment
-
-#### If you want to contribute to the project, feel free to donate using Paypal, https://paypal.me/Mercaman?locale.x=en_US
