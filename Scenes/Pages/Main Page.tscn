@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Nodes/Scene.png" type="Texture" id=8]
 [ext_resource path="res://Themes/main/itemLists.tres" type="StyleBox" id=9]
 [ext_resource path="res://Assets/Nodes/Script.png" type="Texture" id=10]
+[ext_resource path="res://Script/Tree/editor/itemLists/Stats.gd" type="Script" id=11]
 [ext_resource path="res://Script/Tree/editor/Folder.gd" type="Script" id=12]
 [ext_resource path="res://Script/Tree/editor/Scene.gd" type="Script" id=13]
 [ext_resource path="res://Script/menus.gd" type="Script" id=14]
@@ -188,8 +189,6 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = 805.0
 margin_bottom = 570.0
-grow_horizontal = 2
-grow_vertical = 2
 custom_styles/bg = SubResource( 3 )
 custom_colors/grid_major = Color( 0.654902, 0.654902, 0.654902, 1 )
 custom_colors/grid_minor = Color( 0.258824, 0.258824, 0.258824, 1 )
@@ -233,7 +232,7 @@ align = 1
 [node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_top = 18.0
 margin_right = 200.0
-margin_bottom = 545.0
+margin_bottom = 477.0
 size_flags_vertical = 3
 custom_styles/bg = ExtResource( 9 )
 items = [ "Folder", ExtResource( 5 ), false, "Scene", ExtResource( 8 ), false, "Script", ExtResource( 10 ), false, "Import", ExtResource( 17 ), false, "World Environment", ExtResource( 21 ), false ]
@@ -241,11 +240,79 @@ auto_height = true
 same_column_width = true
 script = ExtResource( 18 )
 
-[node name="ColorRect" type="ColorRect" parent="Mount/MainWindow/Editor/Select/Nodes"]
-margin_top = 549.0
+[node name="Stats" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
+margin_top = 481.0
 margin_right = 200.0
 margin_bottom = 549.0
-color = Color( 0.203922, 0.203922, 0.203922, 1 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Mount/MainWindow/Editor/Select/Nodes/Stats"]
+process_mode = 0
+autostart = true
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Stats"]
+margin_right = 200.0
+margin_bottom = 14.0
+text = "Stats"
+align = 1
+
+[node name="nodeCount" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes/Stats"]
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 32.0
+dragger_visibility = 2
+
+[node name="type" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Stats/nodeCount"]
+margin_right = 83.0
+margin_bottom = 14.0
+text = "Node Count: "
+
+[node name="count" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Stats/nodeCount"]
+margin_left = 83.0
+margin_right = 200.0
+margin_bottom = 14.0
+align = 2
+clip_text = true
+
+[node name="Connections" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes/Stats"]
+margin_top = 36.0
+margin_right = 200.0
+margin_bottom = 50.0
+dragger_visibility = 2
+
+[node name="type" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Stats/Connections"]
+margin_right = 83.0
+margin_bottom = 14.0
+text = "Connections:"
+
+[node name="count" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Stats/Connections"]
+margin_left = 83.0
+margin_right = 200.0
+margin_bottom = 14.0
+align = 2
+clip_text = true
+
+[node name="RAMUsage" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes/Stats"]
+margin_top = 54.0
+margin_right = 200.0
+margin_bottom = 68.0
+dragger_visibility = 2
+
+[node name="type" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Stats/RAMUsage"]
+margin_right = 76.0
+margin_bottom = 14.0
+text = "RAM Usage:"
+
+[node name="count" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Stats/RAMUsage"]
+margin_left = 76.0
+margin_right = 200.0
+margin_bottom = 14.0
+text = "0mb"
+align = 2
+clip_text = true
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]
 visible = false
@@ -470,7 +537,8 @@ selected = 0
 visible = false
 margin_top = 26.0
 margin_right = 200.0
-margin_bottom = 110.0
+margin_bottom = 549.0
+size_flags_vertical = 3
 script = ExtResource( 15 )
 
 [node name="ScriptName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Script"]
@@ -488,7 +556,7 @@ __meta__ = {
 }
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Script/ScriptName"]
-margin_left = 90.0
+margin_left = 78.0
 margin_right = 200.0
 margin_bottom = 24.0
 __meta__ = {
@@ -496,27 +564,32 @@ __meta__ = {
 }
 
 [node name="Singleton" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Script"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 68.0
+dragger_visibility = 1
 
 [node name="CheckBox" type="CheckButton" parent="Mount/MainWindow/Editor/Select/Info/Script/Singleton"]
-margin_right = 24.0
-margin_bottom = 24.0
+margin_right = 200.0
+margin_bottom = 40.0
 size_flags_vertical = 0
 text = "Singleton"
 flat = true
 
 [node name="Extends" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Script"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = 72.0
+margin_right = 200.0
+margin_bottom = 92.0
+dragger_visibility = 1
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Script/Extends"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 3.0
+margin_right = 54.0
+margin_bottom = 17.0
 text = "Extends:"
 
 [node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/Script/Extends"]
-margin_left = 76.0
+margin_left = 66.0
 margin_right = 200.0
 margin_bottom = 20.0
 text = "Node"
@@ -524,16 +597,18 @@ items = [ "Node", null, false, 0, null, "Spatial", null, false, 1, null, "Kinema
 selected = 0
 
 [node name="HSeparator" type="HSeparator" parent="Mount/MainWindow/Editor/Select/Info/Script"]
-margin_top = 28.0
+margin_top = 96.0
 margin_right = 200.0
-margin_bottom = 32.0
+margin_bottom = 100.0
 
 [node name="functions" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script"]
-margin_right = 107.0
-margin_bottom = 24.0
+margin_top = 104.0
+margin_right = 200.0
+margin_bottom = 523.0
+size_flags_vertical = 3
 
 [node name="buttons" type="HBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script/functions"]
-margin_right = 107.0
+margin_right = 200.0
 margin_bottom = 20.0
 alignment = 1
 
@@ -557,7 +632,21 @@ margin_right = 153.0
 margin_bottom = 20.0
 text = "-"
 
-[node name="func" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script/functions"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Mount/MainWindow/Editor/Select/Info/Script/functions"]
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 419.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+scroll_deadzone = 4
+
+[node name="func" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info/Script/functions/ScrollContainer"]
+margin_right = 200.0
+margin_bottom = 395.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Node" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 visible = false
@@ -660,9 +749,9 @@ items = [ "Default", null, false, 0, null, "Realistic", null, false, 1, null, "T
 selected = 0
 
 [node name="None" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-margin_top = 170.0
+margin_top = 26.0
 margin_right = 200.0
-margin_bottom = 170.0
+margin_bottom = 26.0
 
 [node name="FileDialog" type="FileDialog" parent="Mount/MainWindow"]
 margin_top = 29.0
@@ -698,6 +787,7 @@ window_title = "Message Alert!"
 [connection signal="disconnection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Select/Info" method="_on_GraphEdit_node_selected"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_ItemList_item_activated"]
+[connection signal="timeout" from="Mount/MainWindow/Editor/Select/Nodes/Stats/Timer" to="Mount/MainWindow/Editor/Select/Nodes/Stats" method="_on_Timer_timeout"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/FolderName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/ProjectName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Project_Name_text_changed"]
 [connection signal="value_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowHeight/SpinBox" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Window_Height_value_changed"]

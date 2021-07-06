@@ -2,7 +2,7 @@ extends GraphEdit
 
 var spawnLoc = Vector2(20,20)
 var nodeCount = 1
-var connectionList
+var connectionList = []
 
 onready var data = $"/root/Saver"
 
@@ -24,6 +24,7 @@ func spawnNode(nodeName):
 	add_child(inst)
 	inst.updateInfo()
 	nodeCount += 1
+	updateStats()
 
 func can_drop_data(_position, _type):
 	return true
@@ -39,9 +40,11 @@ func drop_data(_position, type):
 		add_child(inst)
 		inst.offset = get_child(0).get_local_mouse_position()
 		nodeCount += 1
+	updateStats()
 
 func _on_GraphEdit_delete_nodes_request():
 	nodeCount -= 1
+	updateStats()
 
 #probably the cleanest looking thing I've done
 func _on_ItemList_item_activated(index):
@@ -58,6 +61,7 @@ func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 		if connect_node(from, from_slot, to, to_slot) == OK:
 			print("connected " + str(from) + " and " + str(to))
 		updateConnectionList()
+	updateStats()
 
 func checkConnected(to):
 	var isTrue = true
@@ -119,6 +123,7 @@ func loadConnections():
 			add_child(inst)
 			inst.info["functions"] = data.nodeList[i]["functions"]
 			inst.info["singleton"] = data.nodeList[i]["singleton"]
+			inst.info["extends"] = data.nodeList[i]["extends"]
 			nodeCount += 1
 		elif "WorldEnvironment" in data.nodeList[i]["nodeName"]:
 			node = load("res://Scenes/nodesInherited/WorldEnvironment.tscn")
@@ -135,7 +140,6 @@ func loadConnections():
 			nodeCount += 1
 		###assigning common variables###
 		inst.info["id"] = data.nodeList[i]["id"]
-#			inst.info["nodeName"] = inst.name
 		inst.info["isCreated"] = false
 		inst.info["location"] = data.nodeList[i]["location"]
 		inst.info["name"] = data.nodeList[i]["name"]
@@ -151,7 +155,12 @@ func loadConnections():
 					parentName = parent.info["nodeName"]
 					if connect_node(parentName, 0, node.name, 0) == OK:
 						print("connected " + str(parentName + " and " + str(node.name)))
+	updateStats()
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
 	updateConnectionList()
+	updateStats()
+
+func updateStats():
+	$"../../Select/Nodes/Stats".updateStatic(connectionList.size())
