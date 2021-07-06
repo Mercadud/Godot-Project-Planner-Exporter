@@ -164,7 +164,7 @@ func exportScripts():
 							nodeList[node]["path"] = nodeList[parent]["path"] + "/" + nodeList[node]["name"] + ".gd"
 							var file = File.new()
 							file.open(nodeList[node]["path"], File.WRITE)
-							file.store_string("extends Node")
+							file.store_string("extends " + nodeList[node]["extends"])
 							for i in nodeList[node]["functions"].size():
 									file.store_string("\n\n" + "func " + nodeList[node]["functions"][i] + ":\n\tpass")
 							nodeList[node]["isCreated"] = true
@@ -241,6 +241,7 @@ func exportGodotProject():
 	file.store_string("\n[rendering]\n\n")
 	file.store_string("quality/driver/driver_name=\"" + nodeList[rootFolderLocation]["driverName"] + "\"\n")
 	progress += 1
+	print("export complete")
 
 func getRandomNum():
 	if nodeList.size() != 0:

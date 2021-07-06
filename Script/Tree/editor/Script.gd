@@ -44,3 +44,6 @@ func _on_LineEdit_text_changed(new_text):
 
 func _on_CheckBox_button_up():
 	childLoc.info["singleton"] = singleton.pressed
+
+func _on_OptionButton_item_selected(index):
+	childLoc.info["extends"] = $Extends/OptionButton.get_item_id(index)
