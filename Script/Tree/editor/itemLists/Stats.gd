@@ -3,6 +3,7 @@ extends VBoxContainer
 onready var nodeCount = $nodeCount/count
 onready var connectionCount = $Connections/count
 onready var RamUsage = $RAMUsage/count
+onready var fps = $fps/count
 
 func _ready():
 	$Timer.start()
@@ -16,6 +17,8 @@ func updateStatic(CC:int):
 
 func updateDynamic():
 	RamUsage.text = str(stepify(OS.get_static_memory_usage()/1000000.0, 0.01)) + "mb"
+	fps.text = str(Engine.get_frames_per_second()) + "fps"
+	
 
 
 func _on_Timer_timeout():
