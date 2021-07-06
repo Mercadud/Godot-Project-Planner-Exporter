@@ -3,7 +3,7 @@ extends VBoxContainer
 var childLoc
 var funcArr = []
 
-onready var functions = $functions/func
+onready var functions = $functions/ScrollContainer/func
 onready var singleton = $Singleton/CheckBox
 
 func setNode(e):
