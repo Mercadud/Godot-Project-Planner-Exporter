@@ -43,22 +43,14 @@ func drop_data(_position, type):
 func _on_GraphEdit_delete_nodes_request():
 	nodeCount -= 1
 
-func _on_Folder_item_activated(_index):
-	spawnNode("Folder")
-
-func _on_Nodes_item_activated(index):
-	if index == 0:
-		spawnNode("Scene")
-	if index == 1:
-		spawnNode("Node")
-
-func _on_Misc_item_activated(index):
-	if index == 0:
-		spawnNode("Script")
-	if index == 1:
-		spawnNode("Import")
-	if index == 2:
-		spawnNode("WorldEnvironment")
+#probably the cleanest looking thing I've done
+func _on_ItemList_item_activated(index):
+	match index:
+		0: spawnNode("Folder")
+		1: spawnNode("Scene")
+		2: spawnNode("Script")
+		3: spawnNode("Import")
+		4: spawnNode("WorldEnvironment")
 
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 	updateConnectionList()
@@ -163,4 +155,3 @@ func loadConnections():
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
 	updateConnectionList()
-	

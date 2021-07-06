@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Fonts/Prosto_One/TitleBar.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/Nodes/Scene.png" type="Texture" id=8]
 [ext_resource path="res://Themes/main/itemLists.tres" type="StyleBox" id=9]
 [ext_resource path="res://Assets/Nodes/Script.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Nodes/Node.png" type="Texture" id=11]
 [ext_resource path="res://Script/Tree/editor/Folder.gd" type="Script" id=12]
 [ext_resource path="res://Script/Tree/editor/Scene.gd" type="Script" id=13]
 [ext_resource path="res://Script/menus.gd" type="Script" id=14]
@@ -77,13 +76,6 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id=7]
-content_margin_top = 3.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
-corner_detail = 20
-anti_aliasing_size = 5
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
@@ -232,74 +224,28 @@ margin_top = 25.0
 margin_right = -1.0
 margin_bottom = -1.0
 
-[node name="Folders" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
+[node name="Title" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes"]
 margin_right = 200.0
-margin_bottom = 61.0
-dragger_visibility = 2
-
-[node name="Folders" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Folders"]
-margin_right = 200.0
-margin_bottom = 27.0
-custom_styles/normal = SubResource( 7 )
-text = "Folders"
+margin_bottom = 14.0
+text = "Nodes"
 align = 1
-valign = 1
 
-[node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Folders"]
-margin_top = 27.0
+[node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes"]
+margin_top = 18.0
 margin_right = 200.0
-margin_bottom = 61.0
+margin_bottom = 545.0
+size_flags_vertical = 3
 custom_styles/bg = ExtResource( 9 )
-items = [ "Folder", ExtResource( 5 ), false ]
+items = [ "Folder", ExtResource( 5 ), false, "Scene", ExtResource( 8 ), false, "Script", ExtResource( 10 ), false, "Import", ExtResource( 17 ), false, "World Environment", ExtResource( 21 ), false ]
 auto_height = true
 same_column_width = true
 script = ExtResource( 18 )
 
-[node name="Nodes" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
-margin_top = 65.0
+[node name="ColorRect" type="ColorRect" parent="Mount/MainWindow/Editor/Select/Nodes"]
+margin_top = 549.0
 margin_right = 200.0
-margin_bottom = 150.0
-dragger_visibility = 2
-
-[node name="Nodes" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Nodes"]
-margin_right = 200.0
-margin_bottom = 27.0
-custom_styles/normal = SubResource( 7 )
-text = "Nodes"
-align = 1
-valign = 1
-
-[node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Nodes"]
-margin_top = 27.0
-margin_right = 200.0
-margin_bottom = 85.0
-custom_styles/bg = ExtResource( 9 )
-items = [ "Scene", ExtResource( 8 ), false, "Node", ExtResource( 11 ), false ]
-auto_height = true
-script = ExtResource( 18 )
-
-[node name="Misc" type="VSplitContainer" parent="Mount/MainWindow/Editor/Select/Nodes"]
-margin_top = 154.0
-margin_right = 200.0
-margin_bottom = 263.0
-dragger_visibility = 2
-
-[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
-margin_right = 200.0
-margin_bottom = 27.0
-custom_styles/normal = SubResource( 7 )
-text = "Misc"
-align = 1
-valign = 1
-
-[node name="ItemList" type="ItemList" parent="Mount/MainWindow/Editor/Select/Nodes/Misc"]
-margin_top = 27.0
-margin_right = 200.0
-margin_bottom = 109.0
-custom_styles/bg = ExtResource( 9 )
-items = [ "Script", ExtResource( 10 ), false, "Import", ExtResource( 17 ), false, "World Environment", ExtResource( 21 ), false ]
-auto_height = true
-script = ExtResource( 18 )
+margin_bottom = 549.0
+color = Color( 0.203922, 0.203922, 0.203922, 1 )
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]
 visible = false
@@ -751,9 +697,7 @@ window_title = "Message Alert!"
 [connection signal="delete_nodes_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_delete_nodes_request"]
 [connection signal="disconnection_request" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_GraphEdit_disconnection_request"]
 [connection signal="node_selected" from="Mount/MainWindow/Editor/Graph/GraphEdit" to="Mount/MainWindow/Editor/Select/Info" method="_on_GraphEdit_node_selected"]
-[connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Folders/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Folder_item_activated"]
-[connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Nodes/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Nodes_item_activated"]
-[connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/Misc/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_Misc_item_activated"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Select/Nodes/ItemList" to="Mount/MainWindow/Editor/Graph/GraphEdit" method="_on_ItemList_item_activated"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/FolderName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/ProjectName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Project_Name_text_changed"]
 [connection signal="value_changed" from="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowHeight/SpinBox" to="Mount/MainWindow/Editor/Select/Info/RootFolder" method="_on_Window_Height_value_changed"]
