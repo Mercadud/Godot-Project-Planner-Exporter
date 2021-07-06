@@ -7,9 +7,6 @@ func _ready():
 	info["nodeName"] = self.name
 	info["id"] = data.getRandomNum()
 
-func updateSpecialInfo(loc):
-	data.nodeList[loc]["nodeType"] = info["nodeType"]
-
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
 	nodeInfo.updateInfoPage()

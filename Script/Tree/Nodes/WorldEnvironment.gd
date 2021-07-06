@@ -9,10 +9,6 @@ func _ready():
 	info["id"] = data.getRandomNum()
 	print(info["id"])
 
-func updateSpecialInfo(loc):
-	data.nodeList[loc]["default"] = info["default"]
-	data.nodeList[loc]["WEType"] = info["WEType"]
-
 func updateInfoPage():
 	WEInfo.updateInfoPage()
 

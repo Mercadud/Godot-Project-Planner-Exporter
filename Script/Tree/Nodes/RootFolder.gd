@@ -10,12 +10,6 @@ func _ready():
 	info["projectHeight"] = 1024
 	info["projectWidth"] = 600
 
-func updateSpecialInfo(loc):
-	data.nodeList[loc]["driverName"] = info["driverName"]
-	data.nodeList[loc]["projectName"] = info["projectName"]
-	data.nodeList[loc]["projectHeight"] = info["projectHeight"]
-	data.nodeList[loc]["projectWidth"] = info["projectWidth"]
-
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
 	folderInfo.updateInfoPage()

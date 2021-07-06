@@ -7,9 +7,6 @@ func _ready():
 	info["name"] = "import"
 	print(info["id"])
 
-func updateSpecialInfo(loc):
-	data.nodeList[loc]["importLocation"] = info["importLocation"]
-
 func _on_Import_dragged(_from, to):
 	info["location"] = to
 

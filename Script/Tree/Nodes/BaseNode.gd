@@ -27,12 +27,7 @@ func updateInfo():
 	if !exist:
 		data.nodeList.push_back(info)
 	if exist:
-		data.nodeList[location]["location"] = info["location"]
-		updateSpecialInfo(location)
-
-
-func updateSpecialInfo(_loc):
-	print("badNews // updateSpecialInfo()")
+		data.nodeList[location] = info
 
 func updateInfoPage():
 	print("badNews // updateInfoPage()")

@@ -556,6 +556,7 @@ margin_bottom = 40.0
 [node name="CheckBox" type="CheckButton" parent="Mount/MainWindow/Editor/Select/Info/Script/Singleton"]
 margin_right = 24.0
 margin_bottom = 24.0
+size_flags_vertical = 0
 text = "Singleton"
 flat = true
 

@@ -8,10 +8,6 @@ func _ready():
 	info["nodeName"] = self.name
 	info["id"] = data.getRandomNum()
 
-func updateSpecialInfo(loc):
-	data.nodeList[loc]["sceneType"] = info["sceneType"]
-	data.nodeList[loc]["scriptAttached"] = info["scriptAttached"]
-
 func _on_LineEdit_text_changed(new_text):
 	info["name"] = new_text
 	sceneInfo.updateInfoPage()
