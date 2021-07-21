@@ -27,14 +27,11 @@
 1. Name
 2. Scene type (2D and 3D nodes available)
 
-### Node (DOESN'T EXPORT YET)
-1. Name
-2. Node Type
-
 ### Script
 1. Name
 2. If it's a Singleton
 3. add/remove functions
+4. Change what it extends from
 
 ### Import
 1. Import Location
