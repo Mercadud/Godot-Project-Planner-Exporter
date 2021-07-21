@@ -6,6 +6,7 @@ onready var helpMenu = $Help
 onready var fileLocation = $"../../FileDialog"
 onready var windowMessage = $"../../WindowDialog"
 onready var data = $"/root/Saver"
+onready var graphEdit = $"../../Editor/Graph/GraphEdit"
 
 func _ready():
 	fileMenu.get_popup().connect("id_pressed", self, "_on_File_item_pressed")
@@ -33,11 +34,14 @@ func _on_Edit_item_pressed(id):
 		undoPressed()
 	elif id == 1:
 		redoPressed()
+	elif id == 2:
+		fullscreenPressed()
 
 func _on_Help_item_pressed(_id):
 	contactPressed()
 
 func NewPressed():
+	graphEdit.disconnect_all()
 	for i in get_tree().get_nodes_in_group("node"):
 		if "RootFolder" in i.info["nodeName"]:
 			i.info["name"] = ""
@@ -95,6 +99,8 @@ func undoPressed():
 func redoPressed():
 	pass
 
+func fullscreenPressed():
+	OS.window_fullscreen = !OS.window_fullscreen
 
 func errExport(message : String):
 	windowMessage.dialog_text = "Export Failed! The following nodes have issues: " + message

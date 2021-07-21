@@ -153,7 +153,7 @@ margin_left = 39.0
 margin_right = 77.0
 margin_bottom = 26.0
 text = "Edit"
-items = [ "Undo", null, 0, false, false, 0, 0, null, "", true, "Redo", null, 0, false, false, 1, 0, null, "", true ]
+items = [ "Undo", null, 0, false, false, 0, 0, null, "", true, "Redo", null, 0, false, false, 1, 0, null, "", true, "Fullscreen", null, 0, false, false, 2, 0, null, "", false ]
 switch_on_hover = true
 
 [node name="Help" type="MenuButton" parent="Mount/MainWindow/tileBar/menus"]

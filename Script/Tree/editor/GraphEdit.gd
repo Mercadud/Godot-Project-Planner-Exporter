@@ -82,8 +82,7 @@ func updateConnectionList():
 func loadConnections():
 	###delete all current nodes###
 	updateConnectionList()
-	for i in connectionList.size():
-		_on_GraphEdit_disconnection_request(connectionList[i]["from"], connectionList[i]["from_slot"], connectionList[i]["to"], connectionList[i]["to_slot"])
+	disconnect_all()
 	for i in get_tree().get_nodes_in_group("node"):
 		i.queue_free()
 	###create all the nodes###
@@ -161,6 +160,12 @@ func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
 	updateConnectionList()
 	updateStats()
+
+func disconnect_all():
+	var cl = connectionList
+	for i in cl.size():
+		print_debug(cl)
+		_on_GraphEdit_disconnection_request(cl[i]["from"], cl[i]["from_port"], cl[i]["to"], cl[i]["to_port"])
 
 func updateStats():
 	$"../../Select/Nodes/Stats".updateStatic(connectionList.size())
