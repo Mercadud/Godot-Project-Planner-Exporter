@@ -16,10 +16,11 @@ func updateStatic(CC:int):
 	connectionCount.text = str(CC)
 
 func updateDynamic():
+	# updates static RAM usage
 	RamUsage.text = str(stepify(OS.get_static_memory_usage()/1000000.0, 0.01)) + "mb"
+	# updates fps
 	fps.text = str(Engine.get_frames_per_second()) + "fps"
-	
 
-
+# calls updateDynamic everytime the timer ends
 func _on_Timer_timeout():
 	updateDynamic()

@@ -5,6 +5,7 @@ var funcArr = []
 
 onready var functions = $functions/ScrollContainer/func
 onready var singleton = $Singleton/CheckBox
+onready var extend = $Extends/OptionButton
 
 func setNode(e):
 	childLoc = e
@@ -15,11 +16,19 @@ func updateFunc(_new_text):
 		funcArr[i] = functions.get_child(i).text
 
 func updateInfoPage():
+	# deletes all current functions
 	for i in functions.get_child_count():
 		functions.get_child(i).queue_free()
 	funcArr = []
+	# updates the name
 	$ScriptName/LineEdit.text = childLoc.info["name"]
+	# sets the status when it comes to singletons
 	singleton.pressed = childLoc.info["singleton"]
+	# updates from what it extends from
+	for i in extend.get_item_count():
+		if childLoc.info["extends"] == extend.get_item_text(i):
+			extend.select(i)
+	# displays all the functions for the node
 	funcArr = childLoc.info["functions"]
 	for i in funcArr.size():
 		var function = LineEdit.new()
@@ -46,4 +55,4 @@ func _on_CheckBox_button_up():
 	childLoc.info["singleton"] = singleton.pressed
 
 func _on_OptionButton_item_selected(index):
-	childLoc.info["extends"] = $Extends/OptionButton.get_item_id(index)
+	childLoc.info["extends"] = extend.get_item_text(index)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Script/Tree/editor/Editor.gd" type="Script" id=2]
 [ext_resource path="res://Script/Tree/editor/Import.gd" type="Script" id=3]
@@ -14,7 +14,6 @@
 [ext_resource path="res://Script/Tree/editor/Scene.gd" type="Script" id=13]
 [ext_resource path="res://Script/menus.gd" type="Script" id=14]
 [ext_resource path="res://Script/Tree/editor/Script.gd" type="Script" id=15]
-[ext_resource path="res://Script/Tree/editor/Node.gd" type="Script" id=16]
 [ext_resource path="res://Assets/Nodes/Import.png" type="Texture" id=17]
 [ext_resource path="res://Script/Tree/editor/itemLists/itemList.gd" type="Script" id=18]
 [ext_resource path="res://Scenes/nodesInherited/RootFolder.tscn" type="PackedScene" id=19]
@@ -682,47 +681,6 @@ margin_bottom = 395.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Node" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
-visible = false
-margin_top = 26.0
-margin_right = 200.0
-margin_bottom = 78.0
-script = ExtResource( 16 )
-
-[node name="NodeName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Node"]
-margin_right = 200.0
-margin_bottom = 24.0
-dragger_visibility = 2
-
-[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeName"]
-margin_top = 5.0
-margin_right = 84.0
-margin_bottom = 19.0
-text = "Scene Name:"
-
-[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeName"]
-margin_left = 84.0
-margin_right = 200.0
-margin_bottom = 24.0
-
-[node name="NodeType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Node"]
-margin_top = 28.0
-margin_right = 200.0
-margin_bottom = 52.0
-dragger_visibility = 2
-
-[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeType"]
-margin_top = 5.0
-margin_right = 72.0
-margin_bottom = 19.0
-text = "Node Type:"
-
-[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Node/NodeType"]
-margin_left = 72.0
-margin_right = 200.0
-margin_bottom = 24.0
-placeholder_text = "Spatial"
-
 [node name="Import" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
 visible = false
 margin_top = 26.0
@@ -835,8 +793,6 @@ window_title = "Message Alert!"
 [connection signal="item_selected" from="Mount/MainWindow/Editor/Select/Info/Script/Extends/OptionButton" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_OptionButton_item_selected"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/addFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_addFunction_button_up"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Script/functions/buttons/removeFunction" to="Mount/MainWindow/Editor/Select/Info/Script" method="_on_removeFunction_button_up"]
-[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Node/NodeName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Node" method="_on_LineEdit_text_changed"]
-[connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/Node/NodeType/LineEdit" to="Mount/MainWindow/Editor/Select/Info/Node" method="_on_nodeType_text_changed"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Select/Info/Import/ImportLocation/Button" to="Mount/MainWindow/Editor/Select/Info/Import" method="_on_Button_button_up"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/NodeName/LineEdit" to="Mount/MainWindow/Editor/Select/Info/WorldEnvironment" method="_on_LineEdit_text_changed"]
 [connection signal="item_selected" from="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/WEType/OptionButton" to="Mount/MainWindow/Editor/Select/Info/WorldEnvironment" method="_on_OptionButton_item_selected"]

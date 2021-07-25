@@ -2,6 +2,7 @@ extends "res://Script/Tree/Nodes/BaseNode.gd"
 
 onready var sceneInfo = get_node(infoPage + "/Scene")
 
+# adds the info required for this node
 func _ready():
 	info["sceneType"] = "Spatial"
 	info["scriptAttached"] = null
