@@ -1,5 +1,6 @@
 extends ItemList
 
+# allows drag and drop functionality
 func get_drag_data(_pos):
 	var selected = get_selected_items()
 	var prev = TextureRect.new()

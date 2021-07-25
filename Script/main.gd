@@ -3,6 +3,8 @@ extends Control
 onready var graph = $Mount/MainWindow/Editor/Graph/GraphEdit
 var ctrlPressed = false
 
+# Everything here is to allow the user to zoom in using ctrl + scroll
+# This can probably be moved to the graph, but this is not my priority at the moment
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ctrl"):

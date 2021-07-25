@@ -1,5 +1,6 @@
 extends "res://Script/Tree/Nodes/BaseNode.gd"
 
+# adds the info required for this node
 func _ready():
 	info["importLocation"] = ""
 	info["id"] = data.getRandomNum()

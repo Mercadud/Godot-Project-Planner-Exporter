@@ -2,12 +2,13 @@ extends "res://Script/Tree/Nodes/BaseNode.gd"
 
 onready var scriptInfo = get_node(infoPage + "/Script")
 
+# adds the info required for this node
 func _ready():
 	info["singleton"] = false
 	info["functions"] = []
 	info["nodeName"] = self.name
 	info["id"] = data.getRandomNum()
-	info["extends"] = ""
+	info["extends"] = "Spatial"
 
 func updateInfoPage():
 	scriptInfo.updateInfoPage()

@@ -2,6 +2,7 @@ extends "res://Script/Tree/Nodes/BaseNode.gd"
 
 onready var folderInfo = get_node(infoPage + "/RootFolder")
 
+# adds the info required for this node
 func _ready():
 	info["nodeName"] = self.name
 	info["id"] = data.getRandomNum()

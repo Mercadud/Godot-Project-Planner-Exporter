@@ -1,5 +1,6 @@
 extends HSplitContainer
 
+# This updates the offset between the graph and the info tab every time the window is resized
 
 func _ready():
 	_on_Editor_resized()

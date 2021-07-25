@@ -2,6 +2,7 @@ extends "res://Script/Tree/Nodes/BaseNode.gd"
 
 onready var WEInfo = get_node(infoPage + "/WorldEnvironment")
 
+# adds the info required for this node
 func _ready():
 	info["default"] = false
 	info["WEType"] = "Default"

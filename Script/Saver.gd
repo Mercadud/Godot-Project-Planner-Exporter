@@ -25,7 +25,7 @@ func save():
 		nodes.updateInfo()
 	var file = File.new()
 	file.open(SaveFileLocation, File.WRITE)
-	file.store_var(nodeList)
+	file.store_string(var2str(nodeList))
 	file.close()
 	###this should never fail###
 	return true
@@ -33,7 +33,7 @@ func save():
 func loadProject():
 	var file = File.new()
 	file.open(SaveFileLocation, File.READ)
-	nodeList = file.get_var()
+	nodeList = str2var(file.get_as_text())
 	file.close()
 	emit_signal("loadSignal")
 	###this should never fail###
