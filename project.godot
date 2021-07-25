@@ -27,10 +27,6 @@ Saver="*res://Script/Saver.gd"
 
 window/size/width=1126
 
-[filesystem]
-
-import/open_asset_import/use_fbx=false
-
 [gui]
 
 theme/custom_font="res://Fonts/Open_Sans/Megalovania.tres"
@@ -79,9 +75,12 @@ delete={
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/intended_usage/framebuffer_allocation=1
+quality/intended_usage/framebuffer_allocation.mobile=1
 threads/thread_model=2
 quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
-quality/filters/anisotropic_filter_level=8
+quality/filters/anisotropic_filter_level=16
+quality/filters/msaa=3
 quality/depth/hdr=false
