@@ -9,7 +9,7 @@ onready var importSelected = $Import
 onready var WESelected = $WorldEnvironment
 
 # this checks when a node is selected and changes the view in the info menu
-func _on_GraphEdit_node_selected(n):
+func _on_GraphEdit_node_selected(n : GraphNode):
 	$Title.text = n.name
 	if "RootFolder" in n.name:
 		onRoot(n)
