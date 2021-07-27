@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/nodesInherited/LineEdit.gd" type="Script" id=1]
 
 [node name="BaseNode" type="GraphNode" groups=[
 "node",
@@ -22,3 +24,6 @@ margin_left = 16.0
 margin_top = 24.0
 margin_right = 185.0
 margin_bottom = 54.0
+script = ExtResource( 1 )
+
+[connection signal="focus_entered" from="LineEdit" to="LineEdit" method="_on_LineEdit_focus_entered"]
