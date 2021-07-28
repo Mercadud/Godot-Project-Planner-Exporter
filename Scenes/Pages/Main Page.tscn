@@ -192,7 +192,7 @@ margin_left = 124.0
 margin_top = 3.0
 margin_right = 1126.0
 margin_bottom = 23.0
-text = "Made by Mercadud (v3.1.0)"
+text = "Made by Mercadud (v3.1.1)"
 align = 1
 valign = 1
 
@@ -226,16 +226,15 @@ custom_styles/bg = SubResource( 14 )
 custom_colors/grid_major = Color( 0.8, 0.8, 0.8, 1 )
 custom_colors/grid_minor = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 right_disconnects = true
-scroll_offset = Vector2( -20, -40 )
 script = ExtResource( 6 )
 
 [node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" groups=[
 "update",
 ] instance=ExtResource( 19 )]
-margin_left = 301.0
-margin_top = 240.0
-margin_right = 502.0
-margin_bottom = 316.0
+margin_left = 281.0
+margin_top = 200.0
+margin_right = 482.0
+margin_bottom = 276.0
 mouse_filter = 1
 offset = Vector2( 281, 200 )
 
@@ -387,7 +386,7 @@ script = ExtResource( 4 )
 [node name="Title" type="Label" parent="Mount/MainWindow/Editor/Select/Info"]
 margin_right = 200.0
 margin_bottom = 14.0
-text = "Folder"
+text = "None"
 align = 1
 valign = 1
 
