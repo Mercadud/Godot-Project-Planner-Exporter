@@ -39,3 +39,9 @@
 ### World Environment
 1. Name
 2. Template for the type of World Environment
+
+## Want to help out?
+heres what you can do:
+1. Help with the development of this tool by submitting pull requests
+2. Offer some templates that you think would be helpful to the average user that are MIT licensed
+3. Submitting any issues you have with the app to help me pinpoint some bugs
