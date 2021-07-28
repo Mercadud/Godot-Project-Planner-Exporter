@@ -78,7 +78,7 @@ VScrollBar/styles/scroll = SubResource( 11 )
 VScrollBar/styles/scroll_focus = SubResource( 12 )
 
 [sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+bg_color = Color( 0.203922, 0.203922, 0.203922, 1 )
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -91,7 +91,7 @@ content_margin_left = 3.0
 content_margin_right = 3.0
 content_margin_top = 1.0
 content_margin_bottom = 1.0
-bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+bg_color = Color( 0.203922, 0.203922, 0.203922, 1 )
 border_width_top = 1
 
 [sub_resource type="StyleBoxFlat" id=16]
@@ -99,10 +99,10 @@ content_margin_left = 3.0
 content_margin_right = 3.0
 content_margin_top = 1.0
 content_margin_bottom = 1.0
-bg_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 
 [sub_resource type="StyleBoxFlat" id=17]
-bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+bg_color = Color( 0.203922, 0.203922, 0.203922, 1 )
 border_color = Color( 0.203922, 0.203922, 0.203922, 1 )
 
 [sub_resource type="StyleBoxFlat" id=18]
