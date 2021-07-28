@@ -227,7 +227,6 @@ custom_colors/grid_major = Color( 0.8, 0.8, 0.8, 1 )
 custom_colors/grid_minor = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 right_disconnects = true
 scroll_offset = Vector2( -20, -40 )
-snap_distance = 100
 script = ExtResource( 6 )
 
 [node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" groups=[
