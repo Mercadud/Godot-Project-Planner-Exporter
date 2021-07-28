@@ -13,8 +13,7 @@ custom_styles/selectedframe = ExtResource( 3 )
 custom_colors/title_color = Color( 1, 1, 1, 1 )
 title = "Scene"
 slot/0/left_enabled = true
-slot/0/left_color = Color( 0.2, 0.231373, 0.309804, 1 )
-slot/0/right_enabled = true
+slot/0/left_color = Color( 0.215686, 0, 0.701961, 1 )
 slot/0/right_type = 1
 slot/0/right_color = Color( 0.2, 0.231373, 0.309804, 1 )
 script = ExtResource( 2 )
@@ -23,7 +22,7 @@ script = ExtResource( 2 )
 margin_left = 10.0
 margin_top = 33.0
 margin_right = 191.0
-margin_bottom = 57.0
+margin_bottom = 63.0
 placeholder_text = "Scene Name"
 
 [connection signal="close_request" from="." to="." method="_on_Scene_close_request"]

@@ -8,13 +8,16 @@
 [node name="RootFolder" groups=[
 "RootFolder",
 ] instance=ExtResource( 1 )]
+margin_left = -0.396851
+margin_right = 200.603
+margin_bottom = 73.0
 custom_styles/frame = ExtResource( 2 )
 custom_styles/selectedframe = ExtResource( 3 )
 custom_colors/title_color = Color( 1, 1, 1, 1 )
 title = "Root Folder"
 show_close = false
 slot/0/right_enabled = true
-slot/0/right_color = Color( 0, 0, 0, 1 )
+slot/0/right_color = Color( 0.101961, 0.101961, 0.101961, 1 )
 script = ExtResource( 4 )
 
 [node name="LineEdit" parent="." index="0"]

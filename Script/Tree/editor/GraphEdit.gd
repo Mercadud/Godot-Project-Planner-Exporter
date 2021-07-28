@@ -175,4 +175,4 @@ func disconnect_all():
 
 # this updates the stats board on the info page
 func updateStats():
-	$"../../Select/Nodes/Stats".updateStatic(connectionList.size())
+	$"../../Select/Nodes/VSplitContainer/Stats".updateStatic(connectionList.size())

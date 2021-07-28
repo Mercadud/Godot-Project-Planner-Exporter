@@ -20,7 +20,7 @@ script = ExtResource( 2 )
 margin_left = 10.0
 margin_top = 33.0
 margin_right = 191.0
-margin_bottom = 57.0
+margin_bottom = 63.0
 placeholder_text = "Script Name"
 
 [connection signal="close_request" from="." to="." method="_on_Script_close_request"]
