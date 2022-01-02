@@ -8,12 +8,13 @@
 ## FEATURES
 1. plan how you want to organize all your files in your godot Projects!
 2. Save them to finish them later!
-4. Export your file system as a, ready to use, Godot Project! (excluding nodes, exporting those will be introduced when Godot 4 comes out!)
+4. Export your file system as a, ready to use, Godot Project! (excluding Node inside of scenes)
 6. Easy for the eye dark theme!
 
 ## FUTURE PLANS
-1. Attach Scripts to Scenes
-2. undo/redo buttons
+1. Import Actual Projects to re-arrange/edit them
+3. Attach Scripts to Scenes
+4. undo/redo buttons
 
 ## Editable content per node:
 (more will be added in the future)
