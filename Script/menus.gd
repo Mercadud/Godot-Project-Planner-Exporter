@@ -8,6 +8,15 @@ onready var windowMessage = $"../../WindowDialog"
 onready var data = $"/root/Saver"
 onready var graphEdit = $"../../Editor/Graph/GraphEdit"
 
+var fileGetType;
+
+enum GetType {
+	SAVE,
+	LOAD,
+	IMPORT,
+	EXPORT
+}
+
 func _ready():
 	fileMenu.get_popup().connect("id_pressed", self, "_on_File_item_pressed")
 	editMenu.get_popup().connect("id_pressed", self, "_on_Edit_item_pressed")
@@ -21,12 +30,18 @@ func _on_File_item_pressed(id):
 	if id == 0:
 		NewPressed()
 	elif id == 1:
-		OpenPressed()
+		fileGetType = GetType.LOAD
+		LoadPressed()
 	elif id == 2:
-		SavePressed()
+		fileGetType = GetType.IMPORT
+		ImportPressed()
 	elif id == 3:
-		ExportPressed()
+		fileGetType = GetType.SAVE
+		SavePressed()
 	elif id == 4:
+		fileGetType = GetType.EXPORT
+		ExportPressed()
+	elif id == 5:
 		QuitPressed()
 
 func _on_Edit_item_pressed(id):
@@ -53,44 +68,53 @@ func NewPressed():
 			continue
 		i.queue_free()
 
-func OpenPressed():
+func LoadPressed() -> void :
 	fileLocation.mode = FileDialog.MODE_OPEN_FILE
+	fileLocation.filters = ["*.GPPE"]
 	fileLocation.popup_centered()
 
-func SavePressed():
+func ImportPressed() -> void:
+	fileLocation.mode = FileDialog.MODE_OPEN_FILE
+	fileLocation.filters = ["project.godot"]
+	fileLocation.popup_centered()
+
+func SavePressed() -> void :
 	fileLocation.mode = FileDialog.MODE_SAVE_FILE
 	fileLocation.popup_centered()
 
-func ExportPressed():
+func ExportPressed() -> void :
 	fileLocation.mode = FileDialog.MODE_OPEN_DIR
 	fileLocation.popup_centered()
 
-func QuitPressed():
+func QuitPressed() -> void:
 	get_tree().quit(-1)
 
-func _on_FileDialog_dir_selected(dir):
+func _on_FileDialog_dir_selected(dir) -> void:
 	data.exportDirLocation = dir
 	if fileLocation.mode == FileDialog.MODE_OPEN_DIR:
 		if data.exportProject():
 			windowMessage.dialog_text = "Export Successful"
 			windowMessage.popup_centered()
 
-func _on_FileDialog_file_selected(path):
+func _on_FileDialog_file_selected(path) -> void:
 	data.SaveFileLocation = path
-	if fileLocation.mode == FileDialog.MODE_SAVE_FILE:
+	if fileGetType == GetType.SAVE:
 		if data.save():
 			windowMessage.dialog_text = "Save successful"
 			windowMessage.popup_centered()
 		else:
 			windowMessage.dialog_text = "Save Failed!\n If this persists, contact the developer"
 			windowMessage.popup_centered()
-	elif fileLocation.mode == FileDialog.MODE_OPEN_FILE:
-		NewPressed()
+	elif fileGetType == GetType.LOAD:
 		if data.loadProject():
 			windowMessage.dialog_text = "load successful"
 			windowMessage.popup_centered()
 		else:
 			windowMessage.dialog_text = "Load Failed!\n If this persists, open an issue in the Github"
+			windowMessage.popup_centered()
+	elif fileGetType == GetType.IMPORT:
+		if data.import():
+			windowMessage.dialog_text = "import successful"
 			windowMessage.popup_centered()
 
 func undoPressed():

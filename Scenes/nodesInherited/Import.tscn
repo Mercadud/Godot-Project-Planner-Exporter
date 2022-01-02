@@ -10,7 +10,7 @@
 ] instance=ExtResource( 1 )]
 custom_styles/frame = ExtResource( 2 )
 custom_styles/selectedframe = ExtResource( 4 )
-custom_colors/title_color = Color( 0, 0, 0, 1 )
+custom_colors/title_color = Color( 1, 1, 1, 1 )
 title = "Import Node"
 slot/0/left_enabled = true
 slot/0/left_color = Color( 0.756863, 0, 1, 1 )

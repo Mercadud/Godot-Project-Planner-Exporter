@@ -27,7 +27,7 @@
 [ext_resource path="res://Assets/icons/grid_on_white_24dp.svg" type="Texture" id=27]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 5.0
@@ -84,7 +84,7 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 corner_detail = 20
-anti_aliasing_size = 5
+anti_aliasing_size = 5.0
 
 [sub_resource type="StyleBoxFlat" id=15]
 content_margin_left = 3.0
@@ -100,6 +100,8 @@ content_margin_right = 3.0
 content_margin_top = 1.0
 content_margin_bottom = 1.0
 bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+border_width_top = 1
+border_color = Color( 0.329412, 0.329412, 0.329412, 1 )
 
 [sub_resource type="StyleBoxFlat" id=17]
 bg_color = Color( 0.203922, 0.203922, 0.203922, 1 )
@@ -113,7 +115,7 @@ bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 border_width_top = 20
 border_color = Color( 0.588235, 0.588235, 0.588235, 1 )
 expand_margin_top = 20.0
-anti_aliasing_size = 5
+anti_aliasing_size = 5.0
 
 [sub_resource type="Theme" id=20]
 WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
@@ -156,9 +158,7 @@ margin_right = 1126.0
 margin_bottom = 26.0
 dragger_visibility = 2
 
-[node name="menus" type="GridContainer" parent="Mount/MainWindow/tileBar" groups=[
-"menus",
-]]
+[node name="menus" type="GridContainer" parent="Mount/MainWindow/tileBar" groups=["menus"]]
 margin_right = 124.0
 margin_bottom = 26.0
 columns = 3
@@ -168,7 +168,7 @@ script = ExtResource( 14 )
 margin_right = 35.0
 margin_bottom = 26.0
 text = "File"
-items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Load", null, 0, false, false, 1, 0, null, "", false, "Save", null, 0, false, false, 2, 0, null, "", false, "Export", null, 0, false, false, 3, 0, null, "", false, "Quit", null, 0, false, false, 4, 0, null, "", false ]
+items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Load", null, 0, false, false, 1, 0, null, "", false, "Import Project", null, 0, false, false, 2, 0, null, "", false, "Save", null, 0, false, false, 3, 0, null, "", false, "Export", null, 0, false, false, 4, 0, null, "", false, "Quit", null, 0, false, false, 5, 0, null, "", false ]
 switch_on_hover = true
 
 [node name="Edit" type="MenuButton" parent="Mount/MainWindow/tileBar/menus"]
@@ -209,28 +209,24 @@ margin_right = 910.0
 margin_bottom = 574.0
 custom_styles/panel = SubResource( 2 )
 
-[node name="GraphEdit" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph" groups=[
-"graph",
-]]
+[node name="GraphEdit" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph" groups=["graph"]]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 905.0
 margin_bottom = 569.0
 theme = SubResource( 13 )
+custom_colors/grid_major = Color( 0.8, 0.8, 0.8, 1 )
+custom_colors/grid_minor = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 custom_icons/minimap = ExtResource( 24 )
 custom_icons/more = ExtResource( 25 )
 custom_icons/reset = ExtResource( 26 )
 custom_icons/minus = ExtResource( 23 )
 custom_icons/snap = ExtResource( 27 )
 custom_styles/bg = SubResource( 14 )
-custom_colors/grid_major = Color( 0.8, 0.8, 0.8, 1 )
-custom_colors/grid_minor = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 right_disconnects = true
 script = ExtResource( 6 )
 
-[node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" groups=[
-"update",
-] instance=ExtResource( 19 )]
+[node name="RootFolder" parent="Mount/MainWindow/Editor/Graph/GraphEdit" groups=["update"] instance=ExtResource( 19 )]
 margin_left = 281.0
 margin_top = 200.0
 margin_right = 482.0
@@ -373,8 +369,8 @@ clip_text = true
 margin_top = 120.0
 margin_right = 216.0
 margin_bottom = 124.0
-custom_styles/separator = SubResource( 18 )
 custom_constants/separation = 4
+custom_styles/separator = SubResource( 18 )
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select"]
 visible = false
@@ -412,14 +408,14 @@ dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/FolderName"]
 margin_top = 5.0
-margin_right = 90.0
-margin_bottom = 19.0
+margin_right = 94.0
+margin_bottom = 25.0
 text = "Folder Name: "
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/FolderName"]
-margin_left = 90.0
+margin_left = 94.0
 margin_right = 200.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 placeholder_text = "Folder Name"
 
 [node name="ProjectName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/RootFolder"]
@@ -430,14 +426,14 @@ dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/ProjectName"]
 margin_top = 5.0
-margin_right = 91.0
-margin_bottom = 19.0
+margin_right = 94.0
+margin_bottom = 25.0
 text = "Project Name:"
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/ProjectName"]
-margin_left = 91.0
+margin_left = 94.0
 margin_right = 200.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 placeholder_text = "Game Name"
 
 [node name="DriverName" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/RootFolder"]
@@ -448,14 +444,14 @@ dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/DriverName"]
 margin_top = 3.0
-margin_right = 93.0
-margin_bottom = 17.0
+margin_right = 97.0
+margin_bottom = 23.0
 text = "Driver Name:  "
 
 [node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/DriverName"]
-margin_left = 93.0
+margin_left = 97.0
 margin_right = 200.0
-margin_bottom = 20.0
+margin_bottom = 26.0
 text = "GLES2"
 items = [ "GLES2", null, false, 0, null, "GLES3", null, false, 1, null ]
 selected = 0
@@ -473,14 +469,14 @@ dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowHeight"]
 margin_top = 5.0
-margin_right = 101.0
-margin_bottom = 19.0
+margin_right = 106.0
+margin_bottom = 25.0
 text = "Window Height:"
 
 [node name="SpinBox" type="SpinBox" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowHeight"]
-margin_left = 101.0
+margin_left = 106.0
 margin_right = 200.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 min_value = 1.0
 max_value = 4320.0
 value = 1024.0
@@ -495,14 +491,14 @@ dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowWidth"]
 margin_top = 5.0
-margin_right = 101.0
-margin_bottom = 19.0
+margin_right = 106.0
+margin_bottom = 25.0
 text = "Window Width: "
 
 [node name="SpinBox" type="SpinBox" parent="Mount/MainWindow/Editor/Select/Info/RootFolder/WindowWidth"]
-margin_left = 101.0
+margin_left = 106.0
 margin_right = 200.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 min_value = 1.0
 max_value = 7680.0
 value = 600.0
@@ -523,14 +519,14 @@ dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Folder/FolderName"]
 margin_top = 5.0
-margin_right = 86.0
-margin_bottom = 19.0
+margin_right = 90.0
+margin_bottom = 25.0
 text = "Folder Name:"
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Folder/FolderName"]
-margin_left = 86.0
+margin_left = 90.0
 margin_right = 200.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 placeholder_text = "Folder Name"
 
 [node name="Scene" type="VBoxContainer" parent="Mount/MainWindow/Editor/Select/Info"]
@@ -547,14 +543,14 @@ dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneName"]
 margin_top = 5.0
-margin_right = 84.0
-margin_bottom = 19.0
+margin_right = 88.0
+margin_bottom = 25.0
 text = "Scene Name:"
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneName"]
-margin_left = 84.0
+margin_left = 88.0
 margin_right = 200.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 
 [node name="SceneType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/Scene"]
 margin_top = 28.0
@@ -564,14 +560,14 @@ dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneType"]
 margin_top = 3.0
-margin_right = 76.0
-margin_bottom = 17.0
+margin_right = 80.0
+margin_bottom = 23.0
 text = "Scene Type:"
 
 [node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/Scene/SceneType"]
-margin_left = 76.0
+margin_left = 80.0
 margin_right = 200.0
-margin_bottom = 20.0
+margin_bottom = 26.0
 text = "Node"
 items = [ "Node", null, false, 0, null, "Spatial", null, false, 1, null, "KinematicBody", null, false, 2, null, "RigidBody", null, false, 3, null, "StaticBody", null, false, 4, null, "VehicleBody", null, false, 5, null, "Control", null, false, 6, null, "PanelContainer", null, false, 7, null, "Node2D", null, false, 8, null, "KinematicBody2D", null, false, 9, null, "RigidBody2D", null, false, 10, null, "StaticBody2D", null, false, 11, null ]
 selected = 0
@@ -582,12 +578,13 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Scene/ConnectScript"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 10.0
+margin_bottom = 30.0
 
 [node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/Scene/ConnectScript"]
-margin_right = 29.0
-margin_bottom = 20.0
+margin_left = 12.0
+margin_right = 77.0
+margin_bottom = 40.0
 text = "None"
 items = [ "None", null, false, 0, null ]
 selected = 0
@@ -607,17 +604,17 @@ dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Script/ScriptName"]
 margin_top = 5.0
-margin_right = 78.0
-margin_bottom = 19.0
+margin_right = 83.0
+margin_bottom = 25.0
 text = "Script Name"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Script/ScriptName"]
-margin_left = 78.0
+margin_left = 83.0
 margin_right = 200.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -643,14 +640,14 @@ dragger_visibility = 1
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/Script/Extends"]
 margin_top = 3.0
-margin_right = 54.0
-margin_bottom = 17.0
+margin_right = 57.0
+margin_bottom = 23.0
 text = "Extends:"
 
 [node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/Script/Extends"]
-margin_left = 66.0
+margin_left = 69.0
 margin_right = 200.0
-margin_bottom = 20.0
+margin_bottom = 26.0
 text = "Node"
 items = [ "Node", null, false, 0, null, "Spatial", null, false, 1, null, "KinematicBody", null, false, 2, null, "RigidBody", null, false, 3, null, "StaticBody", null, false, 4, null, "VehicleBody", null, false, 5, null, "Control", null, false, 6, null, "PanelContainer", null, false, 7, null, "Node2D", null, false, 8, null, "KinematicBody2D", null, false, 9, null, "RigidBody2D", null, false, 10, null, "StaticBody2D", null, false, 11, null ]
 selected = 0
@@ -720,14 +717,14 @@ margin_bottom = 24.0
 dragger_visibility = 2
 
 [node name="Button" type="Button" parent="Mount/MainWindow/Editor/Select/Info/Import/ImportLocation"]
-margin_right = 99.0
-margin_bottom = 24.0
+margin_right = 101.0
+margin_bottom = 30.0
 text = "Select Import"
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/Import/ImportLocation"]
-margin_left = 99.0
+margin_left = 101.0
 margin_right = 200.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 text = "Not Selected"
 editable = false
 
@@ -742,26 +739,30 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/NodeName"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 10.0
+margin_right = 71.0
+margin_bottom = 30.0
 text = "WE name: "
 
 [node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/NodeName"]
-margin_right = 58.0
-margin_bottom = 24.0
+margin_left = 83.0
+margin_right = 141.0
+margin_bottom = 40.0
 
 [node name="WEType" type="HSplitContainer" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment"]
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/WEType"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 10.0
+margin_right = 130.0
+margin_bottom = 30.0
 text = "Environment Type: "
 
 [node name="OptionButton" type="OptionButton" parent="Mount/MainWindow/Editor/Select/Info/WorldEnvironment/WEType"]
-margin_right = 29.0
-margin_bottom = 20.0
+margin_left = 142.0
+margin_right = 220.0
+margin_bottom = 40.0
 text = "Default"
 items = [ "Default", null, false, 0, null, "Realistic", null, false, 1, null, "Toon", null, true, 2, null ]
 selected = 0
