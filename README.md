@@ -1,6 +1,9 @@
 # Godot Project Planner/Exporter
 ##### Made by Mercadud
 
+## Currently undergoing a rewrite for Godot 4: https://github.com/Mercadud/GPPE
+
+
 ##### Create File Systems to start your Godot Projects!
 ![GPPE_v3 1 1](https://user-images.githubusercontent.com/34464977/127249071-9b78d968-f5f1-4973-9345-2a78ffeef5b5.png)
 
